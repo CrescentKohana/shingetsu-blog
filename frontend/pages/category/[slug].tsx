@@ -38,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         slug: category.slug,
       },
     })),
-    fallback: false,
+    fallback: "blocking",
   }
 }
 
