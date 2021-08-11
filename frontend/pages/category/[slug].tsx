@@ -3,7 +3,7 @@ import Articles from "../../components/Articles"
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import { fetchApi } from "../../lib/api"
-import { Category as CategoryData } from "../../types/page"
+import { Category as CategoryData } from "../../types"
 
 interface CategoryProps {
   category: CategoryData

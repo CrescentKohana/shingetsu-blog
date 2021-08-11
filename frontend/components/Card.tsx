@@ -2,7 +2,7 @@ import Link from "next/link"
 import React from "react"
 import Moment from "react-moment"
 import styles from "../styles/Card.module.css"
-import { Article } from "../types/page"
+import { Article } from "../types"
 import ImageWrap from "./ImageWrap"
 
 interface CardProps {

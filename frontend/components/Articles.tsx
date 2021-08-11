@@ -1,5 +1,5 @@
 import React from "react"
-import { Article } from "../types/page"
+import { Article } from "../types"
 import Card from "./Card"
 
 interface ArticlesProps {

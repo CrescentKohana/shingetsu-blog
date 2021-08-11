@@ -2,7 +2,7 @@ import { GetStaticProps } from "next"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
-import { Category } from "../types/page"
+import { Category } from "../types"
 
 interface Custom404Props {
   categories: Category[]

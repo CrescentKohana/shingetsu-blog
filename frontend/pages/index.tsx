@@ -9,7 +9,7 @@ import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Typewriter from "../components/Typewriter"
 import { fetchApi } from "../lib/api"
-import { Category, Homepage } from "../types/page"
+import { Category, Homepage } from "../types"
 
 interface HomeProps {
   homepage: Homepage

@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { getMedia } from "../lib/media"
-import { Media } from "../types/data"
+import { Media } from "../types"
 
 interface ImageProps {
   image: Media

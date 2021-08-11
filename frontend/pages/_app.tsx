@@ -4,7 +4,7 @@ import { createContext } from "react"
 import { fetchApi } from "../lib/api"
 import { getMedia } from "../lib/media"
 import "../styles/globals.css"
-import { Global } from "../types/data"
+import { Global } from "../types"
 
 export const GlobalContext = createContext({})
 

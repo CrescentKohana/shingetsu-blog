@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
-import { About as AboutData, Category } from "../types/page"
+import { About as AboutData, Category } from "../types"
 
 interface AboutProps {
   about: AboutData
