@@ -22,3 +22,5 @@ NGINX configs I'm using can be found in the [nginx directory](nginx).
 
 - Docker images with docker-composer
 - backend to the repository
+- Workflows, CI/CD
+- Tests (E2E, Unit)
