@@ -1,4 +1,4 @@
-import { Media } from "../types/data"
+import { Media } from "../types"
 import { getApiUrl } from "./api"
 
 export function getMedia(media: Media) {

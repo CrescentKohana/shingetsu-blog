@@ -8,7 +8,7 @@ import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import { fetchApi } from "../../lib/api"
 import styles from "../../styles/Article.module.css"
-import { Article as ArticleData, Category } from "../../types/page"
+import { Article as ArticleData, Category } from "../../types"
 
 interface ArticleProps {
   article: ArticleData

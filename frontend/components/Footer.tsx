@@ -4,7 +4,7 @@ import React, { useContext } from "react"
 import { getMedia } from "../lib/media"
 import { GlobalContext } from "../pages/_app"
 import styles from "../styles/Footer.module.css"
-import { Global } from "../types/data"
+import { Global } from "../types"
 
 const Footer = ({}) => {
   const global: Global = useContext(GlobalContext)

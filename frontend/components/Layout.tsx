@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { Category } from "../types/page"
+import { Category } from "../types"
 import Footer from "./Footer"
 import Nav from "./Nav"
 
