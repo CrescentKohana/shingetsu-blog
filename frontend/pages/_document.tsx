@@ -1,5 +1,7 @@
 import Document, { Head, Html, Main, NextScript } from "next/document"
 
+// TODO: Possibly serve these scripts and stylesheets locally.
+
 class MyDocument extends Document {
   render() {
     return (
