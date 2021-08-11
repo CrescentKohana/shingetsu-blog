@@ -15,6 +15,7 @@ const Seo = ({ seo }: SeoProps) => {
     ...seo,
   }
 
+  // TODO: "Guides | undefined" in Discord preview (https://luukuton.fi/category/guides)
   const fullSeo = {
     ...seoWithDefaults,
     metaTitle: `${seoWithDefaults.metaTitle} | ${global.siteName}`,

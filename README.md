@@ -16,4 +16,9 @@ Made by Next.js written in TypeScript. Utilizes static site generation (SSG) and
 
 ## NGINX
 
-NGINX configs I'm using can be found in [nginx](nginx).
+NGINX configs I'm using can be found in the [nginx directory](nginx).
+
+## TODO
+
+- Docker images with docker-composer
+- backend to the repository
