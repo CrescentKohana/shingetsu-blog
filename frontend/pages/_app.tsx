@@ -33,7 +33,7 @@ Shingetsu.getInitialProps = async (context: AppContext) => {
   // Fetch global site settings from Strapi
   const global = await fetchApi("/global")
   // Pass the data to our page via props
-  return { ...appProps, pageProps: { global } }
+  return { ...appProps, pageProps: global }
 }
 
 export default Shingetsu
