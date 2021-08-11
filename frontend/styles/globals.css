@@ -1,0 +1,140 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  background-color: #222;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-family: Staatliches;
+  font-size: 120px;
+}
+
+h2 {
+  font-family: Staatliches;
+  font-size: 60px;
+}
+
+h3 {
+  font-family: Staatliches;
+  font-size: 35px;
+}
+
+#category {
+  font-family: Staatliches;
+  font-weight: 500;
+}
+
+#title {
+  letter-spacing: 0.4px;
+  font-size: 22px;
+  font-size: 1.375rem;
+  line-height: 1.13636;
+}
+
+#banner {
+  margin: 20px;
+  height: 800px;
+}
+
+#editor {
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.uk-navbar-container {
+  background: rgb(15, 28, 37) !important;
+  font-family: Staatliches;
+}
+
+.uk-container {
+  text-shadow: -1px -1px 0 #222, 1px -1px 0 #222, -1px 1px 0 #222, 1px 1px 0 #222;
+  -webkit-text-stroke: 0px #222;
+  font-family: "Noto Sans JP";
+}
+
+img:hover {
+  opacity: 1;
+  transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.custom-container {
+  background-color: rgba(0, 0, 0, 0) !important;
+  z-index: -2;
+  min-height: 100%;
+}
+
+footer {
+  z-index: -1;
+  padding-right: -1px;
+  position: fixed;
+  float: right;
+  right: 0;
+  bottom: 0;
+  width: 20vw;
+  min-width: 100px;
+}
+
+footer img {
+  margin-left: 0.5rem;
+  margin: -10px;
+}
+
+.uk-card {
+  background-color: #222;
+  margin: 1rem;
+  text-align: center;
+  border: 1px solid rgb(75, 75, 75);
+  border-radius: 5px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  box-shadow: 7px 5px 5px rgba(0, 0, 0, 0.33);
+}
+
+.uk-card:hover,
+.uk-card:focus,
+.uk-card:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+.uk-card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+pre {
+  font: monaco, monospace;
+  color: rgb(243, 243, 243);
+  -moz-tab-size: 4;
+  tab-size: 4;
+  overflow: auto;
+  padding: 10px;
+  border: 1px solid #202020;
+  border-radius: 3px;
+  background: #141414;
+}
