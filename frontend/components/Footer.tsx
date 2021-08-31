@@ -6,7 +6,7 @@ import { GlobalContext } from "../pages/_app"
 import styles from "../styles/Footer.module.css"
 import { Global } from "../types"
 
-const Footer = ({}) => {
+const Footer = () => {
   const global: Global = useContext(GlobalContext)
   const router = useRouter()
   const imgOpacity =
