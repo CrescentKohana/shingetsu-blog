@@ -73,8 +73,6 @@ h3 {
 }
 
 .uk-container {
-  text-shadow: -1px -1px 0 #222, 1px -1px 0 #222, -1px 1px 0 #222, 1px 1px 0 #222;
-  -webkit-text-stroke: 0px #222;
   font-family: "Noto Sans JP";
 }
 
