@@ -7,8 +7,11 @@ interface ArticlesProps {
 }
 
 const Articles = ({ articles }: ArticlesProps) => {
-  const showcaseArticles = articles.filter((article) => article.showcased)
-  const otherArticles = articles.filter((article) => !article.showcased)
+  const orderedArticles = articles.sort(
+    (a: Article, b: Article) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt)
+  )
+  const showcaseArticles = orderedArticles.filter((article) => article.showcased)
+  const otherArticles = orderedArticles.filter((article) => !article.showcased)
 
   return (
     <div>
