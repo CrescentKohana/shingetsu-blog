@@ -21,6 +21,11 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <script async defer data-domain="luukuton.fi" src="https://plausible.luukuton.fi/js/plausible.js"></script>
+          <noscript>
+            <img src="https://shy.luukuton.fi/ingress/ffa329be-5da8-4509-b9fd-1fdd5f37c4dd/pixel.gif" />
+          </noscript>
+          <script defer src="https://shy.luukuton.fi/ingress/ffa329be-5da8-4509-b9fd-1fdd5f37c4dd/script.js"></script>
         </body>
       </Html>
     )
