@@ -35,13 +35,6 @@ const Nav = ({ categories }: NavProps) => {
                 </li>
               )
             })}
-            <li>
-              <Link as={`https://cloud.luukuton.fi`} href="https://cloud.luukuton.fi">
-                <a className="uk-link-reset" target="_blank" rel="noopener noreferrer">
-                  Cloud
-                </a>
-              </Link>
-            </li>
           </ul>
         </div>
       </nav>
