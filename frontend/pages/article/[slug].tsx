@@ -76,6 +76,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     fetchApi("/categories"),
   ])
 
+  if (articles.length === 0) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: { article: articles[0], categories },
     revalidate: 1,

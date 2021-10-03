@@ -46,6 +46,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const categories = await fetchApi("/categories")
   const category = categories.filter((category: CategoryData) => category.slug === params?.slug)[0]
 
+  if (!category) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: { categories, category },
     revalidate: 1,
