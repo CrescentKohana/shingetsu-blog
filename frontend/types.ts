@@ -43,6 +43,8 @@ export interface Article {
 export interface Tag {
   id: number
   name: string
+  slug: string
+  articles: Article[]
 }
 
 // Components and other types

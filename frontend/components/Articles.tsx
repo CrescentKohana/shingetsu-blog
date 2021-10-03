@@ -4,12 +4,28 @@ import Card from "./Card"
 
 interface ArticlesProps {
   articles: Article[]
+  even?: boolean
 }
 
-const Articles = ({ articles }: ArticlesProps) => {
+const Articles = ({ articles, even }: ArticlesProps) => {
   const orderedArticles = articles.sort(
     (a: Article, b: Article) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt)
   )
+
+  if (even) {
+    return (
+      <div>
+        <div>
+          <div className="uk-child-width-1-3@m uk-grid-match" data-uk-grid>
+            {orderedArticles.map((article) => {
+              return <Card article={article} key={`article__left__${article.slug}`} />
+            })}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const showcaseArticles = orderedArticles.filter((article) => article.showcased)
   const otherArticles = orderedArticles.filter((article) => !article.showcased)
 
