@@ -1,3 +1,4 @@
+import Link from "next/link"
 import React from "react"
 import { Tag } from "../types"
 
@@ -10,9 +11,9 @@ const Tags = ({ tags }: TagsProps) => {
     <div>
       {tags.map((tag: Tag) => {
         return (
-          <span key={tag.id} className="uk-badge">
-            {tag.name}
-          </span>
+          <Link key={tag.id} as={`/tag/${tag.slug}`} href="/tag/[slug]" passHref>
+            <a className="uk-badge">{tag.name}</a>
+          </Link>
         )
       })}
     </div>
