@@ -85,6 +85,14 @@ h3 {
   font-family: "Noto Sans JP";
 }
 
+.uk-badge {
+  margin-right: 5px;
+  padding: 0 5px;
+  background: #1e87f0;
+  color: #fff;
+  font-size: 12px;
+}
+
 img:hover {
   opacity: 1;
   transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -134,14 +142,27 @@ footer img {
   font-size: 1.5rem;
 }
 
+/* Single and multi-line code tags */
 pre {
-  font: monaco, monospace;
+  font-family: monaco, monospace;
   color: rgb(243, 243, 243);
   -moz-tab-size: 4;
   tab-size: 4;
-  overflow: auto;
-  padding: 10px;
   border: 1px solid #202020;
   border-radius: 3px;
   background: #141414;
+}
+
+/* Single line code tag */
+code {
+  overflow-wrap: anywhere;
+  white-space: normal !important;
+  background: #141414;
+}
+
+/* Multi-line line code tag */
+pre > code {
+  overflow-wrap: normal;
+  word-break: keep-all;
+  white-space: pre !important;
 }
