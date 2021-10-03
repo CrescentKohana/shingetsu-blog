@@ -54,6 +54,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const [tags, categories] = await Promise.all([fetchApi(`/tags?slug=${params.slug}`), fetchApi("/categories")])
 
+  if (tags.length === 0) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: { tag: tags[0], categories },
     revalidate: 1,
