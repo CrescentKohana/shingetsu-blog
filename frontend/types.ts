@@ -25,16 +25,24 @@ export interface Category {
 }
 
 export interface Article {
+  id: number
   title: string
   description: string
   content: string
   publishedAt: string
+  updatedAt: string
   status: ArticleStatuses
   slug: string
   category: Category
   image: Media
   author: Author
   showcased: boolean
+  tags: Tag[]
+}
+
+export interface Tag {
+  id: number
+  name: string
 }
 
 // Components and other types
