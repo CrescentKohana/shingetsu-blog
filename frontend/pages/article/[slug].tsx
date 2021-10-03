@@ -6,6 +6,7 @@ import rehypeSanitize from "rehype-sanitize"
 import ImageWrap from "../../components/ImageWrap"
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
+import Tags from "../../components/Tags"
 import { fetchApi } from "../../lib/api"
 import styles from "../../styles/Article.module.css"
 import { Article as ArticleData, Category } from "../../types"
@@ -29,6 +30,7 @@ const Article = ({ article, categories }: ArticleProps) => {
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h2>{article.title}</h2>
+          <Tags tags={article.tags} />
           <hr className="uk-divider-small" />
           <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{article.content}</Markdown>
           <hr className="uk-divider-icon" />
