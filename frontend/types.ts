@@ -1,10 +1,5 @@
 // Pages
 
-enum ArticleStatuses {
-  draft,
-  published,
-}
-
 export interface Homepage {
   title: string
   content: string
@@ -31,7 +26,6 @@ export interface Article {
   content: string
   publishedAt: string
   updatedAt: string
-  status: ArticleStatuses
   slug: string
   category: Category
   image: Media
