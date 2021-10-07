@@ -114,6 +114,10 @@ pre > code {
   color: rgba(243, 243, 243, 0.8);
 }
 
+.nav-category {
+  color: var(--tertiary);
+}
+
 #category {
   font-family: Staatliches;
   font-weight: 500;
@@ -135,6 +139,18 @@ pre > code {
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.75;
+}
+
+.created-badge {
+  border: 2px solid var(--secondary) !important;
+}
+
+.contributed-badge {
+  border: 2px solid rgb(255, 230, 0) !important;
+}
+
+.endorsed-badge {
+  border: 2px solid var(--tertiary) !important;
 }
 
 /* Customizing UIkit */
