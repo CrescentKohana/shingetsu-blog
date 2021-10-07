@@ -71,10 +71,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  const [articles, categories] = await Promise.all([
-    fetchApi(`/articles?slug=${params.slug}&status=published`),
-    fetchApi("/categories"),
-  ])
+  const [articles, categories] = await Promise.all([fetchApi(`/articles?slug=${params.slug}`), fetchApi("/categories")])
 
   if (articles.length === 0) {
     return {

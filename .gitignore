@@ -1,3 +1,6 @@
 .vscode
 .idea
+
+# ignore backend temporarily
+backend
 backend_old
