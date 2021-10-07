@@ -3,21 +3,20 @@ import ReactMarkdown from "react-markdown"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
-import { About as AboutData, Category } from "../types"
+import { About as AboutData } from "../types"
 
 interface AboutProps {
   about: AboutData
-  categories: Category[]
 }
 
-const About = ({ about, categories }: AboutProps) => {
+const About = ({ about }: AboutProps) => {
   const seo = {
     metaTitle: about.name,
-    metaDescription: `A short introduction`,
+    metaDescription: "A short introduction",
   }
 
   return (
-    <Layout categories={categories}>
+    <Layout>
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
@@ -31,10 +30,10 @@ const About = ({ about, categories }: AboutProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [categories, about] = await Promise.all([fetchApi("/categories"), fetchApi("/about")])
+  const about = await fetchApi("/about")
 
   return {
-    props: { categories, about },
+    props: { about },
     revalidate: 1,
   }
 }
