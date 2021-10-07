@@ -24,7 +24,7 @@ const Shingetsu = ({ Component, pageProps }: AppProps) => {
 }
 
 // getInitialProps disables automatic static optimization for pages that don't
-// have getStaticProps. So article, category, about and home pages still get SSG.
+// have getStaticProps. So article, projects, tags, about and home pages still get SSG.
 // Hopefully this can be replaced with getStaticProps once this issue is fixed:
 // https://github.com/vercel/next.js/discussions/10949
 Shingetsu.getInitialProps = async (context: AppContext) => {
