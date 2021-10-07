@@ -1,8 +1,6 @@
 import { GetStaticProps } from "next"
 import React from "react"
 import Markdown from "react-markdown"
-// TODO: Update rehype-raw and rehype-sanitize when TypeScript errors are fixed.
-// https://github.com/remarkjs/react-markdown/issues/626
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
 import Layout from "../components/Layout"
