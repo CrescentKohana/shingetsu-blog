@@ -149,12 +149,19 @@ pre > code {
 
 .uk-light .uk-badge,
 .uk-badge {
+  border: 2px solid rgba(0, 0, 0, 0);
   padding: 0 5px;
   background: var(--primary);
   color: rgb(199, 199, 199) !important;
   font-size: 12px;
 }
-´ .custom-container {
+
+.toggled-badge > .uk-light .uk-badge,
+.toggled-badge > .uk-badge {
+  border: 2px solid var(--secondary) !important;
+}
+
+.custom-container {
   background-color: rgba(0, 0, 0, 0) !important;
   z-index: -2;
   min-height: 100%;
