@@ -1,3 +1,11 @@
+/* Variables */
+
+:root {
+  --primary: rgb(15, 28, 37);
+  --secondary: #39f;
+  --tertiary: #b3b0ff;
+}
+
 /* HTML tags */
 html,
 body {
@@ -131,7 +139,7 @@ pre > code {
 
 /* Customizing UIkit */
 .uk-navbar-container:not(.uk-navbar-transparent) {
-  background: rgb(15, 28, 37);
+  background: var(--primary);
   font-family: Staatliches;
 }
 
@@ -142,7 +150,7 @@ pre > code {
 .uk-light .uk-badge,
 .uk-badge {
   padding: 0 5px;
-  background: rgb(15, 28, 37);
+  background: var(--primary);
   color: rgb(199, 199, 199) !important;
   font-size: 12px;
 }
