@@ -1,6 +1,6 @@
 import React from "react"
 import { Article } from "../types"
-import Card from "./Card"
+import ArticleCard from "./ArticleCard"
 
 interface ArticlesProps {
   articles: Article[]
@@ -18,7 +18,7 @@ const Articles = ({ articles, even }: ArticlesProps) => {
         <div>
           <div className="uk-child-width-1-3@m uk-grid-match" data-uk-grid>
             {orderedArticles.map((article) => {
-              return <Card article={article} key={`article__left__${article.slug}`} />
+              return <ArticleCard article={article} key={`article__left__${article.slug}`} />
             })}
           </div>
         </div>
@@ -26,21 +26,21 @@ const Articles = ({ articles, even }: ArticlesProps) => {
     )
   }
 
-  const showcaseArticles = orderedArticles.filter((article) => article.showcased)
+  const showcasedArticles = orderedArticles.filter((article) => article.showcased)
   const otherArticles = orderedArticles.filter((article) => !article.showcased)
 
   return (
     <div>
       <div className="uk-child-width-1-2@s" data-uk-grid>
         <div>
-          {showcaseArticles.map((article) => {
-            return <Card article={article} key={`article__left__${article.slug}`} />
+          {showcasedArticles.map((article) => {
+            return <ArticleCard article={article} key={`article__left__${article.slug}`} />
           })}
         </div>
         <div>
           <div className="uk-child-width-1-2@m uk-grid-match" data-uk-grid>
             {otherArticles.map((article) => {
-              return <Card article={article} key={`article__left__${article.slug}`} />
+              return <ArticleCard article={article} key={`article__left__${article.slug}`} />
             })}
           </div>
         </div>

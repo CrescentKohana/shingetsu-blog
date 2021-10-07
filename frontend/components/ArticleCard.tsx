@@ -10,13 +10,13 @@ interface CardProps {
   article: Article
 }
 
-const Card = ({ article }: CardProps) => {
+const ArticleCard = ({ article }: CardProps) => {
   return (
     <Link as={`/article/${article.slug}`} href="/article/[slug]">
       <a className="uk-link-reset">
         <div className="uk-card uk-card-muted">
           <div className="uk-card-media-top">
-            <ImageWrap className={styles.articleImg} image={article.image} />
+            <ImageWrap className={styles.cardImg} image={article.image} />
           </div>
           <div className="uk-card-body">
             <p id="title" className="uk-text-large">
@@ -37,4 +37,4 @@ const Card = ({ article }: CardProps) => {
   )
 }
 
-export default Card
+export default ArticleCard
