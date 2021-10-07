@@ -8,6 +8,10 @@ interface ImageProps {
 }
 
 const ImageWrap = ({ image, className }: ImageProps) => {
+  if (!image) {
+    return null
+  }
+
   if (image.width && image.height) {
     return (
       <Image
