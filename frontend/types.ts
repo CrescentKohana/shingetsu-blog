@@ -12,22 +12,14 @@ export interface About {
   content: string
 }
 
-export interface Category {
-  id: number
-  name: string
-  slug: string
-  articles: Article[]
-}
-
 export interface Article {
   id: number
+  slug: string
   title: string
   description: string
   content: string
   publishedAt: string
   updatedAt: string
-  slug: string
-  category: Category
   image: Media
   author: Author
   showcased: boolean

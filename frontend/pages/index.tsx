@@ -9,16 +9,15 @@ import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Typewriter from "../components/Typewriter"
 import { fetchApi } from "../lib/api"
-import { Category, Homepage } from "../types"
+import { Homepage } from "../types"
 
 interface HomeProps {
   homepage: Homepage
-  categories: Category[]
 }
 
-const Home = ({ categories, homepage }: HomeProps) => {
+const Home = ({ homepage }: HomeProps) => {
   return (
-    <Layout categories={categories}>
+    <Layout>
       <Seo seo={homepage.seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
@@ -32,10 +31,10 @@ const Home = ({ categories, homepage }: HomeProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [categories, homepage] = await Promise.all([fetchApi("/categories"), fetchApi("/homepage")])
+  const homepage = await fetchApi("/homepage")
 
   return {
-    props: { categories, homepage },
+    props: { homepage },
     revalidate: 1,
   }
 }

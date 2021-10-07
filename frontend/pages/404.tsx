@@ -1,21 +1,14 @@
-import { GetStaticProps } from "next"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
-import { fetchApi } from "../lib/api"
-import { Category } from "../types"
 
-interface Custom404Props {
-  categories: Category[]
-}
-
-const Custom404 = ({ categories }: Custom404Props) => {
+const Custom404 = () => {
   const seo = {
     metaTitle: "404",
     metaDescription: "404 - Page not found",
   }
 
   return (
-    <Layout categories={categories}>
+    <Layout>
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
@@ -25,15 +18,6 @@ const Custom404 = ({ categories }: Custom404Props) => {
       </div>
     </Layout>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const [categories] = await Promise.all([fetchApi("/categories")])
-
-  return {
-    props: { categories },
-    revalidate: 1,
-  }
 }
 
 export default Custom404

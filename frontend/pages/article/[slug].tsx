@@ -9,14 +9,13 @@ import Seo from "../../components/Seo"
 import Tags from "../../components/Tags"
 import { fetchApi } from "../../lib/api"
 import styles from "../../styles/Article.module.css"
-import { Article as ArticleData, Category } from "../../types"
+import { Article as ArticleData } from "../../types"
 
 interface ArticleProps {
   article: ArticleData
-  categories: Category[]
 }
 
-const Article = ({ article, categories }: ArticleProps) => {
+const Article = ({ article }: ArticleProps) => {
   const seo = {
     metaTitle: article.title,
     metaDescription: article.description,
@@ -25,7 +24,7 @@ const Article = ({ article, categories }: ArticleProps) => {
   }
 
   return (
-    <Layout categories={categories}>
+    <Layout>
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
@@ -71,7 +70,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  const [articles, categories] = await Promise.all([fetchApi(`/articles?slug=${params.slug}`), fetchApi("/categories")])
+  const articles = await fetchApi(`/articles?slug=${params.slug}`)
 
   if (articles.length === 0) {
     return {
@@ -80,7 +79,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   return {
-    props: { article: articles[0], categories },
+    props: { article: articles[0] },
     revalidate: 1,
   }
 }

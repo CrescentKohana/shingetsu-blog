@@ -1,17 +1,15 @@
 import { ReactNode } from "react"
-import { Category } from "../types"
 import Footer from "./Footer"
 import Nav from "./Nav"
 
 interface LayoutProps {
   children: ReactNode
-  categories: Category[]
 }
 
-const Layout = ({ children, categories }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="custom-container">
-      <Nav categories={categories} />
+      <Nav />
       {children}
       <Footer />
     </div>

@@ -1,12 +1,7 @@
 import Link from "next/link"
 import React from "react"
-import { Category } from "../types"
 
-interface NavProps {
-  categories: Category[]
-}
-
-const Nav = ({ categories }: NavProps) => {
+const Nav = () => {
   return (
     <div>
       <nav className="uk-navbar uk-navbar-container" data-uk-navbar>
@@ -22,19 +17,21 @@ const Nav = ({ categories }: NavProps) => {
         <div className="uk-navbar-right">
           <ul className="uk-navbar-nav">
             <li>
-              <Link as={`/about`} href="/about">
+              <Link as="/about" href="/about">
                 <a className="uk-link-reset">About</a>
               </Link>
             </li>
-            {categories.map((category) => {
-              return (
-                <li key={category.id}>
-                  <Link as={`/category/${category.slug}`} href="/category/[slug]">
-                    <a className="uk-link-reset">{category.name}</a>
-                  </Link>
-                </li>
-              )
-            })}
+            <div className="uk-divider-vertical" style={{ height: "inherit" }} />
+            <li className="nav-category">
+              <Link as="/blog" href="/blog">
+                <a className="uk-link-reset">Blog</a>
+              </Link>
+            </li>
+            <li className="nav-category">
+              <Link as="/projects" href="/projects">
+                <a className="uk-link-reset">Projects</a>
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

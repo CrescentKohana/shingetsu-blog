@@ -3,21 +3,20 @@ import Articles from "../../components/Articles"
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import { fetchApi } from "../../lib/api"
-import { Category, Tag as TagData } from "../../types"
+import { Tag as TagData } from "../../types"
 
 interface TagProps {
   tag: TagData
-  categories: Category[]
 }
 
-const Tag = ({ tag, categories }: TagProps) => {
+const Tag = ({ tag }: TagProps) => {
   const seo = {
     metaTitle: `${tag.name} tag`,
     metaDescription: `All ${tag.name} tagged articles`,
   }
 
   return (
-    <Layout categories={categories}>
+    <Layout>
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
@@ -52,7 +51,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  const [tags, categories] = await Promise.all([fetchApi(`/tags?slug=${params.slug}`), fetchApi("/categories")])
+  const tags = await fetchApi(`/tags?slug=${params.slug}`)
 
   if (tags.length === 0) {
     return {
@@ -61,7 +60,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   return {
-    props: { tag: tags[0], categories },
+    props: { tag: tags[0] },
     revalidate: 1,
   }
 }
