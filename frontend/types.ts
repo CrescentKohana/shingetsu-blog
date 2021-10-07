@@ -36,12 +36,37 @@ export interface Article {
 
 export interface Tag {
   id: number
-  name: string
   slug: string
+  name: string
   articles: Article[]
 }
 
+export enum ProjectStatus {
+  created,
+  contributed,
+  endorsed,
+}
+
+export interface Project {
+  id: number
+  slug: string
+  title: string
+  description: string
+  content: string
+  url: string
+  license: string
+  status: ProjectStatus
+  showcased: boolean
+  image: Media
+  tech: Tech
+}
+
 // Components and other types
+
+export interface Tech {
+  id: number
+  name: string
+}
 
 interface Footer {
   text: string
