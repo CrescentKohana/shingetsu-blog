@@ -19,7 +19,6 @@ class MyDocument extends Document {
           <script async src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.7.2/js/uikit.min.js" />
           <script async src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit-icons.min.js" />
           <script async src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.7.2/js/uikit.js" />
-          <script async defer data-domain="luukuton.fi" src="https://plausible.luukuton.fi/js/plausible.js"></script>
         </Head>
         <body>
           <Main />
