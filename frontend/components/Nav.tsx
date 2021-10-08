@@ -9,7 +9,7 @@ const Nav = () => {
           <ul className="uk-navbar-nav">
             <li>
               <Link href="/">
-                <a>Home</a>
+                <a className="uk-link-reset">Home</a>
               </Link>
             </li>
           </ul>
