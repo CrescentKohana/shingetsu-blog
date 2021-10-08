@@ -28,7 +28,7 @@ const Project = ({ project }: ProjectProps) => {
           <hr className="uk-divider-small" />
           Source:{" "}
           <Link as={`${project.url}`} href={`${project.url}`}>
-            <a className="uk-link-reset">{project.url}</a>
+            <a>{project.url}</a>
           </Link>
           <p>{project.description}</p>
         </div>
