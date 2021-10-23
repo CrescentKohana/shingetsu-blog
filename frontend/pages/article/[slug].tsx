@@ -41,6 +41,12 @@ const Article = ({ article }: ArticleProps) => {
               <p className="uk-margin-remove-bottom">By {article.author.name}</p>
               <p className="uk-text-meta uk-margin-remove-top">
                 <Moment format="MMM Do YYYY">{article.publishedAt}</Moment>
+                {article.updatedAt && (
+                  <>
+                    {" "}
+                    (updated <Moment format="MMM Do YYYY">{article.updatedAt}</Moment>)
+                  </>
+                )}
               </p>
             </div>
           </div>

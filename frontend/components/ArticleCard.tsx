@@ -23,7 +23,7 @@ const ArticleCard = ({ article }: CardProps) => {
               {article.title}
             </p>
             <p className="uk-text-meta uk-margin-remove-top">
-              <Moment format="MMM Do YYYY">{article.publishedAt}</Moment>
+              <Moment format="MMM Do YYYY">{article.updatedAt || article.publishedAt}</Moment>
               {article.tags && (
                 <div style={{ marginTop: 10 }}>
                   <Tags tags={article.tags} />
