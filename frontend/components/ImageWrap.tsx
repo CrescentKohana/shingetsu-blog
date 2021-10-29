@@ -5,9 +5,10 @@ import { Media } from "../types"
 interface ImageProps {
   image: Media
   className: string
+  priority?: boolean
 }
 
-const ImageWrap = ({ image, className }: ImageProps) => {
+const ImageWrap = ({ image, className, priority }: ImageProps) => {
   if (!image) {
     return null
   }
@@ -21,11 +22,20 @@ const ImageWrap = ({ image, className }: ImageProps) => {
         height={image.height}
         layout="responsive"
         className={className}
+        priority={priority}
       />
     )
   }
 
-  return <Image src={getMedia(image)} alt={image.alternativeText || image.name} layout="fill" className={className} />
+  return (
+    <Image
+      src={getMedia(image)}
+      alt={image.alternativeText || image.name}
+      layout="fill"
+      className={className}
+      priority={priority}
+    />
+  )
 }
 
 export default ImageWrap
