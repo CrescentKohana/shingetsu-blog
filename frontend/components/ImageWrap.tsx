@@ -25,7 +25,7 @@ const ImageWrap = ({ image, className }: ImageProps) => {
     )
   }
 
-  return <Image src={getMedia(image)} alt={image.alternativeText || image.name} layout="fill" />
+  return <Image src={getMedia(image)} alt={image.alternativeText || image.name} layout="fill" className={className} />
 }
 
 export default ImageWrap
