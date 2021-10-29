@@ -1,5 +1,3 @@
-// Fixed in Next.js 11.1.3-canary.7. Upgrade when it hits stable.
-// eslint-disable-next-line @next/next/no-document-import-in-page
 import Document, { Head, Html, Main, NextScript } from "next/document"
 
 // TODO: Possibly serve uikit scripts and stylesheets locally.
@@ -15,10 +13,9 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Staatliches&display=swap"
             rel="stylesheet"
           />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/css/uikit.min.css" />
-          <script async src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.7.2/js/uikit.min.js" />
-          <script async src="https://cdn.jsdelivr.net/npm/uikit@3.7.2/dist/js/uikit-icons.min.js" />
-          <script async src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.7.2/js/uikit.js" />
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.8.0/dist/css/uikit.min.css" />
+          <script async src="https://cdn.jsdelivr.net/npm/uikit@3.8.0/dist/js/uikit.min.js" />
+          <script async src="https://cdn.jsdelivr.net/npm/uikit@3.8.0/dist/js/uikit-icons.min.js" />
         </Head>
         <body>
           <Main />
