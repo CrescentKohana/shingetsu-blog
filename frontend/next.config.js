@@ -10,5 +10,6 @@ module.exports = {
   },
   images: {
     domains: ["strapi.luukuton.fi"],
+    formats: ["image/avif", "image/webp"],
   },
 }
