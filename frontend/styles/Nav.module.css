@@ -2,3 +2,9 @@
   height: inherit;
   padding: initial 10px;
 }
+
+@media screen and (max-width: 560px) {
+  .hideItem {
+    display: none !important;
+  }
+}
