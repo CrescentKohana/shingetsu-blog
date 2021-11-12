@@ -31,8 +31,8 @@ const Nav = () => {
           <ul className="uk-navbar-nav">
             {session?.user && (
               <li>
-                <Link as="/h" href="/h">
-                  <a className="uk-link-reset">H</a>
+                <Link as="/ecchi" href="/ecchi">
+                  <a className="uk-link-reset">Ecchi</a>
                 </Link>
               </li>
             )}

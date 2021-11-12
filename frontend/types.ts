@@ -18,9 +18,21 @@ export interface Ecchi {
   lowerContent: string
   header: Media
   overlay: Media
-  doujinshi: Media[]
-  artHorizontal: Media[]
-  artVertical: Media[]
+  doujinshi: Doujinshi[]
+  art: Art[]
+}
+
+export interface Doujinshi {
+  id: number
+  name: string
+  covers: Media[]
+}
+
+export interface Art {
+  id: number
+  name: string
+  horizontal: boolean
+  media: Media[]
 }
 
 export interface Article {
