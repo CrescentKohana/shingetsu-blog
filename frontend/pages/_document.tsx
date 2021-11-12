@@ -13,9 +13,9 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Staatliches&display=swap"
             rel="stylesheet"
           />
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.8.0/dist/css/uikit.min.css" />
-          <script async src="https://cdn.jsdelivr.net/npm/uikit@3.8.0/dist/js/uikit.min.js" />
-          <script async src="https://cdn.jsdelivr.net/npm/uikit@3.8.0/dist/js/uikit-icons.min.js" />
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.2/dist/css/uikit.min.css" />
+          <script async src="https://cdn.jsdelivr.net/npm/uikit@3.9.2/dist/js/uikit.min.js" />
+          <script async src="https://cdn.jsdelivr.net/npm/uikit@3.9.2/dist/js/uikit-icons.min.js" />
         </Head>
         <body>
           <Main />
