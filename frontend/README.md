@@ -18,5 +18,5 @@ WIP
 
 ## Dependencies
 
-- nodejs v14.17.1+ (LTS)
-- npm (tested with 7.19.1+)
+- nodejs ^14.17.1 | ^16.13.0
+- npm ^8.1.2
