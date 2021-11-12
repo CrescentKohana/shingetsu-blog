@@ -10,7 +10,9 @@ const Footer = () => {
   const global: Global = useContext(GlobalContext)
   const router = useRouter()
   const imgOpacity =
-    router.pathname.includes("/article") || router.pathname.includes("/about") ? styles.fadedImg : styles.normalImg
+    router.pathname.includes("/article") || router.pathname.includes("/about") || router.pathname.includes("/ecchi")
+      ? styles.fadedImg
+      : styles.normalImg
 
   return (
     <footer>
