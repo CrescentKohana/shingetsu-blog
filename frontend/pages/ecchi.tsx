@@ -10,15 +10,20 @@ import { shuffle } from "../lib/helpers"
 import { getMedia } from "../lib/media"
 import { Ecchi, Media } from "../types"
 
-interface HProps {
+interface EcchiProps {
   ecchi: Ecchi
 }
 
-const H = ({ ecchi }: HProps) => {
+const defaultAnimation = "animation: fade; autoplay: true; min-height: 500; max-height: 500"
+
+const Ecchi = ({ ecchi }: EcchiProps) => {
   const seo = {
-    metaTitle: "H",
+    metaTitle: "Ecchi - えっち",
     metaDescription: "エッチ",
   }
+
+  const horizontalArt = ecchi.art.filter((art) => !art.horizontal)
+  const verticalArt = ecchi.art.filter((art) => art.horizontal)
 
   return (
     <Layout>
@@ -49,19 +54,18 @@ const H = ({ ecchi }: HProps) => {
           <hr className="uk-divider-icon" />
           <div className="uk-child-width-1-4@s" data-uk-grid>
             <Slideshow
-              items={shuffle(ecchi.artVertical) as Media[]}
-              slideshowProps="animation: scale; autoplay: true; min-height: 500; max-height: 500"
-              // itemProps="uk-animation-kenburns uk-animation-reverse"
+              items={shuffle(horizontalArt[0].media) as Media[]}
+              slideshowProps={defaultAnimation}
+              itemProps="uk-animation-kenburns uk-animation-reverse"
             />
-            <Slideshow
-              items={shuffle(ecchi.doujinshi) as Media[]}
-              slideshowProps="animation: scale; autoplay: true; min-height: 500; max-height: 500"
-            />
+            <Slideshow items={shuffle(ecchi.doujinshi[0].covers) as Media[]} slideshowProps={defaultAnimation} />
+            <Slideshow items={shuffle(ecchi.doujinshi[1].covers) as Media[]} slideshowProps={defaultAnimation} />
+            <Slideshow items={shuffle(ecchi.doujinshi[2].covers) as Media[]} slideshowProps={defaultAnimation} />
           </div>
 
           <div className="uk-child-width-1-1@s" data-uk-grid>
             <Slideshow
-              items={shuffle(ecchi.artHorizontal) as Media[]}
+              items={shuffle(verticalArt[0].media) as Media[]}
               slideshowProps="animation: scale; autoplay: true; min-height: 1000; max-height: 1000"
             />
           </div>
@@ -100,4 +104,4 @@ export const getServerSideProps = async (context: GetSessionOptions) => {
   }
 }
 
-export default H
+export default Ecchi
