@@ -1,7 +1,9 @@
+import { useSession } from "next-auth/client"
 import Link from "next/link"
-import React from "react"
 
 const Nav = () => {
+  const [session] = useSession()
+
   return (
     <div>
       <nav className="uk-navbar uk-navbar-container" data-uk-navbar>
@@ -12,10 +14,29 @@ const Nav = () => {
                 <a className="uk-link-reset">Home</a>
               </Link>
             </li>
+            <li style={{ paddingTop: 25 }}>
+              {!session?.user ? (
+                <Link href="/api/auth/signin" passHref>
+                  <button className="uk-button uk-button-default  uk-button-small">Unlock</button>
+                </Link>
+              ) : (
+                <Link href="/api/auth/signout" passHref>
+                  <button className="uk-button uk-button-default  uk-button-small">Lock</button>
+                </Link>
+              )}
+            </li>
           </ul>
         </div>
         <div className="uk-navbar-right">
           <ul className="uk-navbar-nav">
+            {session?.user && (
+              <li>
+                <Link as="/h" href="/h">
+                  <a className="uk-link-reset">H</a>
+                </Link>
+              </li>
+            )}
+
             <li>
               <Link as="/about" href="/about">
                 <a className="uk-link-reset">About</a>
