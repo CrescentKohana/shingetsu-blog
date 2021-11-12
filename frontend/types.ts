@@ -12,6 +12,17 @@ export interface About {
   content: string
 }
 
+export interface Ecchi {
+  name: string
+  content: string
+  lowerContent: string
+  header: Media
+  overlay: Media
+  doujinshi: Media[]
+  artHorizontal: Media[]
+  artVertical: Media[]
+}
+
 export interface Article {
   id: number
   slug: string
