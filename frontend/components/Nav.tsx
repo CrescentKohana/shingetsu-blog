@@ -25,9 +25,15 @@ const Nav = () => {
         </div>
         <div className="uk-navbar-right">
           <ul className="uk-navbar-nav">
-            {session?.user && (
+            {session?.user ? (
               <li style={{ color: "#FF018A" }}>
                 <Link as="/ecchi" href="/ecchi">
+                  <a className="uk-link-reset">Ecchi</a>
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <Link as="/api/auth/signin" href="/api/auth/signin">
                   <a className="uk-link-reset">Ecchi</a>
                 </Link>
               </li>
