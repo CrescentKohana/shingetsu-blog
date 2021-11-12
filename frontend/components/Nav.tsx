@@ -3,18 +3,14 @@ import Link from "next/link"
 
 const Nav = () => {
   const [session] = useSession()
+  console.log("nav", session)
 
   return (
     <div>
       <nav className="uk-navbar uk-navbar-container" data-uk-navbar>
         <div className="uk-navbar-left">
           <ul className="uk-navbar-nav">
-            <li>
-              <Link href="/">
-                <a className="uk-link-reset">Home</a>
-              </Link>
-            </li>
-            <li style={{ paddingTop: 25 }}>
+            <li style={{ paddingLeft: 10 }}>
               {!session?.user ? (
                 <Link href="/api/auth/signin" passHref>
                   <button className="uk-button uk-button-default  uk-button-small">Unlock</button>
@@ -30,19 +26,23 @@ const Nav = () => {
         <div className="uk-navbar-right">
           <ul className="uk-navbar-nav">
             {session?.user && (
-              <li>
+              <li style={{ color: "#FF018A" }}>
                 <Link as="/ecchi" href="/ecchi">
                   <a className="uk-link-reset">Ecchi</a>
                 </Link>
               </li>
             )}
-
             <li>
+              <Link href="/">
+                <a className="uk-link-reset">Home</a>
+              </Link>
+            </li>
+            <div className="uk-divider-vertical" style={{ height: "inherit" }} />
+            <li className="nav-category">
               <Link as="/about" href="/about">
                 <a className="uk-link-reset">About</a>
               </Link>
             </li>
-            <div className="uk-divider-vertical" style={{ height: "inherit" }} />
             <li className="nav-category">
               <Link as="/blog" href="/blog">
                 <a className="uk-link-reset">Blog</a>
