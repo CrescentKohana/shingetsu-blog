@@ -1,5 +1,7 @@
 import { GetStaticProps } from "next"
-import ReactMarkdown from "react-markdown"
+import Markdown from "react-markdown"
+import rehypeRaw from "rehype-raw"
+import rehypeSanitize from "rehype-sanitize"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
@@ -21,8 +23,8 @@ const About = ({ about }: AboutProps) => {
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h1>{about.name}</h1>
-          <ReactMarkdown skipHtml={false}>{about.content}</ReactMarkdown>
           <hr className="uk-divider-icon" />
+          <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{about.content}</Markdown>
         </div>
       </div>
     </Layout>
