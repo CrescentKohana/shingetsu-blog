@@ -83,9 +83,10 @@ export interface Author {
 export interface Media {
   url: string
   name: string
+  caption: string
   alternativeText: string
-  width?: number
-  height?: number
+  width: number
+  height: number
 }
 
 export interface SeoData {
