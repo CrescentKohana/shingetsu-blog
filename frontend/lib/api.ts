@@ -17,6 +17,10 @@ export function getApiUrl(path = "") {
 export async function fetchApi(path: string) {
   const requestUrl = getApiUrl(path)
   const response = await fetch(requestUrl)
+  if (!response.ok) {
+    return null
+  }
+
   const data = await response.json()
   return data
 }
