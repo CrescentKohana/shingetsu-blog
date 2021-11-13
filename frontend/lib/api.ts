@@ -24,3 +24,7 @@ export async function fetchApi(path: string) {
   const data = await response.json()
   return data
 }
+
+export function sauce(imageUrl: string) {
+  return `https://saucenao.com/search.php?output_type=0&dbmask=32&url=${imageUrl}`
+}

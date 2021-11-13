@@ -1,16 +1,19 @@
 import Image from "next/image"
+import { sauce } from "../lib/api"
 import { getMedia } from "../lib/media"
-import { Media } from "../types"
+import { Media, SlideCategory } from "../types"
 
 interface SlideshowProps {
   items: Media[]
+  category: SlideCategory
   slideshowProps?: string
   slideshowClass?: string
   itemProps?: string
   nav?: boolean
 }
 
-const Slideshow = ({ items, slideshowProps, itemProps, slideshowClass, nav }: SlideshowProps) => {
+const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass, nav }: SlideshowProps) => {
+  console.log(category === SlideCategory.art)
   return (
     <div data-uk-slideshow={slideshowProps} className={slideshowClass}>
       <div className="uk-position-relative uk-visible-toggle" tabIndex={0}>
@@ -24,9 +27,17 @@ const Slideshow = ({ items, slideshowProps, itemProps, slideshowClass, nav }: Sl
                 objectFit="cover"
                 priority={i === 0}
               />
-              <div className="uk-overlay uk-overlay-primary uk-position-bottom-left uk-position-small uk-width-1-2">
-                <p style={{ color: "#eee" }}>{item.caption}</p>
-              </div>
+              {(item.caption || category === SlideCategory.art) && (
+                <div
+                  style={{ padding: 15 }}
+                  className="uk-overlay uk-overlay-primary uk-position-bottom-left uk-position-small"
+                >
+                  <p style={{ color: "#eee", fontSize: 12 }}>
+                    {item.caption}{" "}
+                    <a target="_blank" rel="noopener noreferrer" href={sauce(getMedia(item))} uk-icon="search" />
+                  </p>
+                </div>
+              )}
             </li>
           ))}
         </ul>
