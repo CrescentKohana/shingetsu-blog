@@ -18,19 +18,19 @@ export interface Ecchi {
   lowerContent: string
   header: Media
   overlay: Media
-  doujinshi: Doujinshi[]
-  art: Art[]
+  sliders: Slider[]
 }
 
-export interface Doujinshi {
-  id: number
-  name: string
-  covers: Media[]
+export enum SlideCategory {
+  art = "art",
+  doujinshi = "doujinshi",
+  video = "video",
 }
 
-export interface Art {
+export interface Slider {
   id: number
   name: string
+  category: SlideCategory
   horizontal: boolean
   media: Media[]
 }
