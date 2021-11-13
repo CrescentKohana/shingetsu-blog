@@ -1,6 +1,8 @@
 .vscode
 .idea
 
+/frontend/test.http
+
 # ignore backend temporarily
 backend
 backend_old
