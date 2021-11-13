@@ -25,7 +25,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
   const blocks = shuffled.map((slider) => {
     if (slider instanceof Array) {
       return (
-        <div className={`uk-child-width-1-2@s uk-grid ${slider[0].horizontal}`} data-uk-grid style={{ marginTop: 20 }}>
+        <div className="uk-child-width-1-2@s uk-grid" data-uk-grid style={{ marginTop: 20 }}>
           {slider.map((slider) => (
             <Slideshow
               key={slider.id}
@@ -38,7 +38,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
       )
     } else {
       return (
-        <div key={slider.id} className={`${slider.horizontal}`} style={{ marginTop: 20 }}>
+        <div key={slider.id} style={{ width: 680, marginTop: 20 }}>
           <Slideshow
             items={slider.media}
             category={slider.category}
@@ -52,7 +52,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
   return (
     <>
       {hasMounted && (
-        <div className="uk-child-width-1-2@s uk-grid" data-uk-grid>
+        <div className="uk-child-width-1-2@s" data-uk-grid>
           {blocks}
         </div>
       )}

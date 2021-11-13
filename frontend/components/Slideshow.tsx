@@ -33,8 +33,10 @@ const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass,
                   className="uk-overlay uk-overlay-primary uk-position-bottom-left uk-position-small"
                 >
                   <p style={{ color: "#eee", fontSize: 12 }}>
-                    {item.caption}{" "}
-                    <a target="_blank" rel="noopener noreferrer" href={sauce(getMedia(item))} uk-icon="search" />
+                    {category === SlideCategory.art && (
+                      <a target="_blank" rel="noopener noreferrer" href={sauce(getMedia(item))} uk-icon="search" />
+                    )}{" "}
+                    {item.caption}
                   </p>
                 </div>
               )}
