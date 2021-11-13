@@ -4,26 +4,20 @@ import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
-import Slideshow from "../components/Slideshow"
+import SlideshowGrid from "../components/SlideshowGrid"
 import { fetchApi } from "../lib/api"
-import { shuffle } from "../lib/helpers"
 import { getMedia } from "../lib/media"
-import { Ecchi, Media } from "../types"
+import { Ecchi } from "../types"
 
 interface EcchiProps {
   ecchi: Ecchi
 }
-
-const defaultAnimation = "animation: fade; autoplay: true; min-height: 500; max-height: 500"
 
 const Ecchi = ({ ecchi }: EcchiProps) => {
   const seo = {
     metaTitle: "Ecchi - えっち",
     metaDescription: "エッチ",
   }
-
-  const horizontalArt = ecchi.art.filter((art) => !art.horizontal)
-  const verticalArt = ecchi.art.filter((art) => art.horizontal)
 
   return (
     <Layout>
@@ -52,23 +46,7 @@ const Ecchi = ({ ecchi }: EcchiProps) => {
           </div>
 
           <hr className="uk-divider-icon" />
-          <div className="uk-child-width-1-4@s" data-uk-grid>
-            <Slideshow
-              items={shuffle(horizontalArt[0].media) as Media[]}
-              slideshowProps={defaultAnimation}
-              itemProps="uk-animation-kenburns uk-animation-reverse"
-            />
-            <Slideshow items={shuffle(ecchi.doujinshi[0].covers) as Media[]} slideshowProps={defaultAnimation} />
-            <Slideshow items={shuffle(ecchi.doujinshi[1].covers) as Media[]} slideshowProps={defaultAnimation} />
-            <Slideshow items={shuffle(ecchi.doujinshi[2].covers) as Media[]} slideshowProps={defaultAnimation} />
-          </div>
-
-          <div className="uk-child-width-1-1@s" data-uk-grid>
-            <Slideshow
-              items={shuffle(verticalArt[0].media) as Media[]}
-              slideshowProps="animation: scale; autoplay: true; min-height: 1000; max-height: 1000"
-            />
-          </div>
+          {<SlideshowGrid sliders={ecchi.sliders} />}
 
           <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{ecchi.lowerContent}</Markdown>
         </div>
