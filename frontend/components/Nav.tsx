@@ -36,7 +36,7 @@ const Nav = () => {
               <li style={{ paddingLeft: 10 }}>
                 {!session?.user ? (
                   <Link href="/api/auth/signin" passHref>
-                    <button className="uk-button uk-button-default  uk-button-small">Unlock</button>
+                    <button className="uk-button uk-button-default  uk-button-small">Unlock ecchi</button>
                   </Link>
                 ) : (
                   <Link href="/api/auth/signout" passHref>
@@ -48,15 +48,9 @@ const Nav = () => {
           </div>
           <div className="uk-navbar-right">
             <ul className="uk-navbar-nav">
-              {session?.user ? (
+              {session?.user && (
                 <li style={{ color: "#FF018A" }}>
                   <Link as="/ecchi" href="/ecchi">
-                    <a className="uk-link-reset">Ecchi</a>
-                  </Link>
-                </li>
-              ) : (
-                <li>
-                  <Link as="/api/auth/signin" href="/api/auth/signin">
                     <a className="uk-link-reset">Ecchi</a>
                   </Link>
                 </li>
