@@ -5,7 +5,7 @@ import { getApiUrl } from "../../../lib/api"
 export default NextAuth({
   providers: [
     Providers.Credentials({
-      name: "Senyougahara's secret",
+      name: "Arararagi",
       credentials: {
         token: { label: "Secret", type: "password" },
       },
@@ -25,6 +25,10 @@ export default NextAuth({
   session: {
     jwt: true,
     maxAge: 90 * 24 * 60 * 60,
+  },
+
+  jwt: {
+    signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
   },
 
   theme: "dark",
