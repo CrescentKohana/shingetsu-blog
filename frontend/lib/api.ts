@@ -26,5 +26,5 @@ export async function fetchApi(path: string) {
 }
 
 export function sauce(imageUrl: string) {
-  return `https://saucenao.com/search.php?output_type=0&dbmask=32&url=${imageUrl}`
+  return encodeURI(`https://saucenao.com/search.php?output_type=0&dbmask=32&url=${imageUrl}`)
 }
