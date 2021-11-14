@@ -1,0 +1,11 @@
+@media screen and (max-width: 640px) {
+  .forceAspectRatio {
+    aspect-ratio: 6/10;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .forceAspectRatio {
+    aspect-ratio: 3/5;
+  }
+}

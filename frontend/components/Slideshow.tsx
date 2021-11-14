@@ -2,6 +2,7 @@ import Image from "next/image"
 import { sauce } from "../lib/api"
 import { shuffle } from "../lib/helpers"
 import { getMedia } from "../lib/media"
+import styles from "../styles/Slideshow.module.css"
 import { Media, SlideCategory } from "../types"
 
 interface SlideshowProps {
@@ -17,12 +18,12 @@ const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass,
   const shuffled = shuffle(items) as Media[]
   return (
     <div data-uk-slideshow={slideshowProps} className={slideshowClass}>
-      <div className="uk-position-relative uk-visible-toggle" tabIndex={0}>
-        <ul className="uk-slideshow-items">
+      <div className="uk-position-relative uk-visible-toggle" tabIndex={-1}>
+        <ul className={`uk-slideshow-items ${styles.forceAspectRatio}`}>
           {shuffled.map((item, i) => (
             <li key={i} className={itemProps}>
               {category === SlideCategory.video ? (
-                <video src={getMedia(item)} loop muted playsInline uk-video="autoplay: inview"></video>
+                <video src={getMedia(item)} loop muted playsInline data-uk-cover uk-video="autoplay: inview"></video>
               ) : (
                 <Image
                   src={getMedia(item)}
