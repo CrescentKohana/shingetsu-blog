@@ -1,3 +1,7 @@
 .cardImg {
   border-radius: 5px 5px 0 0;
 }
+
+.secondBadge {
+  top: 50px;
+}
