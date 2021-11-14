@@ -15,3 +15,6 @@ export function getMedia(media: Media) {
   const imageUrl = media.url.startsWith("/") ? getApiUrl(media.url) : media.url
   return encodeURI(imageUrl)
 }
+
+export const defaultPlaceholder =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8v+OeJAAIAwKwUCCAhwAAAABJRU5ErkJggg=="

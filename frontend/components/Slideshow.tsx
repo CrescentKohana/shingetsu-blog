@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { sauce } from "../lib/api"
 import { shuffle } from "../lib/helpers"
-import { getMedia } from "../lib/media"
+import { defaultPlaceholder, getMedia } from "../lib/media"
 import styles from "../styles/Slideshow.module.css"
 import { Media, SlideCategory } from "../types"
 
@@ -31,8 +31,8 @@ const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass,
                   layout="fill"
                   objectFit="cover"
                   priority={i === 0}
-                  placeholder={item.placeholder ? "blur" : "empty"}
-                  blurDataURL={item.placeholder}
+                  placeholder={"blur"}
+                  blurDataURL={defaultPlaceholder}
                 />
               )}
               {(item.caption || category === SlideCategory.art) && (
