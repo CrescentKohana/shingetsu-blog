@@ -1,8 +1,10 @@
 import { GetStaticProps } from "next"
+import { getPlaiceholder } from "plaiceholder"
 import Layout from "../components/Layout"
 import ProjectList from "../components/ProjectList"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
+import { getMedia } from "../lib/media"
 import { Project } from "../types"
 
 interface ProjectsProps {
@@ -31,8 +33,21 @@ const Projects = ({ projects }: ProjectsProps) => {
 export const getStaticProps: GetStaticProps = async () => {
   const projects = await fetchApi("/projects")
 
+  const projectsWithPlaceholders = await Promise.all(
+    projects.map(async (project: Project) => {
+      const { base64 } = await getPlaiceholder(getMedia(project.image))
+      return {
+        ...project,
+        image: {
+          ...project.image,
+          placeholder: base64,
+        },
+      }
+    })
+  )
+
   return {
-    props: { projects },
+    props: { projects: projectsWithPlaceholders },
     revalidate: 1,
   }
 }

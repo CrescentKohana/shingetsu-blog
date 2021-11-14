@@ -16,24 +16,28 @@ const ImageWrap = ({ image, className, priority }: ImageProps) => {
   if (image.width && image.height) {
     return (
       <Image
+        className={className}
         src={getMedia(image)}
         alt={image.alternativeText || image.name}
         width={image.width}
         height={image.height}
         layout="responsive"
-        className={className}
         priority={priority}
+        placeholder={image.placeholder ? "blur" : "empty"}
+        blurDataURL={image.placeholder}
       />
     )
   }
 
   return (
     <Image
+      className={className}
       src={getMedia(image)}
       alt={image.alternativeText || image.name}
       layout="fill"
-      className={className}
       priority={priority}
+      placeholder={image.placeholder ? "blur" : "empty"}
+      blurDataURL={image.placeholder}
     />
   )
 }

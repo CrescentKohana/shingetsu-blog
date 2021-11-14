@@ -1,10 +1,12 @@
 import { GetStaticProps } from "next"
+import { getPlaiceholder } from "plaiceholder"
 import { useEffect, useState } from "react"
 import Articles from "../components/Articles"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Tags from "../components/Tags"
 import { fetchApi } from "../lib/api"
+import { getMedia } from "../lib/media"
 import { Article, Tag } from "../types"
 
 interface BlogProps {
@@ -65,8 +67,21 @@ const Blog = ({ articles, tags }: BlogProps) => {
 export const getStaticProps: GetStaticProps = async () => {
   const [articles, tags] = await Promise.all([fetchApi("/articles"), fetchApi("/tags")])
 
+  const articlesWithPlaceholders = await Promise.all(
+    articles.map(async (article: Article) => {
+      const { base64 } = await getPlaiceholder(getMedia(article.image))
+      return {
+        ...article,
+        image: {
+          ...article.image,
+          placeholder: base64,
+        },
+      }
+    })
+  )
+
   return {
-    props: { articles, tags },
+    props: { articles: articlesWithPlaceholders, tags },
     revalidate: 1,
   }
 }

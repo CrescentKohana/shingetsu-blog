@@ -110,6 +110,7 @@ export interface Media {
   alternativeText: string
   width: number
   height: number
+  placeholder?: string
 }
 
 export interface SeoData {

@@ -31,6 +31,8 @@ const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass,
                   layout="fill"
                   objectFit="cover"
                   priority={i === 0}
+                  placeholder={item.placeholder ? "blur" : "empty"}
+                  blurDataURL={item.placeholder}
                 />
               )}
               {(item.caption || category === SlideCategory.art) && (
