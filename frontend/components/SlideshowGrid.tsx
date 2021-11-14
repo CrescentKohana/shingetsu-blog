@@ -25,24 +25,28 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
   const blocks = shuffled.map((slider) => {
     if (slider instanceof Array) {
       return (
-        <div className="uk-child-width-1-2@s uk-grid" data-uk-grid style={{ marginTop: 20 }}>
+        <div
+          className="uk-grid-collapse uk-child-width-1-1 uk-child-width-1-2@m"
+          data-uk-grid
+          style={{ marginTop: 20 }}
+        >
           {slider.map((slider) => (
             <Slideshow
               key={slider.id}
               items={slider.media}
               category={slider.category}
-              slideshowProps="animation: scale; autoplay: true; min-height: 450; max-height: 450"
+              slideshowProps="animation: scale; autoplay: true; min-height: 490"
             />
           ))}
         </div>
       )
     } else {
       return (
-        <div key={slider.id} style={{ width: 680, marginTop: 20 }}>
+        <div key={slider.id} style={{ marginTop: 20 }}>
           <Slideshow
             items={slider.media}
             category={slider.category}
-            slideshowProps="animation: scale; autoplay: true; min-height: 450; max-height: 450"
+            slideshowProps="animation: scale; autoplay: true; min-height: 480; max-height: 480"
           />
         </div>
       )
@@ -52,7 +56,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
   return (
     <>
       {hasMounted && (
-        <div className="uk-child-width-1-2@s" data-uk-grid>
+        <div className="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s" data-uk-grid>
           {blocks}
         </div>
       )}
