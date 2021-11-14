@@ -68,14 +68,14 @@ const Nav = () => {
               </li>
               <div className="uk-divider-vertical" style={{ height: "inherit" }} />
               <li>
-                <a
+                <button
+                  name="Mobile nav"
                   data-uk-toggle="target: #offcanvas-usage"
-                  className="uk-navbar-toggle"
+                  className={`uk-navbar-toggle ${styles.hideBtn}`}
                   data-uk-navbar-toggle-icon
-                  href="#"
                 >
                   {" "}
-                </a>
+                </button>
               </li>
               <li className={`nav-category ${styles.hideItem}`}>
                 <Link as="/about" href="/about">
