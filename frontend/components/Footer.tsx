@@ -18,12 +18,12 @@ const Footer = () => {
     <footer>
       {global.footer && global.footer.image.width && global.footer.image.height && (
         <Image
+          className={imgOpacity}
           src={getMedia(global.footer.image)}
           alt={global.footer.image.alternativeText}
           width={global.footer.image.width}
           height={global.footer.image.height}
           layout="responsive"
-          className={imgOpacity}
           priority
         />
       )}

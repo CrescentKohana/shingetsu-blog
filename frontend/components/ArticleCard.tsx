@@ -22,14 +22,14 @@ const ArticleCard = ({ article }: CardProps) => {
             <p id="title" className="uk-text-large">
               {article.title}
             </p>
-            <p className="uk-text-meta uk-margin-remove-top">
+            <div className="uk-text-meta">
               <Moment format="MMM Do YYYY">{article.updatedAt || article.publishedAt}</Moment>
-              {article.tags && (
-                <div style={{ marginTop: 10 }}>
-                  <Tags tags={article.tags} />
-                </div>
-              )}
-            </p>
+            </div>
+            {article.tags && (
+              <div style={{ marginTop: 5 }}>
+                <Tags tags={article.tags} />
+              </div>
+            )}
           </div>
         </div>
       </a>

@@ -29,7 +29,7 @@ const Article = ({ article }: ArticleProps) => {
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h2>{article.title}</h2>
-          <Tags tags={article.tags} />
+          <Tags tags={article.tags} links />
           <hr className="uk-divider-small" />
           <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{article.content}</Markdown>
           <hr className="uk-divider-icon" />
