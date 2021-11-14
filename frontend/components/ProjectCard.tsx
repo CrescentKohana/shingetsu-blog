@@ -13,15 +13,13 @@ const ProjectCard = ({ project }: CardProps) => {
     <Link as={`/project/${project.slug}`} href="/project/[slug]">
       <a className="uk-link-reset">
         <div className="uk-card uk-card-muted">
+          <div className={`uk-card-badge ${project.status}-badge`}>{project.status}</div>
           <div className="uk-card-media-top">
             <ImageWrap className={styles.cardImg} image={project.image} priority />
           </div>
           <div className="uk-card-body">
             <p id="title" className="uk-text-large">
-              {project.title}{" "}
-              <span className={`uk-badge ${project.status}-badge`} style={{ marginBottom: 2 }}>
-                {project.status}
-              </span>
+              {project.title}
             </p>
 
             <p className="uk-margin-remove-top">{project.description}</p>

@@ -142,15 +142,18 @@ pre > code {
 }
 
 .created-badge {
-  border: 2px solid var(--secondary) !important;
+  color: #fff;
+  background: rgb(0, 58, 105);
 }
 
 .contributed-badge {
-  border: 2px solid rgb(255, 230, 0) !important;
+  color: #fff;
+  background: rgb(8, 110, 105);
 }
 
 .endorsed-badge {
-  border: 2px solid var(--tertiary) !important;
+  color: #fff;
+  background: #352163;
 }
 
 /* Customizing UIkit */
