@@ -30,7 +30,7 @@ const Project = ({ project }: ProjectProps) => {
           <Link as={`${project.url}`} href={`${project.url}`}>
             <a>{project.url}</a>
           </Link>
-          <p>{project.description}</p>
+          <p>{project.content}</p>
         </div>
       </div>
     </Layout>

@@ -8,3 +8,9 @@
     display: none !important;
   }
 }
+
+@media screen and (min-width: 560px) {
+  .hideBtn {
+    display: none !important;
+  }
+}
