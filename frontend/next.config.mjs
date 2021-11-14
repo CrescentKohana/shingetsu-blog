@@ -1,4 +1,6 @@
-module.exports = {
+import { withPlaiceholder } from "@plaiceholder/next"
+
+export default withPlaiceholder({
   reactStrictMode: true,
   async rewrites() {
     return [
@@ -12,4 +14,4 @@ module.exports = {
     domains: ["strapi.luukuton.fi"],
     formats: ["image/webp"],
   },
-}
+})
