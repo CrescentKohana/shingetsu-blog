@@ -69,7 +69,7 @@ const Nav = () => {
               <div className="uk-divider-vertical" style={{ height: "inherit" }} />
               <li>
                 <button
-                  name="Mobile nav"
+                  aria-label="Mobile nav"
                   data-uk-toggle="target: #offcanvas-usage"
                   className={`uk-navbar-toggle ${styles.hideBtn}`}
                   data-uk-navbar-toggle-icon
