@@ -66,7 +66,7 @@ const Nav = () => {
                   <a className="uk-link-reset">Home</a>
                 </Link>
               </li>
-              <div className="uk-divider-vertical" style={{ height: "inherit" }} />
+              <li className="uk-divider-vertical" style={{ height: "inherit" }} />
               <li>
                 <button
                   aria-label="Mobile nav"
