@@ -3,7 +3,7 @@ import Link from "next/link"
 import styles from "../styles/Nav.module.css"
 
 const Nav = () => {
-  const [session] = useSession()
+  const [session, loading] = useSession()
 
   return (
     <>
@@ -34,7 +34,13 @@ const Nav = () => {
           <div className="uk-navbar-left">
             <ul className="uk-navbar-nav">
               <li style={{ paddingLeft: 10 }}>
-                {!session?.user ? (
+                {loading ? (
+                  <Link href="#" passHref>
+                    <button className="uk-button uk-button-default uk-button-small" disabled>
+                      Loading...
+                    </button>
+                  </Link>
+                ) : !session?.user ? (
                   <Link href="/api/auth/signin" passHref>
                     <button className="uk-button uk-button-default  uk-button-small">Unlock ecchi</button>
                   </Link>
