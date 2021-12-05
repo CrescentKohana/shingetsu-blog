@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_shared_footers",
+  "info": {
+    "displayName": "Footer",
+    "icon": "angle-double-down"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "imgHeight": {
+      "type": "integer",
+      "min": 1
+    },
+    "imgWidth": {
+      "type": "integer",
+      "min": 1
+    }
+  }
+}

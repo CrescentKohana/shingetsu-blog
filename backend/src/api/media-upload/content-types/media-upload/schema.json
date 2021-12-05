@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "media_uploads",
+  "info": {
+    "singularName": "media-upload",
+    "pluralName": "media-uploads",
+    "displayName": "MediaUpload"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 1
+    },
+    "file": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

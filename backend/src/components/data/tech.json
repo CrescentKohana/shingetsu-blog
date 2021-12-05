@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_data_teches",
+  "info": {
+    "displayName": "Tech",
+    "icon": "code",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "minLength": 1,
+      "unique": false
+    }
+  }
+}
