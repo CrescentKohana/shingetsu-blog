@@ -5,7 +5,7 @@ import rehypeSanitize from "rehype-sanitize"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
-import { About as AboutData } from "../types"
+import { About as AboutData, Strapi } from "../types"
 
 interface AboutProps {
   about: AboutData
@@ -32,10 +32,16 @@ const About = ({ about }: AboutProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const about = await fetchApi("/about")
+  const about = (await fetchApi("/about")) as Strapi<AboutData>
+
+  if (!about) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
-    props: { about },
+    props: { about: about.data.attributes },
     revalidate: 1,
   }
 }

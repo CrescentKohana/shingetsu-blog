@@ -11,7 +11,7 @@ export default withPlaiceholder({
     ]
   },
   images: {
-    domains: ["strapi.luukuton.fi"],
+    domains: ["strapi.luukuton.fi", "localhost"],
     formats: ["image/webp"],
   },
 })

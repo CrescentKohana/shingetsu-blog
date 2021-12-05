@@ -33,7 +33,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
           {slider.map((slider) => (
             <Slideshow
               key={slider.id}
-              items={slider.media}
+              items={slider.media.data.map((media) => media.attributes)}
               category={slider.category}
               slideshowProps="animation: scale; autoplay: true; min-height: 490"
             />
@@ -44,7 +44,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
       return (
         <div key={slider.id} style={{ marginTop: 20 }}>
           <Slideshow
-            items={slider.media}
+            items={slider.media.data.map((media) => media.attributes)}
             category={slider.category}
             slideshowProps="animation: scale; autoplay: true; min-height: 490; max-height: 490"
           />

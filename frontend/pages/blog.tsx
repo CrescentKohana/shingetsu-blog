@@ -7,11 +7,11 @@ import Seo from "../components/Seo"
 import Tags from "../components/Tags"
 import { fetchApi } from "../lib/api"
 import { getMedia } from "../lib/media"
-import { Article, Tag } from "../types"
+import { Article, StrapiArr, StrapiData, Tag } from "../types"
 
 interface BlogProps {
-  articles: Article[]
-  tags: Tag[]
+  articles: StrapiData<Article>[]
+  tags: StrapiArr<Tag>
 }
 
 const Blog = ({ articles, tags }: BlogProps) => {
@@ -21,7 +21,7 @@ const Blog = ({ articles, tags }: BlogProps) => {
   }
 
   const [currentTags, setCurrenTags] = useState<string[]>([])
-  const [currentArticles, setCurrentArticles] = useState(articles)
+  const [currentArticles, setCurrentArticles] = useState(articles.map((article) => article.attributes))
 
   const filterByTag = (tag: Tag, add: boolean) => {
     if (add) {
@@ -33,14 +33,14 @@ const Blog = ({ articles, tags }: BlogProps) => {
 
   useEffect(() => {
     if (currentTags.length === 0) {
-      setCurrentArticles(articles)
+      setCurrentArticles(articles.map((article) => article.attributes))
       return
     }
 
     const matchingArticles: Article[] = []
-    articles.forEach((article: Article) => {
-      if (article.tags.some((tag: Tag) => currentTags.includes(tag.slug))) {
-        matchingArticles.push(article)
+    articles.forEach((article) => {
+      if (article.attributes.tags.data.some((tag) => currentTags.includes(tag.attributes.slug))) {
+        matchingArticles.push(article.attributes)
       }
     })
 
@@ -57,7 +57,7 @@ const Blog = ({ articles, tags }: BlogProps) => {
           </h1>
 
           <Tags tags={tags} onClick={filterByTag} />
-          <Articles articles={currentArticles} />
+          {articles.length > 0 && <Articles articles={currentArticles} />}
         </div>
       </div>
     </Layout>
@@ -65,15 +65,23 @@ const Blog = ({ articles, tags }: BlogProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [articles, tags] = await Promise.all([fetchApi("/articles"), fetchApi("/tags")])
+  const [articles, tags] = await Promise.all([fetchApi("/articles?populate=*"), fetchApi("/tags")])
+
+  if (!articles) {
+    return {
+      props: { articles: [], tags: tags },
+      revalidate: 1,
+    }
+  }
 
   const articlesWithPlaceholders = await Promise.all(
-    articles.map(async (article: Article) => {
-      const { base64 } = await getPlaiceholder(getMedia(article.image))
+    (articles.data as StrapiData<Article>[]).map(async (article) => {
+      const image = getMedia(false, (article.attributes as Article).image)
+      const { base64 } = await getPlaiceholder(image.url)
       return {
         ...article,
         image: {
-          ...article.image,
+          ...image,
           placeholder: base64,
         },
       }

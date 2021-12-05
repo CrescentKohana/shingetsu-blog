@@ -1,23 +1,25 @@
 import Image from "next/image"
 import { getMedia } from "../lib/media"
-import { Media } from "../types"
+import { MediaWrap } from "../types"
 
 interface ImageProps {
-  image: Media
+  imageData: MediaWrap
   className: string
   priority?: boolean
 }
 
-const ImageWrap = ({ image, className, priority }: ImageProps) => {
-  if (!image) {
+const ImageWrap = ({ imageData, className, priority }: ImageProps) => {
+  if (!imageData?.data) {
     return null
   }
+
+  const image = getMedia(false, imageData)
 
   if (image.width && image.height) {
     return (
       <Image
         className={className}
-        src={getMedia(image)}
+        src={image.url}
         alt={image.alternativeText || image.name}
         width={image.width}
         height={image.height}
@@ -32,7 +34,7 @@ const ImageWrap = ({ image, className, priority }: ImageProps) => {
   return (
     <Image
       className={className}
-      src={getMedia(image)}
+      src={image.url}
       alt={image.alternativeText || image.name}
       layout="fill"
       priority={priority}

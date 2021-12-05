@@ -1,6 +1,32 @@
-// Pages
+// Strapi specific
+export interface StrapiResponse {
+  data: unknown
+  meta?: unknown
+  error?: StrapiError
+}
 
-export interface Homepage {
+export interface Strapi<Type> extends StrapiResponse {
+  data: StrapiData<Type>
+}
+
+export interface StrapiArr<Type> extends StrapiResponse {
+  data: StrapiData<Type>[]
+}
+
+export interface StrapiData<Type> {
+  id: number
+  attributes: Type
+}
+
+export interface StrapiError {
+  status: string
+  name: string
+  message: string
+  details: unknown // TOOD
+}
+
+// Pages
+export interface Home {
   title: string
   content: string
   selftyping: string
@@ -16,9 +42,9 @@ export interface Ecchi {
   name: string
   content: string
   lowerContent: string
-  header: Media
-  overlay: Media
-  sliders: Slider[]
+  header: Strapi<Media>
+  overlay: Strapi<Media>
+  sliders: StrapiArr<Slider>
 }
 
 export enum SlideCategory {
@@ -32,28 +58,27 @@ export interface Slider {
   name: string
   category: SlideCategory
   horizontal: boolean
-  media: Media[]
+  media: StrapiArr<Media>
 }
 
 export interface Article {
-  id: number
   slug: string
   title: string
   description: string
   content: string
-  publishedAt: string
-  updatedAt: string
-  image: Media
-  author: Author
+  published: string
+  updated: string
+  image: Strapi<Media>
+  writer: Strapi<Author>
   showcased: boolean
-  tags: Tag[]
+  tags: StrapiArr<Tag>
 }
 
 export interface Tag {
   id: number
   slug: string
   name: string
-  articles: Article[]
+  articles: StrapiArr<Article>
 }
 
 export enum ProjectStatus {
@@ -72,12 +97,11 @@ export interface Project {
   license: string
   status: ProjectStatus
   showcased: boolean
-  image: Media
+  image: Strapi<Media>
   tech: Tech
 }
 
 // Components and other types
-
 export interface Tech {
   id: number
   name: string
@@ -85,7 +109,7 @@ export interface Tech {
 
 interface Footer {
   text: string
-  image: Media
+  image: Strapi<Media>
   imgWidth: number
   imgHeight: number
 }
@@ -95,12 +119,12 @@ export interface Global {
   siteName?: string
   author?: string
   footer?: Footer
-  favicon?: Media
+  favicon?: Strapi<Media>
 }
 
 export interface Author {
   name: string
-  picture: Media
+  avatar: Strapi<Media>
 }
 
 export interface Media {
@@ -116,6 +140,6 @@ export interface Media {
 export interface SeoData {
   metaTitle: string
   metaDescription: string
-  shareImage?: Media
+  shareImage?: Strapi<Media>
   article?: boolean
 }

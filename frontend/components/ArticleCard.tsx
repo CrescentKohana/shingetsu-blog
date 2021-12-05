@@ -16,14 +16,14 @@ const ArticleCard = ({ article }: CardProps) => {
       <a className="uk-link-reset">
         <div className="uk-card uk-card-muted">
           <div className="uk-card-media-top">
-            <ImageWrap className={styles.cardImg} image={article.image} priority />
+            <ImageWrap className={styles.cardImg} imageData={article.image} priority />
           </div>
           <div className="uk-card-body">
             <p id="title" className="uk-text-large">
               {article.title}
             </p>
             <div className="uk-text-meta">
-              <Moment format="MMM Do YYYY">{article.updatedAt || article.publishedAt}</Moment>
+              <Moment format="MMM Do YYYY">{article.updated || article.published}</Moment>
             </div>
             {article.tags && (
               <div style={{ marginTop: 5 }}>

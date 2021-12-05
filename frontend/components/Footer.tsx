@@ -14,15 +14,17 @@ const Footer = () => {
       ? styles.fadedImg
       : styles.normalImg
 
+  const image = getMedia(false, global?.footer?.image)
+
   return (
     <footer>
-      {global.footer && global.footer.image.width && global.footer.image.height && (
+      {image && image.width && image.height && (
         <Image
           className={imgOpacity}
-          src={getMedia(global.footer.image)}
-          alt={global.footer.image.alternativeText}
-          width={global.footer.image.width}
-          height={global.footer.image.height}
+          src={image.url}
+          alt={image.alternativeText}
+          width={image.width}
+          height={image.height}
           layout="responsive"
           priority
         />

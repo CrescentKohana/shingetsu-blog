@@ -30,7 +30,7 @@ const Ecchi = ({ ecchi }: EcchiProps) => {
                 id="eresh-target"
                 className="uk-background-cover uk-flex uk-flex-top"
                 uk-parallax="bgy: 500"
-                style={{ backgroundImage: `url('${getMedia(ecchi.header)}')`, height: 700 }}
+                style={{ backgroundImage: `url('${getMedia(true, ecchi.header)}')`, height: 700 }}
               >
                 <h2
                   className="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical"
@@ -46,7 +46,7 @@ const Ecchi = ({ ecchi }: EcchiProps) => {
           </div>
 
           <hr className="uk-divider-icon" />
-          {<SlideshowGrid sliders={ecchi.sliders} />}
+          {<SlideshowGrid sliders={ecchi.sliders.data.map((slider) => slider.attributes)} />}
 
           <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{ecchi.lowerContent}</Markdown>
         </div>
@@ -79,7 +79,6 @@ export const getServerSideProps = async (context: GetSessionOptions) => {
 
   // TODO: Dynamically generate placeholders. Cannot be done here when SSR is used.
   // Switch to SSG, or even better, generate them in backend.
-
   return {
     props: { ecchi, session: session },
   }

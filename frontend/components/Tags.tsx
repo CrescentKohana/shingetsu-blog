@@ -1,9 +1,9 @@
 import Link from "next/link"
 import React, { useState } from "react"
-import { Tag } from "../types"
+import { StrapiArr, Tag } from "../types"
 
 interface TagsProps {
-  tags: Tag[]
+  tags: StrapiArr<Tag>
   links?: boolean
   onClick?: (tag: Tag, add: boolean) => void
 }
@@ -15,14 +15,15 @@ const Tags = ({ tags, links, onClick }: TagsProps) => {
   if (!onClick) {
     return (
       <div>
-        {tags.map((tag: Tag) => {
+        {tags.data.map((tag) => {
+          const attributes = tag.attributes
           return links ? (
-            <Link key={tag.id} as={`/tag/${tag.slug}`} href="/tag/[slug]" passHref>
-              <a className="uk-badge">{tag.name}</a>
+            <Link key={tag.id} as={`/tag/${attributes.slug}`} href="/tag/[slug]" passHref>
+              <a className="uk-badge">{attributes.name}</a>
             </Link>
           ) : (
             <span key={tag.id} className="uk-badge">
-              {tag.name}
+              {attributes.name}
             </span>
           )
         })}
@@ -42,10 +43,15 @@ const Tags = ({ tags, links, onClick }: TagsProps) => {
 
   return (
     <div>
-      {tags.map((tag: Tag) => {
+      {tags.data.map((tag) => {
+        const attributes = tag.attributes
         return (
-          <a key={tag.id} onClick={() => tagHelper(tag)} uk-toggle={`target: #tag-${tag.id}; cls: toggled-badge`}>
-            <div className={`uk-badge #tag-${tag.id}`}>{tag.name}</div>
+          <a
+            key={tag.id}
+            onClick={() => tagHelper(attributes)}
+            uk-toggle={`target: #tag-${tag.id}; cls: toggled-badge`}
+          >
+            <div className={`uk-badge #tag-${tag.id}`}>{attributes.name}</div>
           </a>
         )
       })}
