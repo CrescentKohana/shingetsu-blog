@@ -14,14 +14,14 @@ const Footer = () => {
       ? styles.fadedImg
       : styles.normalImg
 
-  const image = getMedia(false, global?.footer?.image)
+  const image = global?.footer?.image
 
   return (
     <footer>
       {image && image.width && image.height && (
         <Image
           className={imgOpacity}
-          src={image.url}
+          src={getMedia(image)}
           alt={image.alternativeText}
           width={image.width}
           height={image.height}
