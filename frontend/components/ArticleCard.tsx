@@ -4,6 +4,7 @@ import Moment from "react-moment"
 import styles from "../styles/Card.module.css"
 import { Article } from "../types"
 import ImageWrap from "./ImageWrap"
+import Tags from "./Tags"
 
 interface CardProps {
   article: Article
@@ -24,7 +25,11 @@ const ArticleCard = ({ article }: CardProps) => {
             <div className="uk-text-meta">
               <Moment format="MMM Do YYYY">{article.updated || article.published}</Moment>
             </div>
-            {article.tags && <div style={{ marginTop: 5 }}>{/* <Tags tags={article.tags} /> */}</div>}
+            {article.tags && (
+              <div style={{ marginTop: 5 }}>
+                <Tags tags={article.tags} />
+              </div>
+            )}
           </div>
         </div>
       </a>

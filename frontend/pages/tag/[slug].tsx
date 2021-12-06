@@ -2,17 +2,19 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import Articles from "../../components/Articles"
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
+import Tags from "../../components/Tags"
 import { fetchApi } from "../../lib/api"
-import { Tag, Tag as TagData } from "../../types"
+import { Tag as TagData } from "../../types"
 
 interface TagProps {
   tag: TagData
+  tags: TagData[]
 }
 
-const Tag = ({ tag }: TagProps) => {
+const Tag = ({ tag, tags }: TagProps) => {
   const seo = {
     metaTitle: `${tag.name} tag`,
-    metaDescription: `All ${tag.name} tagged articles`,
+    metaDescription: `All articles tagged as ${tag.name}`,
   }
 
   return (
@@ -20,10 +22,12 @@ const Tag = ({ tag }: TagProps) => {
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h2>
+          <h3 style={{ marginBottom: 0 }}>Browse other tags</h3>
+          <Tags tags={tags} links />
+
+          <h2 style={{ marginTop: 15 }}>
             {tag.name} <span className="subtitle">tag</span>
           </h2>
-
           <Articles articles={tag.articles} even />
         </div>
       </div>
@@ -42,7 +46,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 
   return {
-    paths: tags.map((tag: Tag) => ({
+    paths: tags.map((tag: TagData) => ({
       params: {
         slug: tag.slug,
       },
@@ -58,7 +62,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  const tags = await fetchApi(`/tags?filters[slug]=${params.slug}&populate=articles,articles.image`)
+  // const tags = await fetchApi(`/tags?filters[slug]=${params.slug}&populate=articles,articles.image`)
+  const [tags, allTags] = await Promise.all([
+    fetchApi(`/tags?filters[slug]=${params.slug}&populate=articles,articles.image`),
+    fetchApi("/tags?filters"),
+  ])
   if (!tags || tags.length === 0) {
     return {
       notFound: true,
@@ -66,7 +74,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   return {
-    props: { tag: tags[0] },
+    props: { tag: tags[0], tags: allTags },
     revalidate: 1,
   }
 }
