@@ -6,7 +6,9 @@ A backend has to be set up first. Otherwise the frontend won't build as the site
 
 ## Backend
 
-[Strapi](https://strapi.io/) as the backend. Will add that to this repository as well soon.
+[Strapi](https://strapi.io/) as the backend.
+
+**Read backend's [README.md](backend/README.md).**
 
 ## Frontend
 
@@ -21,6 +23,5 @@ NGINX configs I'm using can be found in the [nginx directory](nginx).
 ## TODO
 
 - Docker images with docker-composer
-- backend to the repository
 - Workflows, CI/CD
 - Tests (E2E, Unit)
