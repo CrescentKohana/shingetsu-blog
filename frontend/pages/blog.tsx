@@ -1,17 +1,17 @@
 import { GetStaticProps } from "next"
 import { getPlaiceholder } from "plaiceholder"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Articles from "../components/Articles"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Tags from "../components/Tags"
 import { fetchApi } from "../lib/api"
 import { getMedia } from "../lib/media"
-import { Article, StrapiArr, StrapiData, Tag } from "../types"
+import { Article, Tag } from "../types"
 
 interface BlogProps {
-  articles: StrapiData<Article>[]
-  tags: StrapiArr<Tag>
+  articles: Article[]
+  tags: Tag[]
 }
 
 const Blog = ({ articles, tags }: BlogProps) => {
@@ -21,7 +21,7 @@ const Blog = ({ articles, tags }: BlogProps) => {
   }
 
   const [currentTags, setCurrenTags] = useState<string[]>([])
-  const [currentArticles, setCurrentArticles] = useState(articles.map((article) => article.attributes))
+  const [currentArticles, setCurrentArticles] = useState(articles)
 
   const filterByTag = (tag: Tag, add: boolean) => {
     if (add) {
@@ -33,14 +33,14 @@ const Blog = ({ articles, tags }: BlogProps) => {
 
   useEffect(() => {
     if (currentTags.length === 0) {
-      setCurrentArticles(articles.map((article) => article.attributes))
+      setCurrentArticles(articles)
       return
     }
 
     const matchingArticles: Article[] = []
     articles.forEach((article) => {
-      if (article.attributes.tags.data.some((tag) => currentTags.includes(tag.attributes.slug))) {
-        matchingArticles.push(article.attributes)
+      if (article.tags.some((tag) => currentTags.includes(tag.slug))) {
+        matchingArticles.push(article)
       }
     })
 
@@ -75,13 +75,12 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 
   const articlesWithPlaceholders = await Promise.all(
-    (articles.data as StrapiData<Article>[]).map(async (article) => {
-      const image = getMedia(false, (article.attributes as Article).image)
-      const { base64 } = await getPlaiceholder(image.url)
+    articles.map(async (article: Article) => {
+      const { base64 } = await getPlaiceholder(getMedia(article.image))
       return {
         ...article,
         image: {
-          ...image,
+          ...article.image,
           placeholder: base64,
         },
       }
@@ -89,7 +88,7 @@ export const getStaticProps: GetStaticProps = async () => {
   )
 
   return {
-    props: { articles: articlesWithPlaceholders, tags },
+    props: { articles: articlesWithPlaceholders, tags: tags },
     revalidate: 1,
   }
 }

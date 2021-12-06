@@ -3,10 +3,10 @@ import { sauce } from "../lib/api"
 import { shuffle } from "../lib/helpers"
 import { defaultPlaceholder, getMedia } from "../lib/media"
 import styles from "../styles/Slideshow.module.css"
-import { MediaWrap, SlideCategory } from "../types"
+import { Media, SlideCategory } from "../types"
 
 interface SlideshowProps {
-  items: MediaWrap[]
+  items: Media[]
   category: SlideCategory
   slideshowProps?: string
   slideshowClass?: string
@@ -15,21 +15,20 @@ interface SlideshowProps {
 }
 
 const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass, nav }: SlideshowProps) => {
-  const shuffled = shuffle(items) as MediaWrap[]
+  const shuffled = shuffle(items) as Media[]
   return (
     <div data-uk-slideshow={slideshowProps} className={slideshowClass}>
       <div className="uk-position-relative uk-visible-toggle" tabIndex={-1}>
         <ul className={`uk-slideshow-items ${styles.forceAspectRatio}`}>
           {shuffled.map((item, i) => {
-            const media = getMedia(false, item)
             return (
               <li key={i} className={itemProps}>
                 {category === SlideCategory.video ? (
-                  <video src={media.url} loop muted playsInline data-uk-cover uk-video="autoplay: inview"></video>
+                  <video src={item.url} loop muted playsInline data-uk-cover uk-video="autoplay: inview"></video>
                 ) : (
                   <Image
-                    src={media.url}
-                    alt={media.alternativeText}
+                    src={getMedia(item)}
+                    alt={item.alternativeText}
                     layout="fill"
                     objectFit="cover"
                     priority={i === 0}
@@ -37,16 +36,16 @@ const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass,
                     blurDataURL={defaultPlaceholder}
                   />
                 )}
-                {(media.caption || category === SlideCategory.art) && (
+                {(item.caption || category === SlideCategory.art) && (
                   <div
                     style={{ padding: 15 }}
                     className="uk-overlay uk-overlay-primary uk-position-bottom-left uk-position-small"
                   >
                     <p style={{ color: "#eee", fontSize: 12 }}>
                       {category === SlideCategory.art && (
-                        <a target="_blank" rel="noopener noreferrer" href={sauce(media.url)} uk-icon="search" />
+                        <a target="_blank" rel="noopener noreferrer" href={sauce(item.url)} uk-icon="search" />
                       )}{" "}
-                      {media.caption}
+                      {item.caption}
                     </p>
                   </div>
                 )}

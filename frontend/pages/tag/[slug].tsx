@@ -3,7 +3,7 @@ import Articles from "../../components/Articles"
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import { fetchApi } from "../../lib/api"
-import { StrapiData, Tag as TagData } from "../../types"
+import { Tag, Tag as TagData } from "../../types"
 
 interface TagProps {
   tag: TagData
@@ -24,7 +24,7 @@ const Tag = ({ tag }: TagProps) => {
             {tag.name} <span className="subtitle">tag</span>
           </h2>
 
-          <Articles articles={tag.articles.data.map((article) => article.attributes)} even />
+          <Articles articles={tag.articles.map((article) => article)} even />
         </div>
       </div>
     </Layout>
@@ -42,9 +42,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 
   return {
-    paths: (tags.data as StrapiData<TagData>[]).map((tag) => ({
+    paths: tags.map((tag: Tag) => ({
       params: {
-        slug: (tag.attributes as TagData).slug,
+        slug: tag.slug,
       },
     })),
     fallback: "blocking",
@@ -59,15 +59,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   const tags = await fetchApi(`/tags?filters[slug]=${params.slug}`)
-
-  if (!tags || (tags.data as StrapiData<TagData>[]).length === 0) {
+  if (!tags || tags.length === 0) {
     return {
       notFound: true,
     }
   }
 
   return {
-    props: { tag: (tags.data as StrapiData<TagData>[])[0] },
+    props: { tag: tags[0] },
     revalidate: 1,
   }
 }

@@ -5,7 +5,7 @@ import ProjectList from "../components/ProjectList"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
 import { getMedia } from "../lib/media"
-import { Project, StrapiData } from "../types"
+import { Project } from "../types"
 
 interface ProjectsProps {
   projects: Project[]
@@ -41,12 +41,12 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 
   const projectsWithPlaceholders = await Promise.all(
-    (projects.data as StrapiData<Project>[]).map(async (project) => {
-      const { base64 } = await getPlaiceholder(getMedia(true, project.attributes.image))
+    projects.map(async (project: Project) => {
+      const { base64 } = await getPlaiceholder(getMedia(project.image))
       return {
         ...project,
         image: {
-          ...project.attributes.image,
+          ...project.image,
           placeholder: base64,
         },
       }

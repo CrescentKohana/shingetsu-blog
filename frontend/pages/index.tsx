@@ -7,7 +7,7 @@ import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Typewriter from "../components/Typewriter"
 import { fetchApi } from "../lib/api"
-import { Home, Strapi } from "../types"
+import { Home } from "../types"
 
 interface HomeProps {
   home: Home
@@ -29,10 +29,10 @@ const Home = ({ home }: HomeProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const home = (await fetchApi("/home?populate=*")) as Strapi<Home>
+  const home = await fetchApi("/home?populate=*")
 
   return {
-    props: { home: home.data.attributes },
+    props: { home },
     revalidate: 1,
   }
 }

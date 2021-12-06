@@ -5,7 +5,7 @@ import rehypeSanitize from "rehype-sanitize"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
-import { About as AboutData, Strapi } from "../types"
+import { About as AboutData } from "../types"
 
 interface AboutProps {
   about: AboutData
@@ -32,7 +32,7 @@ const About = ({ about }: AboutProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const about = (await fetchApi("/about")) as Strapi<AboutData>
+  const about = await fetchApi("/about")
 
   if (!about) {
     return {
@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 
   return {
-    props: { about: about.data.attributes },
+    props: { about: about },
     revalidate: 1,
   }
 }

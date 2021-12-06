@@ -1,3 +1,5 @@
+export type Who = { [key: string]: unknown }
+
 // Strapi specific
 export interface StrapiResponse {
   data: unknown
@@ -42,9 +44,9 @@ export interface Ecchi {
   name: string
   content: string
   lowerContent: string
-  header: Strapi<Media>
-  overlay: Strapi<Media>
-  sliders: StrapiArr<Slider>
+  header: Media
+  overlay: Media
+  sliders: Slider[]
 }
 
 export enum SlideCategory {
@@ -58,7 +60,7 @@ export interface Slider {
   name: string
   category: SlideCategory
   horizontal: boolean
-  media: StrapiArr<Media>
+  media: Media[]
 }
 
 export interface Article {
@@ -68,17 +70,17 @@ export interface Article {
   content: string
   published: string
   updated: string
-  image: Strapi<Media>
-  writer: Strapi<Author>
+  image: Media
+  writer: Author
   showcased: boolean
-  tags: StrapiArr<Tag>
+  tags: Tag[]
 }
 
 export interface Tag {
   id: number
   slug: string
   name: string
-  articles: StrapiArr<Article>
+  articles: Article[]
 }
 
 export enum ProjectStatus {
@@ -97,7 +99,7 @@ export interface Project {
   license: string
   status: ProjectStatus
   showcased: boolean
-  image: Strapi<Media>
+  image: Media
   tech: Tech
 }
 
@@ -109,7 +111,7 @@ export interface Tech {
 
 interface Footer {
   text: string
-  image: Strapi<Media>
+  image: Media
   imgWidth: number
   imgHeight: number
 }
@@ -119,12 +121,12 @@ export interface Global {
   siteName?: string
   author?: string
   footer?: Footer
-  favicon?: Strapi<Media>
+  favicon?: Media
 }
 
 export interface Author {
   name: string
-  avatar: Strapi<Media>
+  avatar: Media
 }
 
 export interface Media {
@@ -140,6 +142,6 @@ export interface Media {
 export interface SeoData {
   metaTitle: string
   metaDescription: string
-  shareImage?: Strapi<Media>
+  shareImage?: Media
   article?: boolean
 }

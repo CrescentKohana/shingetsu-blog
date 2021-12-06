@@ -16,10 +16,8 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
   const verticalSliders = sliders.filter((slider) => !slider.horizontal)
   const horizontalSliders = sliders.filter((slider) => slider.horizontal)
 
-  const verticalChunks = [...Array(Math.floor(verticalSliders.length / ROW_SIZE))].map((_, i) =>
-    verticalSliders.slice(i * ROW_SIZE, i * ROW_SIZE + ROW_SIZE)
-  )
-
+  const count = verticalSliders.length <= 1 ? 1 : Math.floor(verticalSliders.length / ROW_SIZE)
+  const verticalChunks = [...Array(count)].map((_, i) => verticalSliders.slice(i * ROW_SIZE, i * ROW_SIZE + ROW_SIZE))
   const shuffled = shuffle([...verticalChunks, ...horizontalSliders]) as [Slider | Slider[]]
 
   const blocks = shuffled.map((slider) => {
@@ -33,7 +31,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
           {slider.map((slider) => (
             <Slideshow
               key={slider.id}
-              items={slider.media.data.map((media) => media.attributes)}
+              items={slider.media}
               category={slider.category}
               slideshowProps="animation: scale; autoplay: true; min-height: 490"
             />
@@ -44,7 +42,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
       return (
         <div key={slider.id} style={{ marginTop: 20 }}>
           <Slideshow
-            items={slider.media.data.map((media) => media.attributes)}
+            items={slider.media}
             category={slider.category}
             slideshowProps="animation: scale; autoplay: true; min-height: 490; max-height: 490"
           />

@@ -17,7 +17,7 @@ const ProjectCard = ({ project }: CardProps) => {
             <div className={`uk-card-badge ${project.status}-badge`}>{project.status}</div>
             <div className={`uk-card-badge ${styles.secondBadge} ${project.status}-badge`}>{project.license}</div>
             <div className="uk-card-media-top">
-              <ImageWrap className={styles.cardImg} imageData={project.image} priority />
+              <ImageWrap className={styles.cardImg} image={project.image} priority />
             </div>
             <div className="uk-card-body">
               <p id="title" className="uk-text-large">

@@ -5,7 +5,7 @@ import { createContext } from "react"
 import { fetchApi } from "../lib/api"
 import { getMedia } from "../lib/media"
 import "../styles/globals.css"
-import { Global, StrapiData } from "../types"
+import { Global } from "../types"
 
 export const GlobalContext = createContext({})
 
@@ -14,7 +14,7 @@ const Shingetsu = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <Head>{global.favicon && <link rel="shortcut icon" href={getMedia(true, global.favicon)} />}</Head>
+      <Head>{global.favicon && <link rel="shortcut icon" href={getMedia(global.favicon)} />}</Head>
       <div className="uk-light">
         <GlobalContext.Provider value={global}>
           <Provider session={pageProps.session}>
@@ -34,7 +34,8 @@ Shingetsu.getInitialProps = async (context: AppContext) => {
   // Calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(context)
   const global = await fetchApi("/global?populate=favicon,seo.shareImage,footer.image")
-  return { ...appProps, pageProps: (global?.data as StrapiData<Global>).attributes }
+
+  return { ...appProps, pageProps: global }
 }
 
 export default Shingetsu
