@@ -24,7 +24,7 @@ const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass,
             return (
               <li key={i} className={itemProps}>
                 {category === SlideCategory.video ? (
-                  <video src={item.url} loop muted playsInline data-uk-cover uk-video="autoplay: inview"></video>
+                  <video src={getMedia(item)} loop muted playsInline data-uk-cover uk-video="autoplay: inview"></video>
                 ) : (
                   <Image
                     src={getMedia(item)}
