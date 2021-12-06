@@ -24,7 +24,7 @@ const Tag = ({ tag }: TagProps) => {
             {tag.name} <span className="subtitle">tag</span>
           </h2>
 
-          <Articles articles={tag.articles.map((article) => article)} even />
+          <Articles articles={tag.articles} even />
         </div>
       </div>
     </Layout>
@@ -58,7 +58,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  const tags = await fetchApi(`/tags?filters[slug]=${params.slug}`)
+  const tags = await fetchApi(`/tags?filters[slug]=${params.slug}&populate=articles,articles.image`)
   if (!tags || tags.length === 0) {
     return {
       notFound: true,
