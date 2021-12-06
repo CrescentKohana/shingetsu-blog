@@ -51,11 +51,11 @@ const Nav = () => {
                   </Link>
                 ) : !session?.user ? (
                   <Link href="/api/auth/signin" locale={false} passHref>
-                    <button className="uk-button uk-button-default uk-button-small">🔓 ecchi</button>
+                    <button className="uk-button uk-button-default uk-button-small">🔒 ecchi</button>
                   </Link>
                 ) : (
                   <Link href="/api/auth/signout" locale={false} passHref>
-                    <button className="uk-button uk-button-default uk-button-small">🔒</button>
+                    <button className="uk-button uk-button-default uk-button-small">🔓</button>
                   </Link>
                 )}
               </li>
