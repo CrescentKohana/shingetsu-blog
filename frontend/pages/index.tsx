@@ -7,21 +7,21 @@ import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Typewriter from "../components/Typewriter"
 import { fetchApi } from "../lib/api"
-import { Homepage } from "../types"
+import { Home } from "../types"
 
 interface HomeProps {
-  homepage: Homepage
+  home: Home
 }
 
-const Home = ({ homepage }: HomeProps) => {
+const Home = ({ home }: HomeProps) => {
   return (
     <Layout>
-      <Seo seo={homepage.seo} />
+      <Seo seo={home.seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h1>{homepage.title}</h1>
-          <Typewriter strings={[homepage.selftyping]} delay={100} />
-          <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{homepage.content}</Markdown>
+          <h1>{home.title}</h1>
+          <Typewriter strings={[home.selftyping]} delay={100} />
+          <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{home.content}</Markdown>
         </div>
       </div>
     </Layout>
@@ -29,10 +29,10 @@ const Home = ({ homepage }: HomeProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const homepage = await fetchApi("/homepage")
+  const home = await fetchApi("/home?populate=*")
 
   return {
-    props: { homepage },
+    props: { home },
     revalidate: 1,
   }
 }

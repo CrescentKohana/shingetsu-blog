@@ -32,7 +32,7 @@ const ImageWrap = ({ image, className, priority }: ImageProps) => {
   return (
     <Image
       className={className}
-      src={getMedia(image)}
+      src={image.url}
       alt={image.alternativeText || image.name}
       layout="fill"
       priority={priority}

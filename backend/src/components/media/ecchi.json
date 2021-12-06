@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_media_ecchis",
+  "info": {
+    "displayName": "Ecchi",
+    "icon": "heart",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "doujinshi",
+        "art",
+        "video"
+      ],
+      "required": true
+    },
+    "horizontal": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "media": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "videos",
+        "images"
+      ]
+    }
+  }
+}

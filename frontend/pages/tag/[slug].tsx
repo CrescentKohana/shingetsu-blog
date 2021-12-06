@@ -3,7 +3,7 @@ import Articles from "../../components/Articles"
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import { fetchApi } from "../../lib/api"
-import { Tag as TagData } from "../../types"
+import { Tag, Tag as TagData } from "../../types"
 
 interface TagProps {
   tag: TagData
@@ -24,7 +24,7 @@ const Tag = ({ tag }: TagProps) => {
             {tag.name} <span className="subtitle">tag</span>
           </h2>
 
-          <Articles articles={tag.articles} even />
+          <Articles articles={tag.articles.map((article) => article)} even />
         </div>
       </div>
     </Layout>
@@ -34,8 +34,15 @@ const Tag = ({ tag }: TagProps) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const tags = await fetchApi("/tags")
 
+  if (!tags) {
+    return {
+      paths: [],
+      fallback: false,
+    }
+  }
+
   return {
-    paths: tags.map((tag: TagData) => ({
+    paths: tags.map((tag: Tag) => ({
       params: {
         slug: tag.slug,
       },
@@ -51,9 +58,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  const tags = await fetchApi(`/tags?slug=${params.slug}`)
-
-  if (tags.length === 0) {
+  const tags = await fetchApi(`/tags?filters[slug]=${params.slug}`)
+  if (!tags || tags.length === 0) {
     return {
       notFound: true,
     }

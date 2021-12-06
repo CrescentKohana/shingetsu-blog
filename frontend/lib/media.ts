@@ -7,12 +7,13 @@ import { getApiUrl } from "./api"
  * @param media
  * @returns imageURL as string
  */
-export function getMedia(media: Media) {
-  if (media == null) {
+export function getMedia(media?: Media) {
+  if (!media?.url) {
     return ""
   }
 
-  const imageUrl = media.url.startsWith("/") ? getApiUrl(media.url) : media.url
+  const imageUrl = media.url.startsWith("/") ? getApiUrl(media.url, true) : media.url
+
   return encodeURI(imageUrl)
 }
 

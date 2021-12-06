@@ -1,6 +1,34 @@
-// Pages
+export type Who = { [key: string]: unknown }
 
-export interface Homepage {
+// Strapi specific
+export interface StrapiResponse {
+  data: unknown
+  meta?: unknown
+  error?: StrapiError
+}
+
+export interface Strapi<Type> extends StrapiResponse {
+  data: StrapiData<Type>
+}
+
+export interface StrapiArr<Type> extends StrapiResponse {
+  data: StrapiData<Type>[]
+}
+
+export interface StrapiData<Type> {
+  id: number
+  attributes: Type
+}
+
+export interface StrapiError {
+  status: string
+  name: string
+  message: string
+  details: unknown // TOOD
+}
+
+// Pages
+export interface Home {
   title: string
   content: string
   selftyping: string
@@ -36,15 +64,14 @@ export interface Slider {
 }
 
 export interface Article {
-  id: number
   slug: string
   title: string
   description: string
   content: string
-  publishedAt: string
-  updatedAt: string
+  published: string
+  updated: string
   image: Media
-  author: Author
+  writer: Author
   showcased: boolean
   tags: Tag[]
 }
@@ -77,7 +104,6 @@ export interface Project {
 }
 
 // Components and other types
-
 export interface Tech {
   id: number
   name: string
@@ -100,7 +126,7 @@ export interface Global {
 
 export interface Author {
   name: string
-  picture: Media
+  avatar: Media
 }
 
 export interface Media {

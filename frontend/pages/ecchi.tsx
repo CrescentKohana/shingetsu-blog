@@ -66,7 +66,7 @@ export const getServerSideProps = async (context: GetSessionOptions) => {
     }
   }
 
-  const ecchi = await fetchApi(`/h?token=${session.user?.name}`)
+  const ecchi = await fetchApi(`/ecchi?token=${session.user?.name}&populate=header,overlay,sliders.media`)
 
   if (!ecchi) {
     return {
@@ -79,7 +79,6 @@ export const getServerSideProps = async (context: GetSessionOptions) => {
 
   // TODO: Dynamically generate placeholders. Cannot be done here when SSR is used.
   // Switch to SSG, or even better, generate them in backend.
-
   return {
     props: { ecchi, session: session },
   }

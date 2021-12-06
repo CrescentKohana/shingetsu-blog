@@ -10,7 +10,7 @@ export default NextAuth({
         token: { label: "Secret", type: "password" },
       },
       async authorize(credentials) {
-        const res = await fetch(getApiUrl(`/h?token=${credentials.token}`))
+        const res = await fetch(getApiUrl(`/ecchi?token=${credentials.token}`))
 
         if (res.ok) {
           return { name: credentials.token }

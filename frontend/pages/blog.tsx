@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next"
 import { getPlaiceholder } from "plaiceholder"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Articles from "../components/Articles"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
@@ -38,8 +38,8 @@ const Blog = ({ articles, tags }: BlogProps) => {
     }
 
     const matchingArticles: Article[] = []
-    articles.forEach((article: Article) => {
-      if (article.tags.some((tag: Tag) => currentTags.includes(tag.slug))) {
+    articles.forEach((article) => {
+      if (article.tags.some((tag) => currentTags.includes(tag.slug))) {
         matchingArticles.push(article)
       }
     })
@@ -57,7 +57,7 @@ const Blog = ({ articles, tags }: BlogProps) => {
           </h1>
 
           <Tags tags={tags} onClick={filterByTag} />
-          <Articles articles={currentArticles} />
+          {articles.length > 0 && <Articles articles={currentArticles} />}
         </div>
       </div>
     </Layout>
@@ -65,7 +65,14 @@ const Blog = ({ articles, tags }: BlogProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const [articles, tags] = await Promise.all([fetchApi("/articles"), fetchApi("/tags")])
+  const [articles, tags] = await Promise.all([fetchApi("/articles?populate=*"), fetchApi("/tags")])
+
+  if (!articles) {
+    return {
+      props: { articles: [], tags: tags },
+      revalidate: 1,
+    }
+  }
 
   const articlesWithPlaceholders = await Promise.all(
     articles.map(async (article: Article) => {
@@ -81,7 +88,7 @@ export const getStaticProps: GetStaticProps = async () => {
   )
 
   return {
-    props: { articles: articlesWithPlaceholders, tags },
+    props: { articles: articlesWithPlaceholders, tags: tags },
     revalidate: 1,
   }
 }

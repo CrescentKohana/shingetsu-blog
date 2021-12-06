@@ -35,16 +35,16 @@ const Article = ({ article }: ArticleProps) => {
           <hr className="uk-divider-icon" />
           <div className="uk-grid-small uk-flex-left" data-uk-grid="true">
             <div style={{ width: 60 }}>
-              {article.author.picture && <ImageWrap image={article.author.picture} className={styles.authorAvatar} />}
+              {article.writer.avatar && <ImageWrap image={article.writer.avatar} className={styles.authorAvatar} />}
             </div>
             <div className="uk-width-expand">
-              <p className="uk-margin-remove-bottom">By {article.author.name}</p>
+              <p className="uk-margin-remove-bottom">By {article.writer.name}</p>
               <p className="uk-text-meta uk-margin-remove-top">
-                <Moment format="MMM Do YYYY">{article.publishedAt}</Moment>
-                {article.updatedAt && (
+                <Moment format="MMM Do YYYY">{article.published}</Moment>
+                {article.updated && (
                   <>
                     {" "}
-                    (updated <Moment format="MMM Do YYYY">{article.updatedAt}</Moment>)
+                    (updated <Moment format="MMM Do YYYY">{article.updated}</Moment>)
                   </>
                 )}
               </p>
@@ -58,6 +58,13 @@ const Article = ({ article }: ArticleProps) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const articles = await fetchApi("/articles")
+
+  if (!articles) {
+    return {
+      paths: [],
+      fallback: false,
+    }
+  }
 
   return {
     paths: articles.map((article: ArticleData) => ({
@@ -76,9 +83,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  const articles = await fetchApi(`/articles?slug=${params.slug}`)
-
-  if (articles.length === 0) {
+  const articles = await fetchApi(`/articles?filters[slug]=${params.slug}&populate=image,tags,writer.avatar`)
+  if (!articles || articles.length === 0) {
     return {
       notFound: true,
     }

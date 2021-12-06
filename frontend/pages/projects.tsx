@@ -23,7 +23,7 @@ const Projects = ({ projects }: ProjectsProps) => {
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h1>Projects</h1>
-          <ProjectList projects={projects} />
+          {projects.length > 0 && <ProjectList projects={projects} />}
         </div>
       </div>
     </Layout>
@@ -31,7 +31,14 @@ const Projects = ({ projects }: ProjectsProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const projects = await fetchApi("/projects")
+  const projects = await fetchApi("/projects?populate=image,tech")
+
+  if (!projects) {
+    return {
+      props: { projects: [] },
+      revalidate: 1,
+    }
+  }
 
   const projectsWithPlaceholders = await Promise.all(
     projects.map(async (project: Project) => {

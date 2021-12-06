@@ -20,36 +20,38 @@ const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass,
     <div data-uk-slideshow={slideshowProps} className={slideshowClass}>
       <div className="uk-position-relative uk-visible-toggle" tabIndex={-1}>
         <ul className={`uk-slideshow-items ${styles.forceAspectRatio}`}>
-          {shuffled.map((item, i) => (
-            <li key={i} className={itemProps}>
-              {category === SlideCategory.video ? (
-                <video src={getMedia(item)} loop muted playsInline data-uk-cover uk-video="autoplay: inview"></video>
-              ) : (
-                <Image
-                  src={getMedia(item)}
-                  alt={item.alternativeText}
-                  layout="fill"
-                  objectFit="cover"
-                  priority={i === 0}
-                  placeholder={"blur"}
-                  blurDataURL={defaultPlaceholder}
-                />
-              )}
-              {(item.caption || category === SlideCategory.art) && (
-                <div
-                  style={{ padding: 15 }}
-                  className="uk-overlay uk-overlay-primary uk-position-bottom-left uk-position-small"
-                >
-                  <p style={{ color: "#eee", fontSize: 12 }}>
-                    {category === SlideCategory.art && (
-                      <a target="_blank" rel="noopener noreferrer" href={sauce(getMedia(item))} uk-icon="search" />
-                    )}{" "}
-                    {item.caption}
-                  </p>
-                </div>
-              )}
-            </li>
-          ))}
+          {shuffled.map((item, i) => {
+            return (
+              <li key={i} className={itemProps}>
+                {category === SlideCategory.video ? (
+                  <video src={item.url} loop muted playsInline data-uk-cover uk-video="autoplay: inview"></video>
+                ) : (
+                  <Image
+                    src={getMedia(item)}
+                    alt={item.alternativeText}
+                    layout="fill"
+                    objectFit="cover"
+                    priority={i === 0}
+                    placeholder={"blur"}
+                    blurDataURL={defaultPlaceholder}
+                  />
+                )}
+                {(item.caption || category === SlideCategory.art) && (
+                  <div
+                    style={{ padding: 15 }}
+                    className="uk-overlay uk-overlay-primary uk-position-bottom-left uk-position-small"
+                  >
+                    <p style={{ color: "#eee", fontSize: 12 }}>
+                      {category === SlideCategory.art && (
+                        <a target="_blank" rel="noopener noreferrer" href={sauce(item.url)} uk-icon="search" />
+                      )}{" "}
+                      {item.caption}
+                    </p>
+                  </div>
+                )}
+              </li>
+            )
+          })}
         </ul>
 
         <a

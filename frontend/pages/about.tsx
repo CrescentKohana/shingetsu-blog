@@ -34,8 +34,14 @@ const About = ({ about }: AboutProps) => {
 export const getStaticProps: GetStaticProps = async () => {
   const about = await fetchApi("/about")
 
+  if (!about) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
-    props: { about },
+    props: { about: about },
     revalidate: 1,
   }
 }

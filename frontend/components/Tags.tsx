@@ -15,7 +15,7 @@ const Tags = ({ tags, links, onClick }: TagsProps) => {
   if (!onClick) {
     return (
       <div>
-        {tags.map((tag: Tag) => {
+        {tags.map((tag) => {
           return links ? (
             <Link key={tag.id} as={`/tag/${tag.slug}`} href="/tag/[slug]" passHref>
               <a className="uk-badge">{tag.name}</a>
@@ -42,7 +42,7 @@ const Tags = ({ tags, links, onClick }: TagsProps) => {
 
   return (
     <div>
-      {tags.map((tag: Tag) => {
+      {tags.map((tag) => {
         return (
           <a key={tag.id} onClick={() => tagHelper(tag)} uk-toggle={`target: #tag-${tag.id}; cls: toggled-badge`}>
             <div className={`uk-badge #tag-${tag.id}`}>{tag.name}</div>
