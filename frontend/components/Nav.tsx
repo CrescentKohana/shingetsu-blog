@@ -1,9 +1,18 @@
-import { useSession } from "next-auth/client"
+import { useSession } from "next-auth/react"
+import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import styles from "../styles/Nav.module.css"
 
 const Nav = () => {
-  const [session, loading] = useSession()
+  const router = useRouter()
+  const { pathname, asPath, query } = router
+  const ja = router.locale === "ja"
+  const { data: session, status } = useSession()
+
+  const switchLocale = () => {
+    router.push({ pathname, query }, asPath, { locale: ja ? "en" : "ja" })
+  }
 
   return (
     <>
@@ -34,21 +43,30 @@ const Nav = () => {
           <div className="uk-navbar-left">
             <ul className="uk-navbar-nav">
               <li style={{ paddingLeft: 10 }}>
-                {loading ? (
+                {status === "loading" ? (
                   <Link href="#" passHref>
                     <button className="uk-button uk-button-default uk-button-small" disabled>
                       Loading...
                     </button>
                   </Link>
                 ) : !session?.user ? (
-                  <Link href="/api/auth/signin" passHref>
-                    <button className="uk-button uk-button-default  uk-button-small">Unlock ecchi</button>
+                  <Link href="/api/auth/signin" locale={false} passHref>
+                    <button className="uk-button uk-button-default uk-button-small">🔓 ecchi</button>
                   </Link>
                 ) : (
-                  <Link href="/api/auth/signout" passHref>
-                    <button className="uk-button uk-button-default  uk-button-small">Lock</button>
+                  <Link href="/api/auth/signout" locale={false} passHref>
+                    <button className="uk-button uk-button-default uk-button-small">🔒</button>
                   </Link>
                 )}
+              </li>
+              <li style={{ paddingLeft: 10 }}>
+                <button
+                  className="uk-button uk-button-default uk-button-small"
+                  style={{ height: 30 }}
+                  onClick={() => switchLocale()}
+                >
+                  <Image alt={ja ? "ja" : "en"} src={`/${ja ? "ja" : "en"}.svg`} height={30} width={30} />
+                </button>
               </li>
             </ul>
           </div>

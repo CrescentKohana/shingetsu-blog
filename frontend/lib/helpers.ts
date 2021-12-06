@@ -1,4 +1,4 @@
-import { Strapi, StrapiArr, StrapiData, Who } from "../types"
+import { StrapiData, Who } from "../types"
 
 export const shuffle = (array: unknown[]) => {
   let counter = array.length
@@ -19,7 +19,7 @@ export const shuffle = (array: unknown[]) => {
   return array
 }
 
-export type RecursiveFlatProps = Strapi<Who> | StrapiArr<Who> | StrapiData<unknown> | Who
+export type RecursiveFlatProps = StrapiData<unknown> | Who
 export const recursiveFlat = (response: RecursiveFlatProps, depth = 0): unknown => {
   if (!response || depth > 10) {
     return response

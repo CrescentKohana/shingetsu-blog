@@ -1,4 +1,4 @@
-import { getSession, GetSessionOptions } from "next-auth/client"
+import { getSession, GetSessionParams } from "next-auth/react"
 import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
@@ -55,7 +55,7 @@ const Ecchi = ({ ecchi }: EcchiProps) => {
   )
 }
 
-export const getServerSideProps = async (context: GetSessionOptions) => {
+export const getServerSideProps = async (context: GetSessionParams) => {
   const session = await getSession(context)
   if (!session) {
     return {

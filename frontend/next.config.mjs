@@ -14,4 +14,8 @@ export default withPlaiceholder({
     domains: ["strapi.luukuton.fi", "localhost"],
     formats: ["image/webp"],
   },
+  i18n: {
+    locales: ["en", "ja"],
+    defaultLocale: "en",
+  },
 })

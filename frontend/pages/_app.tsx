@@ -1,4 +1,4 @@
-import { Provider } from "next-auth/client"
+import { SessionProvider } from "next-auth/react"
 import App, { AppContext, AppProps } from "next/app"
 import Head from "next/head"
 import { createContext } from "react"
@@ -17,9 +17,9 @@ const Shingetsu = ({ Component, pageProps }: AppProps) => {
       <Head>{global.favicon && <link rel="shortcut icon" href={getMedia(global.favicon)} />}</Head>
       <div className="uk-light">
         <GlobalContext.Provider value={global}>
-          <Provider session={pageProps.session}>
+          <SessionProvider session={pageProps.session}>
             <Component {...pageProps} />
-          </Provider>
+          </SessionProvider>
         </GlobalContext.Provider>
       </div>
     </>

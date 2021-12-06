@@ -28,8 +28,8 @@ const Home = ({ home }: HomeProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const home = await fetchApi("/home?populate=*")
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const home = await fetchApi(`/home?locale=${locale}&populate=*`)
 
   return {
     props: { home },

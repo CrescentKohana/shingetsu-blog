@@ -25,3 +25,7 @@ NGINX configs I'm using can be found in the [nginx directory](nginx).
 - Docker images with docker-composer
 - Workflows, CI/CD
 - Tests (E2E, Unit)
+
+## Attribution
+
+Flag emojis designed by [OpenMoji](https://openmoji.org/) – the open-source emoji and icon project. License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/#)

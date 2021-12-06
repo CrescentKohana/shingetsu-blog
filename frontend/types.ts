@@ -1,18 +1,10 @@
 export type Who = { [key: string]: unknown }
 
 // Strapi specific
-export interface StrapiResponse {
-  data: unknown
+export interface StrapiResponse<Type> {
+  data: StrapiData<Type> | StrapiData<Type>[]
   meta?: unknown
   error?: StrapiError
-}
-
-export interface Strapi<Type> extends StrapiResponse {
-  data: StrapiData<Type>
-}
-
-export interface StrapiArr<Type> extends StrapiResponse {
-  data: StrapiData<Type>[]
 }
 
 export interface StrapiData<Type> {

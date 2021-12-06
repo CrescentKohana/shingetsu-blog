@@ -1,17 +1,20 @@
 import NextAuth from "next-auth"
-import Providers from "next-auth/providers"
+import Credentials from "next-auth/providers/credentials"
 import { getApiUrl } from "../../../lib/api"
 
 export default NextAuth({
   providers: [
-    Providers.Credentials({
+    Credentials({
       name: "Arararagi",
       credentials: {
         token: { label: "Secret", type: "password" },
       },
       async authorize(credentials) {
-        const res = await fetch(getApiUrl(`/ecchi?token=${credentials.token}`))
+        if (!credentials) {
+          return null
+        }
 
+        const res = await fetch(getApiUrl(`/ecchi?token=${credentials.token}`))
         if (res.ok) {
           return { name: credentials.token }
         }
@@ -23,13 +26,13 @@ export default NextAuth({
 
   secret: process.env.SECRET,
   session: {
-    jwt: true,
+    strategy: "jwt",
     maxAge: 90 * 24 * 60 * 60,
   },
 
-  jwt: {
-    signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
+  theme: {
+    colorScheme: "dark",
+    brandColor: "#4B76D9",
+    logo: "/暦.svg",
   },
-
-  theme: "dark",
 })
