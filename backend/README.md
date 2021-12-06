@@ -1,6 +1,6 @@
 # Backend
 
-[Strapi](https://strapi.io)
+Utlizes [Strapi](https://strapi.io).
 
 ## Usage
 
@@ -13,7 +13,6 @@
   HOST=0.0.0.0
   PORT=1337
   URL=https://vermillion.example.org
-
   ```
 
 - `npm i` to install dependencies
