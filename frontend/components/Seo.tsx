@@ -18,7 +18,7 @@ const Seo = ({ seo }: SeoProps) => {
   const fullSeo = {
     ...seoWithDefaults,
     metaTitle: `${seoWithDefaults.metaTitle} | ${global.siteName}`,
-    shareImage: seoWithDefaults.shareImage ? getMedia(true, seoWithDefaults.shareImage) : null,
+    shareImage: getMedia(seoWithDefaults.shareImage),
   }
 
   return (
