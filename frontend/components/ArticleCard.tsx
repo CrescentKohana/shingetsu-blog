@@ -1,5 +1,4 @@
 import Link from "next/link"
-import React from "react"
 import Moment from "react-moment"
 import styles from "../styles/Card.module.css"
 import { Article } from "../types"
@@ -12,7 +11,7 @@ interface CardProps {
 
 const ArticleCard = ({ article }: CardProps) => {
   return (
-    <Link as={`/article/${article.slug}`} href="/article/[slug]">
+    <Link href={`/article/${article.slug}`}>
       <a className="uk-link-reset">
         <div className="uk-card uk-card-muted">
           <div className="uk-card-media-top">

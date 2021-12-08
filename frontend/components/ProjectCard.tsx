@@ -1,5 +1,4 @@
 import Link from "next/link"
-import React from "react"
 import styles from "../styles/Card.module.css"
 import { Project } from "../types"
 import ImageWrap from "./ImageWrap"
@@ -10,7 +9,7 @@ interface CardProps {
 
 const ProjectCard = ({ project }: CardProps) => {
   return (
-    <Link as={`${project.url}`} href={`${project.url}`}>
+    <Link href={`${project.url}`}>
       <a target="_blank" rel="noopener noreferrer" className="uk-link-reset">
         <div className="uk-card uk-card-muted uk-transition-toggle" tabIndex={0}>
           <div>

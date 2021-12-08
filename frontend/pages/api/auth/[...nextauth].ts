@@ -23,13 +23,11 @@ export default NextAuth({
       },
     }),
   ],
-
   secret: process.env.SECRET,
   session: {
     strategy: "jwt",
     maxAge: 90 * 24 * 60 * 60,
   },
-
   theme: {
     colorScheme: "dark",
     brandColor: "#4B76D9",

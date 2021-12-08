@@ -1,4 +1,3 @@
-import React from "react"
 import { Project } from "../types"
 import ProjectCard from "./ProjectCard"
 

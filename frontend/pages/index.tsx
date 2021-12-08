@@ -1,5 +1,4 @@
 import { GetStaticProps } from "next"
-import React from "react"
 import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"

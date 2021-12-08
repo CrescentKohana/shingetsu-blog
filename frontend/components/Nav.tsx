@@ -21,17 +21,17 @@ const Nav = () => {
           <button className="uk-offcanvas-close" type="button" data-uk-close></button>
           <ul className="uk-nav uk-nav-default uk-nav-center" style={{ fontSize: 30 }}>
             <li className="nav-category">
-              <Link as="/about" href="/about">
+              <Link href="/about">
                 <a className="uk-link-reset">About</a>
               </Link>
             </li>
             <li className="nav-category">
-              <Link as="/blog" href="/blog">
+              <Link href="/blog">
                 <a className="uk-link-reset">Blog</a>
               </Link>
             </li>
             <li className="nav-category">
-              <Link as="/projects" href="/projects">
+              <Link href="/projects">
                 <a className="uk-link-reset">Projects</a>
               </Link>
             </li>
@@ -74,7 +74,7 @@ const Nav = () => {
             <ul className="uk-navbar-nav">
               {session?.user && (
                 <li style={{ color: "#FF018A" }}>
-                  <Link as="/ecchi" href="/ecchi">
+                  <Link href="/ecchi">
                     <a className="uk-link-reset">Ecchi</a>
                   </Link>
                 </li>
@@ -96,17 +96,17 @@ const Nav = () => {
                 </button>
               </li>
               <li className={`nav-category ${styles.hideItem}`}>
-                <Link as="/about" href="/about">
+                <Link href="/about">
                   <a className="uk-link-reset">About</a>
                 </Link>
               </li>
               <li className={`nav-category ${styles.hideItem}`}>
-                <Link as="/blog" href="/blog">
+                <Link href="/blog">
                   <a className="uk-link-reset">Blog</a>
                 </Link>
               </li>
               <li className={`nav-category ${styles.hideItem}`}>
-                <Link as="/projects" href="/projects">
+                <Link href="/projects">
                   <a className="uk-link-reset">Projects</a>
                 </Link>
               </li>
