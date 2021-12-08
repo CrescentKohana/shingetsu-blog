@@ -22,12 +22,11 @@ const Tag = ({ tag, tags }: TagProps) => {
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h3 style={{ marginBottom: 0 }}>Browse other tags</h3>
-          <Tags tags={tags} links />
-
-          <h2 style={{ marginTop: 15 }}>
+          <h1 style={{ marginBottom: 10 }}>
             {tag.name} <span className="subtitle">tag</span>
-          </h2>
+          </h1>
+          <Tags tags={tags} links all highlighted={tag.id} />
+
           <Articles articles={tag.articles} even />
         </div>
       </div>

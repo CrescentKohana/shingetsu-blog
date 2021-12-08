@@ -175,8 +175,9 @@ pre > code {
   font-size: 12px;
 }
 
-.toggled-badge > .uk-light .uk-badge,
-.toggled-badge > .uk-badge {
+.highlighted-badge,
+.highlighted-badge > .uk-light .uk-badge,
+.highlighted-badge > .uk-badge {
   border: 2px solid var(--secondary) !important;
 }
 

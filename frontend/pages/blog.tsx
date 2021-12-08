@@ -1,6 +1,5 @@
 import { GetStaticProps } from "next"
 import { getPlaiceholder } from "plaiceholder"
-import React, { useEffect, useState } from "react"
 import Articles from "../components/Articles"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
@@ -20,44 +19,17 @@ const Blog = ({ articles, tags }: BlogProps) => {
     metaDescription: "Blog articles",
   }
 
-  const [currentTags, setCurrenTags] = useState<string[]>([])
-  const [currentArticles, setCurrentArticles] = useState(articles)
-
-  const filterByTag = (tag: Tag, add: boolean) => {
-    if (add) {
-      setCurrenTags([...currentTags, tag.slug])
-    } else {
-      setCurrenTags(currentTags.filter((slug) => slug !== tag.slug))
-    }
-  }
-
-  useEffect(() => {
-    if (currentTags.length === 0) {
-      setCurrentArticles(articles)
-      return
-    }
-
-    const matchingArticles: Article[] = []
-    articles.forEach((article) => {
-      if (article.tags.some((tag) => currentTags.includes(tag.slug))) {
-        matchingArticles.push(article)
-      }
-    })
-
-    setCurrentArticles(matchingArticles)
-  }, [articles, currentTags])
-
   return (
     <Layout>
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h1>
+          <h1 style={{ marginBottom: 10 }}>
             Blog <span className="subtitle">Filter tags below</span>
           </h1>
 
-          <Tags tags={tags} onClick={filterByTag} />
-          {articles.length > 0 && <Articles articles={currentArticles} />}
+          <Tags tags={tags} links />
+          {articles.length > 0 && <Articles articles={articles} />}
         </div>
       </div>
     </Layout>
