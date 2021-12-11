@@ -36,9 +36,6 @@ const Nav = () => {
                 <a className="uk-link-reset">Projects</a>
               </Link>
             </li>
-            <li>
-              <Lock />
-            </li>
           </ul>
         </div>
       </div>
@@ -47,15 +44,11 @@ const Nav = () => {
           <div className="uk-navbar-left">
             <ul className="uk-navbar-nav">
               <li style={{ paddingLeft: 10 }}>
-                <button
-                  className="uk-button uk-button-default uk-button-small"
-                  style={{ height: 30 }}
-                  onClick={() => switchLocale()}
-                >
+                <button className="uk-icon-button uk-button-default" onClick={() => switchLocale()}>
                   <Image alt={ja ? "ja" : "en"} src={`/${ja ? "ja" : "en"}.svg`} height={30} width={30} />
                 </button>
               </li>
-              <li style={{ paddingLeft: 10 }} className={`${styles.hideItem}`}>
+              <li style={{ paddingLeft: 10 }}>
                 <Lock />
               </li>
             </ul>

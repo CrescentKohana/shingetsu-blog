@@ -8,17 +8,15 @@ const Lock = () => {
     <>
       {status === "loading" ? (
         <Link href="#" passHref>
-          <button className="uk-button uk-button-default uk-button-small" disabled>
-            ⌛
-          </button>
+          <button disabled className="uk-icon-button" uk-icon="more"></button>
         </Link>
       ) : !session?.user ? (
         <Link href="/api/auth/signin" locale={false} passHref>
-          <button className="uk-button uk-button-default uk-button-small">🔒</button>
+          <button className="uk-icon-button uk-button-default" uk-icon="lock"></button>
         </Link>
       ) : (
         <Link href="/api/auth/signout" locale={false} passHref>
-          <button className="uk-button uk-button-default uk-button-small">🔓</button>
+          <button className="uk-icon-button uk-button-default" uk-icon="unlock"></button>
         </Link>
       )}
     </>
