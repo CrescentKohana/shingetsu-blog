@@ -9,7 +9,7 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Staatliches&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&family=Staatliches&display=swap"
             rel="stylesheet"
           />
           <script async src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js" />
