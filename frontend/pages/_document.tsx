@@ -1,5 +1,4 @@
 import Document, { Head, Html, Main, NextScript } from "next/document"
-// TODO: Serve uikit.min.js locally
 
 class MyDocument extends Document {
   render() {
@@ -12,7 +11,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&family=Staatliches&display=swap"
             rel="stylesheet"
           />
-          <script async src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js" />
         </Head>
         <body>
           <Main />
