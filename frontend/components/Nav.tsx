@@ -45,7 +45,13 @@ const Nav = () => {
             <ul className="uk-navbar-nav">
               <li style={{ paddingLeft: 10 }}>
                 <button className="uk-icon-button uk-button-default" onClick={() => switchLocale()}>
-                  <Image alt={ja ? "ja" : "en"} src={`/${ja ? "ja" : "en"}.svg`} height={30} width={30} />
+                  <Image
+                    alt={ja ? "ja" : "en"}
+                    src={`/icons/${ja ? "ja" : "en"}.svg`}
+                    height={30}
+                    width={30}
+                    unoptimized
+                  />
                 </button>
               </li>
               <li style={{ paddingLeft: 10 }}>

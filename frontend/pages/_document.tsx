@@ -13,7 +13,6 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <script async src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js" />
-          {/* <script async src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js" /> */}
         </Head>
         <body>
           <Main />

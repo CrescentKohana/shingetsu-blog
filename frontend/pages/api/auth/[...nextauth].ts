@@ -31,6 +31,6 @@ export default NextAuth({
   theme: {
     colorScheme: "dark",
     brandColor: "#4B76D9",
-    logo: "/暦.svg",
+    logo: "/icons/暦.svg",
   },
 })
