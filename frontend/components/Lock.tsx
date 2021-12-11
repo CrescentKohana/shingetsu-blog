@@ -9,7 +9,7 @@ const Lock = () => {
       {status === "loading" ? (
         <Link href="#" passHref>
           <button className="uk-button uk-button-default uk-button-small" disabled>
-            Loading...
+            ⌛
           </button>
         </Link>
       ) : !session?.user ? (
