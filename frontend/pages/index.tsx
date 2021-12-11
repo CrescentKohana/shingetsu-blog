@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
   return {
     props: { home },
-    revalidate: 1,
+    revalidate: 10,
   }
 }
 

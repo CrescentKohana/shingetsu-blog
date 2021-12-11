@@ -92,7 +92,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: { article: articles[0] },
-    revalidate: 1,
+    revalidate: 10,
   }
 }
 

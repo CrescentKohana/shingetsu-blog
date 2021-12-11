@@ -41,8 +41,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   if (!articles) {
     return {
-      props: { articles: [], tags: tags },
-      revalidate: 1,
+      props: { articles: [], tags: tags ? tags : [] },
+      revalidate: 10,
     }
   }
 
@@ -60,8 +60,8 @@ export const getStaticProps: GetStaticProps = async () => {
   )
 
   return {
-    props: { articles: articlesWithPlaceholders, tags: tags },
-    revalidate: 1,
+    props: { articles: articlesWithPlaceholders, tags: tags ? tags : [] },
+    revalidate: 10,
   }
 }
 

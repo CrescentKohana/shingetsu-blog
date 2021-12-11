@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps = async () => {
   if (!projects) {
     return {
       props: { projects: [] },
-      revalidate: 1,
+      revalidate: 10,
     }
   }
 
@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { projects: projectsWithPlaceholders },
-    revalidate: 1,
+    revalidate: 10,
   }
 }
 
