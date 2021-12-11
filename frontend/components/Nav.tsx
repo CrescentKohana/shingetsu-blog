@@ -2,6 +2,8 @@ import { useSession } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import englishSvg from "../public/icons/en.svg"
+import japaneseSvg from "../public/icons/ja.svg"
 import styles from "../styles/Nav.module.css"
 import Lock from "./Lock"
 
@@ -45,7 +47,11 @@ const Nav = () => {
             <ul className="uk-navbar-nav">
               <li style={{ paddingLeft: 10 }}>
                 <button className="uk-icon-button uk-button-default" onClick={() => switchLocale()}>
-                  <Image alt={ja ? "ja" : "en"} src={`/icons/${ja ? "ja" : "en"}.svg`} height={30} width={30} />
+                  {ja ? (
+                    <Image alt="Japanese" src={japaneseSvg} height={30} width={30} priority />
+                  ) : (
+                    <Image alt="English" src={englishSvg} height={30} width={30} priority />
+                  )}
                 </button>
               </li>
               <li style={{ paddingLeft: 10 }}>
