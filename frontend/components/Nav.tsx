@@ -3,12 +3,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import styles from "../styles/Nav.module.css"
+import Lock from "./Lock"
 
 const Nav = () => {
   const router = useRouter()
   const { pathname, asPath, query } = router
   const ja = router.locale === "ja"
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
 
   const switchLocale = () => {
     router.push({ pathname, query }, asPath, { locale: ja ? "en" : "ja" })
@@ -35,6 +36,9 @@ const Nav = () => {
                 <a className="uk-link-reset">Projects</a>
               </Link>
             </li>
+            <li>
+              <Lock />
+            </li>
           </ul>
         </div>
       </div>
@@ -43,23 +47,6 @@ const Nav = () => {
           <div className="uk-navbar-left">
             <ul className="uk-navbar-nav">
               <li style={{ paddingLeft: 10 }}>
-                {status === "loading" ? (
-                  <Link href="#" passHref>
-                    <button className="uk-button uk-button-default uk-button-small" disabled>
-                      Loading...
-                    </button>
-                  </Link>
-                ) : !session?.user ? (
-                  <Link href="/api/auth/signin" locale={false} passHref>
-                    <button className="uk-button uk-button-default uk-button-small">🔒 ecchi</button>
-                  </Link>
-                ) : (
-                  <Link href="/api/auth/signout" locale={false} passHref>
-                    <button className="uk-button uk-button-default uk-button-small">🔓</button>
-                  </Link>
-                )}
-              </li>
-              <li style={{ paddingLeft: 10 }}>
                 <button
                   className="uk-button uk-button-default uk-button-small"
                   style={{ height: 30 }}
@@ -67,6 +54,9 @@ const Nav = () => {
                 >
                   <Image alt={ja ? "ja" : "en"} src={`/${ja ? "ja" : "en"}.svg`} height={30} width={30} />
                 </button>
+              </li>
+              <li style={{ paddingLeft: 10 }} className={`${styles.hideItem}`}>
+                <Lock />
               </li>
             </ul>
           </div>

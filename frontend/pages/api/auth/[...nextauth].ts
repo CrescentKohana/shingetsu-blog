@@ -5,9 +5,9 @@ import { getApiUrl } from "../../../lib/api"
 export default NextAuth({
   providers: [
     Credentials({
-      name: "Arararagi",
+      name: "arararagi",
       credentials: {
-        token: { label: "Secret", type: "password" },
+        token: { label: "Unlock Ecchi", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials) {
