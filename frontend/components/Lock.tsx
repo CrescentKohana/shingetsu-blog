@@ -11,19 +11,19 @@ const Lock = () => {
       {status === "loading" ? (
         <Link href="#" passHref>
           <button disabled className="uk-icon-button">
-            <Image alt="loading" src="/icons/loading.svg" height={30} width={30} unoptimized />
+            <Image alt="loading" src="/icons/loading.svg" height={30} width={30} />
           </button>
         </Link>
       ) : !session?.user ? (
         <Link href="/api/auth/signin" locale={false} passHref>
           <button className="uk-icon-button uk-button-default">
-            <Image alt="Unlock" src="/icons/uk-locked.svg" height={30} width={30} unoptimized />
+            <Image alt="Unlock" src="/icons/uk-locked.svg" height={30} width={30} />
           </button>
         </Link>
       ) : (
         <Link href="/api/auth/signout" locale={false} passHref>
           <button className="uk-icon-button uk-button-default">
-            <Image alt="Lock" src="/icons/uk-unlocked.svg" height={30} width={30} unoptimized />
+            <Image alt="Lock" src="/icons/uk-unlocked.svg" height={30} width={30} />
           </button>
         </Link>
       )}
