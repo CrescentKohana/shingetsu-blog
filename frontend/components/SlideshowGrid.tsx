@@ -35,7 +35,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
               items={slider.media}
               category={slider.category}
               horizontal={slider.horizontal}
-              slideshowProps="animation: push; autoplay: true; min-height: 490"
+              slideshowProps="animation: pull; autoplay: true; min-height: 490"
             />
           ))}
         </div>
@@ -47,7 +47,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
             items={slider.media}
             category={slider.category}
             horizontal={slider.horizontal}
-            slideshowProps="animation: push; autoplay: true; min-height: 490; max-height: 490"
+            slideshowProps="animation: pull; autoplay: true; min-height: 490; max-height: 490"
           />
         </div>
       )
