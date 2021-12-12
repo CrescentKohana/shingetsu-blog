@@ -15,7 +15,7 @@ const useRouteChange = () => {
 
     return () => {
       router.events.off("routeChangeComplete", handleRouteChangeComplete)
-      router.events.on("routeChangeError", handleRouteChangeComplete)
+      router.events.off("routeChangeError", handleRouteChangeComplete)
       router.events.off("routeChangeStart", handleRouteChangeStart)
     }
   }, [router])
