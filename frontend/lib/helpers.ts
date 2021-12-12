@@ -41,9 +41,7 @@ export const recursiveFlat = (response: RecursiveFlatProps, depth = 0): unknown 
           flat = tmp && typeof tmp === "object" ? { ...tmp, id } : tmp
           break
         case "id":
-          if (!response.id) {
-            ;(flat as Who)[key] = recursiveFlat(value, depth + 1)
-          }
+          ;(flat as Who)[key] = recursiveFlat(value, depth + 1)
           break
         default:
           ;(flat as Who)[key] = recursiveFlat(value, depth + 1)
