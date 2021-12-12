@@ -83,7 +83,7 @@ img:hover {
   transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
-/* Single and multi-line code tags */
+/* Code tags */
 pre {
   font-family: monaco, monospace;
   color: rgb(243, 243, 243);
@@ -94,13 +94,13 @@ pre {
   tab-size: 4;
 }
 
-/* Single line code tag */
+/* Single line code tag specific */
 code {
   overflow-wrap: anywhere;
   white-space: normal !important;
 }
 
-/* Multi-line line code tag */
+/* Multi-line line code tag specific */
 pre > code {
   overflow-wrap: normal;
   white-space: pre !important;
