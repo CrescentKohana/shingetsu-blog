@@ -6,21 +6,22 @@ import Slide from "./Slide"
 interface SlideshowProps {
   items: Media[]
   category: SlideCategory
+  horizontal: boolean
   slideshowProps?: string
   slideshowClass?: string
   itemProps?: string
   nav?: boolean
 }
 
-const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass, nav }: SlideshowProps) => {
+const Slideshow = ({ items, category, horizontal, slideshowProps, itemProps, slideshowClass, nav }: SlideshowProps) => {
   const shuffled = shuffle(items) as Media[]
   return (
     <div data-uk-slideshow={slideshowProps} className={slideshowClass}>
       <div className="uk-position-relative uk-visible-toggle" tabIndex={-1}>
-        <ul className={`uk-slideshow-items ${styles.forceAspectRatio}`}>
+        <ul className={`uk-slideshow-items ${horizontal ? styles.landscape : styles.portrait}`}>
           {shuffled.map((item) => {
             return (
-              <li key={item.name} className={itemProps}>
+              <li key={item.name} className={`${itemProps} ${horizontal ? styles.landscapeMobile : ""}`}>
                 <Slide item={item} category={category}></Slide>
               </li>
             )
