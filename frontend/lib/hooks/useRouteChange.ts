@@ -10,10 +10,12 @@ const useRouteChange = () => {
 
   useEffect(() => {
     router.events.on("routeChangeComplete", handleRouteChangeComplete)
+    router.events.on("routeChangeError", handleRouteChangeComplete)
     router.events.on("routeChangeStart", handleRouteChangeStart)
 
     return () => {
       router.events.off("routeChangeComplete", handleRouteChangeComplete)
+      router.events.on("routeChangeError", handleRouteChangeComplete)
       router.events.off("routeChangeStart", handleRouteChangeStart)
     }
   }, [router])
