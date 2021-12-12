@@ -121,6 +121,21 @@ export interface Author {
   avatar: Media
 }
 
+export enum MediaFormat {
+  thumbnnail = "thumbnail",
+  small = "small",
+  medium = "medium",
+  large = "large",
+}
+
+interface MediaFormatProps {
+  url: string
+  name: string
+  caption: string
+  width: number
+  height: number
+}
+
 export interface Media {
   url: string
   name: string
@@ -128,6 +143,7 @@ export interface Media {
   alternativeText: string
   width: number
   height: number
+  formats: { [Property in MediaFormat]: MediaFormatProps }
   placeholder?: string
 }
 

@@ -20,10 +20,11 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
   const verticalChunks = [...Array(count)].map((_, i) => verticalSliders.slice(i * ROW_SIZE, i * ROW_SIZE + ROW_SIZE))
   const shuffled = shuffle([...verticalChunks, ...horizontalSliders]) as [Slider | Slider[]]
 
-  const blocks = shuffled.map((slider) => {
+  const blocks = shuffled.map((slider, i) => {
     if (slider instanceof Array) {
       return (
         <div
+          key={`slider-${i}`}
           className="uk-grid-collapse uk-child-width-1-1 uk-child-width-1-2@m"
           data-uk-grid
           style={{ marginTop: 20 }}

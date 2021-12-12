@@ -1,9 +1,7 @@
-import Image from "next/image"
-import { sauce } from "../lib/api"
 import { shuffle } from "../lib/helpers"
-import { defaultPlaceholder, getMedia } from "../lib/media"
 import styles from "../styles/Slideshow.module.css"
 import { Media, SlideCategory } from "../types"
+import Slide from "./Slide"
 
 interface SlideshowProps {
   items: Media[]
@@ -20,37 +18,10 @@ const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass,
     <div data-uk-slideshow={slideshowProps} className={slideshowClass}>
       <div className="uk-position-relative uk-visible-toggle" tabIndex={-1}>
         <ul className={`uk-slideshow-items ${styles.forceAspectRatio}`}>
-          {shuffled.map((item, i) => {
+          {shuffled.map((item) => {
             return (
-              <li key={i} className={itemProps}>
-                {category === SlideCategory.video ? (
-                  <video src={getMedia(item)} loop muted playsInline data-uk-cover uk-video="autoplay: inview"></video>
-                ) : (
-                  <Image
-                    src={getMedia(item)}
-                    alt={item.alternativeText}
-                    layout="fill"
-                    objectFit="cover"
-                    priority={i === 0}
-                    placeholder={"blur"}
-                    blurDataURL={defaultPlaceholder}
-                  />
-                )}
-                {(item.caption || category === SlideCategory.art) && (
-                  <div
-                    style={{ padding: 15 }}
-                    className="uk-overlay uk-overlay-primary uk-position-bottom-left uk-position-small"
-                  >
-                    <p style={{ color: "#eee", fontSize: 12 }}>
-                      {item.caption}{" "}
-                      {category === SlideCategory.art && (
-                        <a target="_blank" rel="noopener noreferrer" href={sauce(getMedia(item))} uk-icon="search">
-                          🔎
-                        </a>
-                      )}
-                    </p>
-                  </div>
-                )}
+              <li key={item.name} className={itemProps}>
+                <Slide item={item} category={category}></Slide>
               </li>
             )
           })}

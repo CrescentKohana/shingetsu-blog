@@ -26,6 +26,7 @@ const Footer = () => {
           width={image.width}
           height={image.height}
           layout="responsive"
+          sizes="25vw"
           priority
         />
       )}

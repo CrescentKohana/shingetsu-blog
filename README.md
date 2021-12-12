@@ -28,4 +28,6 @@ NGINX configs I'm using can be found in the [nginx directory](nginx).
 
 ## Attribution
 
-Flag emojis designed by [OpenMoji](https://openmoji.org/) – the open-source emoji and icon project. License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/#)
+- Flag emojis designed by [OpenMoji](https://openmoji.org/) – the open-source emoji and icon project. License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/#)
+
+- pixiv logo is designed by pixiv. [Presskit](https://www.pixiv.co.jp/news/press-kit/)

@@ -13,6 +13,7 @@ export default withPlaiceholder({
   images: {
     domains: ["strapi.luukuton.fi", "localhost"],
     formats: ["image/webp"],
+    minimumCacheTTL: 3600,
   },
   i18n: {
     locales: ["en", "ja"],

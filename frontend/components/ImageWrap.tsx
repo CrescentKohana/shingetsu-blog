@@ -6,9 +6,10 @@ interface ImageProps {
   image: Media
   className: string
   priority?: boolean
+  sizes?: string
 }
 
-const ImageWrap = ({ image, className, priority }: ImageProps) => {
+const ImageWrap = ({ image, className, priority, sizes }: ImageProps) => {
   if (!image) {
     return null
   }
@@ -21,7 +22,6 @@ const ImageWrap = ({ image, className, priority }: ImageProps) => {
         alt={image.alternativeText || image.name}
         width={image.width}
         height={image.height}
-        layout="responsive"
         priority={priority}
         placeholder={image.placeholder ? "blur" : "empty"}
         blurDataURL={image.placeholder}
@@ -35,6 +35,7 @@ const ImageWrap = ({ image, className, priority }: ImageProps) => {
       src={image.url}
       alt={image.alternativeText || image.name}
       layout="fill"
+      sizes={sizes}
       priority={priority}
       placeholder={image.placeholder ? "blur" : "empty"}
       blurDataURL={image.placeholder}
