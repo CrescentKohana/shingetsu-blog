@@ -44,7 +44,7 @@ const Slideshow = ({ items, category, slideshowProps, itemProps, slideshowClass,
                     <p style={{ color: "#eee", fontSize: 12 }}>
                       {item.caption}{" "}
                       {category === SlideCategory.art && (
-                        <a target="_blank" rel="noopener noreferrer" href={sauce(item.url)} uk-icon="search">
+                        <a target="_blank" rel="noopener noreferrer" href={sauce(getMedia(item))} uk-icon="search">
                           🔎
                         </a>
                       )}
