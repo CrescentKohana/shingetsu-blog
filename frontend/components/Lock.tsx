@@ -2,7 +2,6 @@
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
-import loadingSvg from "../public/icons/loading.svg"
 import lockedSvg from "../public/icons/uk-locked.svg"
 import unlockedSvg from "../public/icons/uk-unlocked.svg"
 
@@ -13,8 +12,8 @@ const Lock = () => {
     <>
       {status === "loading" ? (
         <Link href="#" passHref>
-          <button disabled className="uk-icon-button">
-            <Image alt="loading" src={loadingSvg} height={30} width={30} />
+          <button disabled className="uk-icon-button uk-button-default">
+            …
           </button>
         </Link>
       ) : !session?.user ? (
