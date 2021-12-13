@@ -25,31 +25,30 @@ export const recursiveFlat = (response: StrapiData<unknown> | Obj, depth = 0): u
     return response
   }
 
-  let flat = {} as unknown
-
   if (Array.isArray(response)) {
     return response.map((item) => recursiveFlat(item, depth + 1))
   } else if (typeof response === "object") {
+    const flat = {} as Obj
+
     for (const [key, value] of Object.entries(response)) {
       switch (key) {
         case "data":
-          flat = recursiveFlat(value, depth + 1)
-          break
+          return recursiveFlat(value, depth + 1)
         case "attributes":
           const tmp = recursiveFlat(value, depth + 1)
           const id = response.id ? response.id : undefined
-          flat = tmp && typeof tmp === "object" ? { ...tmp, id } : tmp
-          break
+
+          return tmp && typeof tmp === "object" ? { ...tmp, id } : tmp
         case "id":
-          ;(flat as Obj)[key] = recursiveFlat(value, depth + 1)
+          flat[key] = recursiveFlat(value, depth + 1)
           break
         default:
-          ;(flat as Obj)[key] = recursiveFlat(value, depth + 1)
+          flat[key] = recursiveFlat(value, depth + 1)
       }
     }
-  } else {
-    flat = response
+
+    return flat
   }
 
-  return flat
+  return response
 }
