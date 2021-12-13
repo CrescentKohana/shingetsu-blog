@@ -46,10 +46,12 @@ const Slide = ({ item, category }: SlideProps) => {
   return (
     <>
       <div data-uk-lightbox="video-autoplay: true;">
-        <a href={originalUrl} data-alt={item.alternativeText} data-caption={item.caption}>
-          {category === SlideCategory.video ? (
+        {category === SlideCategory.video ? (
+          <a href={originalUrl} data-alt={item.alternativeText}>
             <video src={originalUrl} loop muted playsInline data-uk-cover uk-video="autoplay: inview"></video>
-          ) : (
+          </a>
+        ) : (
+          <a href={originalUrl} data-alt={item.alternativeText} data-caption={item.caption}>
             <Image
               src={getMedia(item, MediaFormat.large)}
               alt={item.alternativeText}
@@ -58,8 +60,8 @@ const Slide = ({ item, category }: SlideProps) => {
               placeholder={"blur"}
               blurDataURL={defaultPlaceholder}
             />
-          )}
-        </a>
+          </a>
+        )}
       </div>
       {overlay.label}
       {overlay.source}
