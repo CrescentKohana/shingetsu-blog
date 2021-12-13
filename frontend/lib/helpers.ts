@@ -1,4 +1,4 @@
-import { StrapiData, Who } from "../types"
+import { StrapiData } from "../types"
 
 export const shuffle = (array: unknown[]) => {
   let counter = array.length
@@ -19,8 +19,8 @@ export const shuffle = (array: unknown[]) => {
   return array
 }
 
-export type RecursiveFlatProps = StrapiData<unknown> | Who
-export const recursiveFlat = (response: RecursiveFlatProps, depth = 0): unknown => {
+type Obj = { [key: string]: unknown }
+export const recursiveFlat = (response: StrapiData<unknown> | Obj, depth = 0): unknown => {
   if (!response || depth > 10) {
     return response
   }
@@ -41,10 +41,10 @@ export const recursiveFlat = (response: RecursiveFlatProps, depth = 0): unknown 
           flat = tmp && typeof tmp === "object" ? { ...tmp, id } : tmp
           break
         case "id":
-          ;(flat as Who)[key] = recursiveFlat(value, depth + 1)
+          ;(flat as Obj)[key] = recursiveFlat(value, depth + 1)
           break
         default:
-          ;(flat as Who)[key] = recursiveFlat(value, depth + 1)
+          ;(flat as Obj)[key] = recursiveFlat(value, depth + 1)
       }
     }
   } else {

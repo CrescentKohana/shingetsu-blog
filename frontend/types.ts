@@ -1,5 +1,3 @@
-export type Who = { [key: string]: unknown }
-
 // Strapi specific
 export interface StrapiResponse<Type> {
   data: StrapiData<Type> | StrapiData<Type>[]
