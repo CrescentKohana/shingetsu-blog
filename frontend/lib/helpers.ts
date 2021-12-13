@@ -1,5 +1,11 @@
 import { StrapiData } from "../types"
 
+/**
+ * Shuffles the given array with Fisher–Yates algorithm.
+ *
+ * @param array
+ * @returns shuffled array
+ */
 export const shuffle = (array: unknown[]) => {
   let counter = array.length
   if (counter <= 1) {
@@ -20,6 +26,14 @@ export const shuffle = (array: unknown[]) => {
 }
 
 type Obj = { [key: string]: unknown }
+
+/**
+ * Flattens the API response by removing 'data' and 'attributes' abstractions.
+ *
+ * @param response For example: { data: { id: number attributes: unknown }}
+ * @param depth depth of recursivity
+ * @returns flattened data
+ */
 export const recursiveFlat = (response: StrapiData<unknown> | Obj, depth = 0): unknown => {
   if (!response || depth > 10) {
     return response

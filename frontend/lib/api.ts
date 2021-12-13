@@ -5,6 +5,7 @@ import { recursiveFlat } from "./helpers"
  * Returns the API URL with specified path.
  *
  * @param path
+ * @param notApi no /api path prefix
  * @returns API URL as string
  */
 export function getApiUrl(path = "", notApi?: boolean) {
@@ -15,6 +16,7 @@ export function getApiUrl(path = "", notApi?: boolean) {
  * Helper to make GET requests to the API
  *
  * @param path
+ * @param flat flatten the API request?
  * @returns data response as json
  */
 export async function fetchApi(path: string, flat = true) {
