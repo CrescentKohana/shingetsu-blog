@@ -46,7 +46,7 @@ const Ecchi = ({ ecchi }: EcchiProps) => {
           </div>
 
           <hr className="uk-divider-icon" />
-          {<SlideshowGrid sliders={ecchi.sliders} />}
+          <SlideshowGrid sliders={ecchi.sliders} />
 
           <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{ecchi.lowerContent}</Markdown>
         </div>

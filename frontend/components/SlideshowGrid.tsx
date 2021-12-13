@@ -25,7 +25,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
       return (
         <div
           key={`slider-${i}`}
-          className="uk-grid-collapse uk-child-width-1-1 uk-child-width-1-2@m"
+          className="uk-grid-collapse uk-child-width-1-1 uk-child-width-1-2@s"
           data-uk-grid
           style={{ marginTop: 20 }}
         >
@@ -57,7 +57,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
   return (
     <>
       {hasMounted && (
-        <div className="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s" data-uk-grid>
+        <div className="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@l" data-uk-grid>
           {blocks}
         </div>
       )}

@@ -21,7 +21,7 @@ const Slideshow = ({ items, category, horizontal, slideshowProps, itemProps, sli
         <ul className={`uk-slideshow-items ${horizontal ? styles.landscape : styles.portrait}`}>
           {shuffled.map((item) => {
             return (
-              <li key={item.name} className={`${itemProps} ${horizontal ? styles.landscapeMobile : ""}`}>
+              <li key={item.name} className={itemProps}>
                 <Slide item={item} category={category}></Slide>
               </li>
             )
