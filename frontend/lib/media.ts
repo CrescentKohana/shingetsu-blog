@@ -30,7 +30,7 @@ export function sauce(imageUrl: string) {
 }
 
 /**
- * Extracts pixiv ID from given string.
+ * Extracts pixiv ID from given string (filename).
  *
  * @param input Format: `text (id)`
  * @returns pixiv illustration ID
@@ -41,7 +41,7 @@ export function extractPixiv(input?: string) {
     return null
   }
 
-  const match = input.match(/^.*\((\d+)\)$/)
+  const match = input.match(/(\d+)_p\d+[_\w\d]*\.\w{2,4}$/)
   return !match || !match[1] ? null : match[1]
 }
 

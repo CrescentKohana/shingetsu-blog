@@ -16,7 +16,7 @@ interface Overlay {
 
 const Slide = ({ item, category }: SlideProps) => {
   const originalUrl = getMedia(item)
-  const pixivId = category === SlideCategory.art ? extractPixiv(item.caption) : null
+  const pixivId = category === SlideCategory.art ? extractPixiv(item.url) : null
   const overlay: Overlay = { label: null, source: null }
 
   if (item.caption || category === SlideCategory.art) {
