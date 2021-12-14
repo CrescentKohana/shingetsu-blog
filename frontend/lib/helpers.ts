@@ -49,13 +49,10 @@ export const recursiveFlat = (response: StrapiData<unknown> | Obj, depth = 0): u
         case "data":
           return recursiveFlat(value, depth + 1)
         case "attributes":
-          const tmp = recursiveFlat(value, depth + 1)
+          const tmpFlat = recursiveFlat(value, depth + 1)
+          // If there's an ID on the same level as attributes, add it to the same level as other attributes.
           const id = response.id ? response.id : undefined
-
-          return tmp && typeof tmp === "object" ? { ...tmp, id } : tmp
-        case "id":
-          flat[key] = recursiveFlat(value, depth + 1)
-          break
+          return tmpFlat && typeof tmpFlat === "object" ? { ...tmpFlat, id } : tmpFlat
         default:
           flat[key] = recursiveFlat(value, depth + 1)
       }
