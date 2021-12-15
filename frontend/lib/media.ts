@@ -13,8 +13,6 @@ export function getMedia(media?: Media, format?: MediaFormat) {
     return ""
   }
 
-  console.log(media)
-
   const imageUrl = !format || !media.formats[format] ? media.url : media.formats[format].url
   const finalUrl = imageUrl.startsWith("/") ? getApiUrl(imageUrl, true) : imageUrl
 
