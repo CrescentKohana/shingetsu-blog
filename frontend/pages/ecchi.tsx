@@ -1,4 +1,5 @@
 import { getSession, GetSessionParams } from "next-auth/react"
+import Image from "next/image"
 import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
@@ -18,6 +19,8 @@ const Ecchi = ({ ecchi }: EcchiProps) => {
     metaTitle: "Ecchi - えっち",
     metaDescription: "エッチ",
   }
+
+  const overlay = ecchi.overlay[Math.floor(Math.random() * ecchi.overlay.length)]
 
   return (
     <Layout>
@@ -40,14 +43,20 @@ const Ecchi = ({ ecchi }: EcchiProps) => {
                 </h2>
               </div>
             </div>
-            <div>
-              <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{ecchi.content}</Markdown>
+            <div key={overlay.name} style={{ height: 200 }}>
+              <Image
+                src={getMedia(overlay)}
+                alt={overlay.alternativeText}
+                width={overlay.width}
+                height={overlay.height}
+                priority
+              />
             </div>
+            <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{ecchi.content}</Markdown>
           </div>
 
           <hr className="uk-divider-icon" />
           <SlideshowGrid sliders={ecchi.sliders} />
-
           <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{ecchi.lowerContent}</Markdown>
         </div>
       </div>

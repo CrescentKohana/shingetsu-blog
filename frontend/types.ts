@@ -35,7 +35,7 @@ export interface Ecchi {
   content: string
   lowerContent: string
   header: Media
-  overlay: Media
+  overlay: Media[]
   sliders: Slider[]
 }
 
