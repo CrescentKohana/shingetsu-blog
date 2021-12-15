@@ -22,7 +22,6 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
 
   const blocks = shuffled.map((slider, i) => {
     if (slider instanceof Array) {
-      const interval = Math.floor(Math.random() * (8000 - 4000) + 4000)
       return (
         <div
           key={`slider-${i}`}
@@ -36,7 +35,9 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
               items={slider.media}
               category={slider.category}
               horizontal={slider.horizontal}
-              slideshowProps={`animation: pull; autoplay: true; autoplay-interval: ${interval}; min-height: 490`}
+              slideshowProps={`animation: pull; autoplay: true; autoplay-interval: ${Math.floor(
+                Math.random() * (8000 - 4000) + 4000
+              )}; min-height: 490`}
             />
           ))}
         </div>
