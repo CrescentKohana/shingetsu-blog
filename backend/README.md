@@ -1,6 +1,6 @@
 # Backend
 
-Utlizes [Strapi](https://strapi.io).
+Made with [Strapi](https://strapi.io).
 
 ## Usage
 
@@ -12,7 +12,7 @@ Utlizes [Strapi](https://strapi.io).
   ADMIN_JWT_SECRET=secret2
   HOST=0.0.0.0
   PORT=1337
-  URL=https://vermillion.example.org
+  URL=https://strapi.example.org
   ```
 
 - `npm i` to install dependencies
