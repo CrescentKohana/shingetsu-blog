@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { useRouter } from "next/router"
-import React, { useContext } from "react"
+import { useContext } from "react"
 import { getMedia } from "../lib/media"
 import { GlobalContext } from "../pages/_app"
 import styles from "../styles/Footer.module.css"

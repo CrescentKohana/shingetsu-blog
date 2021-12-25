@@ -1,5 +1,5 @@
 import Image from "next/image"
-import React, { ReactNode } from "react"
+import { ReactNode } from "react"
 import { defaultPlaceholder, extractPixiv, getMedia, sauce } from "../lib/media"
 import pixivSvg from "../public/icons/pixiv.svg"
 import { Media, MediaFormat, SlideCategory } from "../types"
