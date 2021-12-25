@@ -10,18 +10,14 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/design-system": "^0.0.1-alpha.70",
-    "@strapi/plugin-graphql": "4.0.0",
-    "@strapi/plugin-i18n": "4.0.0",
-    "@strapi/plugin-users-permissions": "4.0.0",
-    "@strapi/strapi": "4.0.0",
-    "sqlite3": "5.0.2"
+    "@strapi/plugin-graphql": "^4.0.0",
+    "@strapi/plugin-i18n": "^4.0.0",
+    "@strapi/plugin-users-permissions": "^4.0.0",
+    "@strapi/strapi": "^4.0.0",
+    "sqlite3": "^5.0.2"
   },
   "author": {
     "name": "Marko Leinikka"
-  },
-  "strapi": {
-    "uuid": "36e9b571-5862-4bbe-8fde-fe76a9629537"
   },
   "engines": {
     "node": ">=12.x.x <=16.x.x",
