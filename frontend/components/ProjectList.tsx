@@ -7,15 +7,16 @@ interface ProjectListProps {
 }
 
 const ProjectList = ({ projects, even }: ProjectListProps) => {
-  // TODO: sort?
-  // const orderedProjects= projects.sort((a: Project, b: Project) => b - a)
+  const orderedProjects = projects.sort(
+    (a, b) => Date.parse(b.publishedAt || b.publishedAt) - Date.parse(a.publishedAt || a.publishedAt)
+  )
 
   if (even) {
     return (
       <div>
         <div>
           <div className="uk-child-width-1-3@m uk-grid-match" data-uk-grid>
-            {projects.map((project) => {
+            {orderedProjects.map((project) => {
               return <ProjectCard project={project} key={`project__left__${project.slug}`} />
             })}
           </div>

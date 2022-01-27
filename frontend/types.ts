@@ -91,6 +91,7 @@ export interface Project {
   showcased: boolean
   image: Media
   tech: Tech
+  publishedAt: string
 }
 
 // Components and other types
