@@ -83,6 +83,7 @@ img:hover {
 
 .video-container iframe {
   max-width: 90vw;
+  max-height: 50vw;
 }
 
 /* Code tags */
