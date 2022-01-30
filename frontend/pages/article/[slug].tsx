@@ -2,7 +2,6 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import Markdown from "react-markdown"
 import Moment from "react-moment"
 import rehypeRaw from "rehype-raw"
-import rehypeSanitize from "rehype-sanitize"
 import ImageWrap from "../../components/ImageWrap"
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
@@ -31,7 +30,7 @@ const Article = ({ article }: ArticleProps) => {
           <h2>{article.title}</h2>
           <Tags tags={article.tags} links />
           <hr className="uk-divider-small" />
-          <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{article.content}</Markdown>
+          <Markdown rehypePlugins={[rehypeRaw]}>{article.content}</Markdown>
           <hr className="uk-divider-icon" />
           <div className="uk-grid-small uk-flex-left" data-uk-grid="true">
             <div style={{ width: 60 }}>

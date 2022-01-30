@@ -2,7 +2,6 @@ import { getSession, GetSessionParams } from "next-auth/react"
 import Image from "next/image"
 import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
-import rehypeSanitize from "rehype-sanitize"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import SlideshowGrid from "../components/SlideshowGrid"
@@ -52,12 +51,12 @@ const Ecchi = ({ ecchi }: EcchiProps) => {
                 priority
               />
             </div>
-            <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{ecchi.content}</Markdown>
+            <Markdown rehypePlugins={[rehypeRaw]}>{ecchi.content}</Markdown>
           </div>
 
           <hr className="uk-divider-icon" />
           <SlideshowGrid sliders={ecchi.sliders} />
-          <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{ecchi.lowerContent}</Markdown>
+          <Markdown rehypePlugins={[rehypeRaw]}>{ecchi.lowerContent}</Markdown>
         </div>
       </div>
     </Layout>

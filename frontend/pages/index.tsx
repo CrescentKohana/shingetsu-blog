@@ -1,7 +1,6 @@
 import { GetStaticProps } from "next"
 import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
-import rehypeSanitize from "rehype-sanitize"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Typewriter from "../components/Typewriter"
@@ -20,7 +19,7 @@ const Home = ({ home }: HomeProps) => {
         <div className="uk-container uk-container-large">
           <h1>{home.title}</h1>
           <Typewriter strings={[home.selftyping]} delay={100} />
-          <Markdown rehypePlugins={[rehypeRaw, rehypeSanitize]}>{home.content}</Markdown>
+          <Markdown rehypePlugins={[rehypeRaw]}>{home.content}</Markdown>
         </div>
       </div>
     </Layout>
