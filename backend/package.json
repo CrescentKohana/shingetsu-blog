@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "description": "Shingetsu Backend",
-  "license": "MIT",
+  "license": "zlib",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
