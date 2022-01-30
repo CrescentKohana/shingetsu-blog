@@ -81,6 +81,10 @@ img:hover {
   transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
+.video-container iframe {
+  max-width: 90vw;
+}
+
 /* Code tags */
 pre {
   font-family: monaco, monospace;
