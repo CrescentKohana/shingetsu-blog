@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_footer_images",
+  "info": {
+    "displayName": "FooterImage",
+    "icon": "caret-down",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "width": {
+      "type": "string",
+      "required": false
+    },
+    "maxWidth": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

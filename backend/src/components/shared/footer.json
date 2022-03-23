@@ -2,7 +2,8 @@
   "collectionName": "components_shared_footers",
   "info": {
     "displayName": "Footer",
-    "icon": "angle-double-down"
+    "icon": "angle-double-down",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -10,19 +11,17 @@
       "type": "string"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
-    "imgHeight": {
-      "type": "integer",
-      "min": 1
-    },
-    "imgWidth": {
-      "type": "integer",
-      "min": 1
+    "images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.footer-image"
     }
   }
 }
