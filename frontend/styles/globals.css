@@ -36,17 +36,24 @@ button:hover:disabled {
   border-color: #e5e5e5 !important;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 725px) {
+  h1 {
+    font-family: Staatliches;
+    font-size: 120px;
+  }
+}
+
+@media only screen and (max-width: 725px) and (min-width: 500px) {
   h1 {
     font-family: Staatliches;
     font-size: 75px;
   }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (max-width: 500px) {
   h1 {
     font-family: Staatliches;
-    font-size: 120px;
+    font-size: 50px;
   }
 }
 
