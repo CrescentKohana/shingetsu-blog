@@ -4,7 +4,8 @@ import Head from "next/head"
 import { createContext } from "react"
 // import "uikit/dist/css/uikit-core.min.css" // without the default theme
 import "uikit/dist/css/uikit.min.css"
-import "uikit/dist/js/uikit.min.js"
+// Uncomment when https://github.com/uikit/uikit/issues/4592 is fixed. Also remove the <script> tag from <Head>.
+// import "uikit/dist/js/uikit.min.js"
 import { fetchApi } from "../lib/api"
 import { getMedia } from "../lib/media"
 import "../styles/globals.css"
