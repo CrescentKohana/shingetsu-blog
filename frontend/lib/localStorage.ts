@@ -1,3 +1,7 @@
+export enum StorageKeys {
+  FooterImage = "footerImage",
+}
+
 export function getValue(key: string) {
   try {
     const item = window.localStorage.getItem(key) || ""

@@ -2,8 +2,8 @@
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
-import lockedSvg from "../public/icons/uk-locked.svg"
-import unlockedSvg from "../public/icons/uk-unlocked.svg"
+import lockedSvg from "../../public/icons/uk-locked.svg"
+import unlockedSvg from "../../public/icons/uk-unlocked.svg"
 
 const Lock = () => {
   const { data: session, status } = useSession()

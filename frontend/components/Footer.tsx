@@ -1,32 +1,39 @@
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { useContext } from "react"
-import { getMedia } from "../lib/media"
-import { GlobalContext } from "../pages/_app"
 import styles from "../styles/Footer.module.css"
-import { Global } from "../types"
+import { FooterImage } from "../types"
 
-const Footer = () => {
-  const global: Global = useContext(GlobalContext)
+interface Props {
+  images: FooterImage[]
+  imageIndex: number
+}
+
+const Footer = ({ images, imageIndex }: Props) => {
   const router = useRouter()
+
+  if (imageIndex === -1 || images.length === 0) {
+    return <footer></footer>
+  }
+
+  const item = images[imageIndex]
+  const width = item.width ? item.width : "20vw"
+  const maxWidth = item.maxWidth ? item.maxWidth : "50vh"
   const imgOpacity =
     router.pathname.includes("/article") || router.pathname.includes("/about") || router.pathname.includes("/ecchi")
       ? styles.fadedImg
       : styles.normalImg
 
-  const image = global?.footer?.image
-
   return (
-    <footer>
-      {image && image.width && image.height && (
+    <footer style={{ width, maxWidth }}>
+      {item.image && (
         <Image
           className={imgOpacity}
-          src={getMedia(image)}
-          alt={image.alternativeText}
-          width={image.width}
-          height={image.height}
+          src={item.image.url}
+          alt={item.image.alternativeText}
+          width={item.image.width}
+          height={item.image.height}
           layout="responsive"
-          sizes="25vw"
+          sizes="75vw"
           priority
         />
       )}

@@ -37,7 +37,13 @@ const Shingetsu = ({ Component, pageProps }: AppProps) => {
 Shingetsu.getInitialProps = async (context: AppContext) => {
   // Calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(context)
-  const global = await fetchApi("/global?populate=favicon,seo.shareImage,footer.image")
+  const global: Global = await fetchApi("/global?populate=favicon,seo.shareImage,footer.images.image")
+
+  if (global.footer?.images) {
+    for (const image of global.footer.images) {
+      image.image.url = getMedia(image.image)
+    }
+  }
 
   return { ...appProps, pageProps: global }
 }

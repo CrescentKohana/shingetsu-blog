@@ -100,11 +100,17 @@ export interface Tech {
   name: string
 }
 
+export interface FooterImage {
+  id: number
+  image: Media
+  width?: string
+  maxWidth?: string
+}
+
 interface Footer {
   text: string
   image: Media
-  imgWidth: number
-  imgHeight: number
+  images: FooterImage[]
 }
 
 export interface Global {

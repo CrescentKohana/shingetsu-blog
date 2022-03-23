@@ -74,7 +74,6 @@ footer {
   float: right;
   right: 0;
   bottom: 0;
-  width: 20vw;
   min-width: 100px;
 }
 
@@ -201,8 +200,6 @@ pre > code {
 }
 
 .custom-container {
-  background-color: rgba(0, 0, 0, 0) !important;
-  z-index: -2;
   min-height: 100%;
 }
 

@@ -2,12 +2,21 @@ import { useSession } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import englishSvg from "../public/icons/en.svg"
-import japaneseSvg from "../public/icons/ja.svg"
-import styles from "../styles/Nav.module.css"
+import { Dispatch, SetStateAction } from "react"
+import englishSvg from "../../public/icons/en.svg"
+import japaneseSvg from "../../public/icons/ja.svg"
+import styles from "../../styles/Nav.module.css"
+import { FooterImage } from "../../types"
+import ImageSwitch from "./ImageSwitch"
 import Lock from "./Lock"
 
-const Nav = () => {
+interface Props {
+  images: FooterImage[]
+  imageIndex: number
+  setImageIndex: Dispatch<SetStateAction<number>>
+}
+
+const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
   const router = useRouter()
   const { pathname, asPath, query } = router
   const ja = router.locale === "ja"
@@ -56,6 +65,9 @@ const Nav = () => {
               </li>
               <li style={{ paddingLeft: 10 }}>
                 <Lock />
+              </li>
+              <li style={{ paddingLeft: 10 }}>
+                <ImageSwitch images={images} imageIndex={imageIndex} setImageIndex={setImageIndex} />
               </li>
             </ul>
           </div>
