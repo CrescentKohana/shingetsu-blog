@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-undef */
 import Image from "next/image"
 import { Dispatch, SetStateAction, useEffect } from "react"
-import { shuffle } from "../../lib/helpers"
 import { getValue, setValue, StorageKeys } from "../../lib/localStorage"
 import imageSvg from "../../public/icons/uk-image.svg"
 import { FooterImage } from "../../types"
@@ -14,7 +13,10 @@ interface Props {
 
 const ImageSwitch = ({ images, imageIndex, setImageIndex }: Props) => {
   useEffect(() => {
-    if (imageIndex > -1 || images.length === 0) {
+    if (images.length === 0) {
+      return
+    }
+    if (imageIndex > -1) {
       setValue(StorageKeys.FooterImage, images[imageIndex].id)
       return
     }
@@ -28,10 +30,7 @@ const ImageSwitch = ({ images, imageIndex, setImageIndex }: Props) => {
       }
     }
 
-    const randomImage = shuffle(images)[0] as FooterImage
-    const index = images.findIndex((image) => image.id === randomImage.id)
-    setImageIndex(index)
-    setValue(StorageKeys.FooterImage, randomImage.id)
+    setImageIndex(0)
   }, [images, imageIndex, setImageIndex])
 
   function nextFooterImage() {
