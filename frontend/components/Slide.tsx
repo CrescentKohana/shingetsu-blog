@@ -48,7 +48,7 @@ const Slide = ({ item, category }: SlideProps) => {
       <div data-uk-lightbox="video-autoplay: true;">
         {category === SlideCategory.video ? (
           <a href={originalUrl} data-alt={item.alternativeText}>
-            <video src={originalUrl} loop muted playsInline data-uk-cover uk-video="autoplay: inview" />
+            <video className="video-center" src={originalUrl} loop muted playsInline autoPlay />
           </a>
         ) : (
           <a href={originalUrl} data-alt={item.alternativeText} data-caption={item.caption}>

@@ -77,6 +77,11 @@ footer {
   min-width: 100px;
 }
 
+.video-center {
+  min-height: 100%;
+  position: absolute;
+}
+
 footer img {
   margin-left: 0.5rem;
   margin: -10px;
