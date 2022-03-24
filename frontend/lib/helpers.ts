@@ -25,8 +25,6 @@ export const shuffle = (array: unknown[]) => {
   return array
 }
 
-type Obj = { [key: string]: unknown }
-
 /**
  * Flattens the API response by removing 'data' and 'attributes' abstractions.
  *
@@ -34,7 +32,7 @@ type Obj = { [key: string]: unknown }
  * @param depth depth of recursivity
  * @returns flattened data
  */
-export const recursiveFlat = (response: StrapiData<unknown> | Obj, depth = 0): unknown => {
+export const recursiveFlat = (response: StrapiData<unknown> | Record<string, unknown>, depth = 0): unknown => {
   if (!response || depth > 10) {
     return response
   }
@@ -42,7 +40,7 @@ export const recursiveFlat = (response: StrapiData<unknown> | Obj, depth = 0): u
   if (Array.isArray(response)) {
     return response.map((item) => recursiveFlat(item, depth + 1))
   } else if (typeof response === "object") {
-    const flat = {} as Obj
+    const flat = {} as Record<string, unknown>
 
     for (const [key, value] of Object.entries(response)) {
       switch (key) {
