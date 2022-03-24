@@ -110,7 +110,6 @@ export interface FooterImage {
 
 interface Footer {
   text: string
-  image: Media
   images: FooterImage[]
 }
 
