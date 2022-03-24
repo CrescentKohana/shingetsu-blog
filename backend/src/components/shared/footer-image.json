@@ -22,6 +22,11 @@
     "maxWidth": {
       "type": "string",
       "required": false
+    },
+    "sort": {
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }
