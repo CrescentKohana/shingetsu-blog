@@ -43,6 +43,7 @@ Shingetsu.getInitialProps = async (context: AppContext) => {
     for (const image of global.footer.images) {
       image.image.url = getMedia(image.image)
     }
+    global.footer.images.sort((a, b) => a.sort - b.sort)
   }
 
   return { ...appProps, pageProps: global }

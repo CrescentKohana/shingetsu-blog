@@ -1,5 +1,4 @@
-import { ReactNode, useContext, useMemo, useState } from "react"
-import { shuffle } from "../lib/helpers"
+import { ReactNode, useContext, useState } from "react"
 import { GlobalContext } from "../pages/_app"
 import { FooterImage, Global } from "../types"
 import Footer from "./Footer"
@@ -13,9 +12,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const global: Global = useContext(GlobalContext)
   const [imageIndex, setImgIndex] = useState(-1)
-
-  // Shuffles images only on the first render.
-  const images = useMemo(() => shuffle(global.footer?.images ?? []) as FooterImage[], [global.footer?.images])
+  const images = global.footer?.images ?? ([] as FooterImage[])
 
   return (
     <div className="custom-container">

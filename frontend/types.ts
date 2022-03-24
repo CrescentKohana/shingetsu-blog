@@ -102,6 +102,7 @@ export interface Tech {
 
 export interface FooterImage {
   id: number
+  sort: number
   image: Media
   width?: string
   maxWidth?: string
