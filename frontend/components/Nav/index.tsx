@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { Dispatch, SetStateAction } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import englishSvg from "../../public/icons/en.svg"
 import japaneseSvg from "../../public/icons/ja.svg"
 import styles from "../../styles/Nav.module.css"
@@ -22,6 +22,12 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
   const ja = router.locale === "ja"
   const { data: session } = useSession()
 
+  // The data-uk-close attribute causes hydration errors in React 18. This fixes it.
+  const [isSSR, setIsSSR] = useState(true)
+  useEffect(() => {
+    setIsSSR(false)
+  }, [])
+
   const switchLocale = () => {
     router.push({ pathname, query }, asPath, { locale: ja ? "en" : "ja" })
   }
@@ -30,7 +36,7 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
     <>
       <div id="offcanvas-usage" data-uk-offcanvas>
         <div className="uk-offcanvas-bar">
-          <button className="uk-offcanvas-close" type="button" data-uk-close></button>
+          {!isSSR && <button className="uk-offcanvas-close" type="button" data-uk-close />}
           <ul className="uk-nav uk-nav-default uk-nav-center" style={{ fontSize: 30 }}>
             <li className="nav-category">
               <Link href="/about">
