@@ -11,7 +11,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&family=Staatliches&display=swap"
             rel="stylesheet"
           />
-          <script defer src="https://cdn.jsdelivr.net/npm/uikit@3.13.1/dist/js/uikit.min.js" />
         </Head>
         <body>
           <Main />
