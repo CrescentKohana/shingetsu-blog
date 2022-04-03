@@ -1,5 +1,7 @@
 import Document, { Head, Html, Main, NextScript } from "next/document"
 
+const env = process.env.NODE_ENV
+
 class MyDocument extends Document {
   render() {
     return (
@@ -15,11 +17,21 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <noscript>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="shy pixel" src="https://shy.luukuton.fi/ingress/ffa329be-5da8-4509-b9fd-1fdd5f37c4dd/pixel.gif" />
-          </noscript>
-          <script defer src="https://shy.luukuton.fi/ingress/ffa329be-5da8-4509-b9fd-1fdd5f37c4dd/script.js"></script>
+          {env == "production" && (
+            <>
+              <noscript>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  alt="shy pixel"
+                  src="https://shy.luukuton.fi/ingress/ffa329be-5da8-4509-b9fd-1fdd5f37c4dd/pixel.gif"
+                />
+              </noscript>
+              <script
+                defer
+                src="https://shy.luukuton.fi/ingress/ffa329be-5da8-4509-b9fd-1fdd5f37c4dd/script.js"
+              ></script>
+            </>
+          )}
         </body>
       </Html>
     )
