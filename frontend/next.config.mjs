@@ -2,7 +2,7 @@ import { withPlaiceholder } from "@plaiceholder/next"
 
 export default withPlaiceholder({
   reactStrictMode: true,
-  swcMinify: true,
+  swcMinify: false,
   async rewrites() {
     return [
       {
