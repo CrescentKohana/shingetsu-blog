@@ -1,8 +1,7 @@
 {
-  "name": "backend",
+  "name": "shingetsu-backend",
   "private": true,
   "version": "0.1.0",
-  "description": "Shingetsu Backend",
   "license": "zlib",
   "scripts": {
     "develop": "strapi develop",
