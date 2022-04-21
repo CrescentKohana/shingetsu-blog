@@ -1,0 +1,3 @@
+backend/config/** linguist-vendored
+backend/database/** linguist-vendored
+backend/src/** linguist-vendored
