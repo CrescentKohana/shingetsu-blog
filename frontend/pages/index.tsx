@@ -27,7 +27,7 @@ const Home = ({ home }: HomeProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const home = await fetchApi(`/home?locale=${locale}&populate=*`)
+  const home = await fetchApi(`/home?locale=${locale}&populate=seo.shareImage`)
 
   return {
     props: { home },
