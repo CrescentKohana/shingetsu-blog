@@ -23,13 +23,10 @@ class MyDocument extends Document {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   alt="shy pixel"
-                  src="https://shy.luukuton.fi/ingress/ffa329be-5da8-4509-b9fd-1fdd5f37c4dd/pixel.gif"
+                  src="https://shy.kohana.fi/ingress/ffa329be-5da8-4509-b9fd-1fdd5f37c4dd/pixel.gif"
                 />
               </noscript>
-              <script
-                defer
-                src="https://shy.luukuton.fi/ingress/ffa329be-5da8-4509-b9fd-1fdd5f37c4dd/script.js"
-              ></script>
+              <script defer src="https://shy.kohana.fi/ingress/ffa329be-5da8-4509-b9fd-1fdd5f37c4dd/script.js" />
             </>
           )}
         </body>

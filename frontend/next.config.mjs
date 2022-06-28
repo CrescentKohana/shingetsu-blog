@@ -12,7 +12,7 @@ export default withPlaiceholder({
     ]
   },
   images: {
-    domains: ["strapi.luukuton.fi", "localhost"],
+    domains: ["strapi.kohana.fi", "localhost"],
     formats: ["image/webp"],
     minimumCacheTTL: 3600,
   },

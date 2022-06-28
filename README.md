@@ -1,6 +1,6 @@
 # Shingetsu Blog
 
-Shingetsu (新月) is Japanese for new moon. Production: [luukuton.fi](https://luukuton.fi)
+Shingetsu (新月) is Japanese for new moon. Production: [kohana.fi](https://kohana.fi)
 
 A backend has to be set up first. Otherwise the frontend won't build as the site utilizes static site generation (server side).
 
