@@ -26,7 +26,7 @@
     "sort": {
       "type": "integer",
       "required": true,
-      "unique": true
+      "unique": false
     }
   }
 }
