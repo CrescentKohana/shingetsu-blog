@@ -59,8 +59,8 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
       <div>
         <nav className="uk-navbar uk-navbar-container" data-uk-navbar>
           <div className="uk-navbar-left">
-            <ul className="uk-navbar-nav">
-              <li style={{ paddingLeft: 10 }}>
+            <ul className="uk-navbar-nav" style={{ paddingLeft: 10 }}>
+              <li>
                 <button className="uk-icon-button uk-button-default" onClick={() => switchLocale()}>
                   {ja ? (
                     <Image alt="Japanese" src={japaneseSvg} height={30} width={30} priority />
@@ -69,10 +69,10 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
                   )}
                 </button>
               </li>
-              <li style={{ paddingLeft: 10 }}>
+              <li>
                 <Lock />
               </li>
-              <li style={{ paddingLeft: 10 }}>
+              <li>
                 <ImageSwitch images={images} imageIndex={imageIndex} setImageIndex={setImageIndex} />
               </li>
             </ul>
@@ -93,16 +93,15 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
               </li>
               <li className="uk-divider-vertical" style={{ height: "inherit" }} />
               {!isSSR && (
-              <li>
-                <button
-                  aria-label="Mobile nav"
-                  data-uk-toggle="target: #offcanvas-usage"
-                  className={`uk-navbar-toggle ${styles.hideBtn}`}
-                  data-uk-navbar-toggle-icon
-                >
-                  {" "}
-                </button>
-              </li>
+                <li>
+                  <button
+                    style={{ paddingRight: 20 }}
+                    aria-label="Mobile nav"
+                    data-uk-toggle="target: #offcanvas-usage"
+                    className={`uk-navbar-toggle ${styles.hideBtn}`}
+                    data-uk-navbar-toggle-icon
+                  />
+                </li>
               )}
               <li className={`nav-category ${styles.hideItem}`}>
                 <Link href="/about" className="uk-link-reset">
