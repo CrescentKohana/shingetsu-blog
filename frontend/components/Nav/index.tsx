@@ -39,18 +39,18 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
           <button className="uk-offcanvas-close" type="button" />
           <ul className="uk-nav uk-nav-default uk-nav-center" style={{ fontSize: 30 }}>
             <li className="nav-category">
-              <Link href="/about">
-                <a className="uk-link-reset">About</a>
+              <Link href="/about" className="uk-link-reset">
+                About
               </Link>
             </li>
             <li className="nav-category">
-              <Link href="/blog">
-                <a className="uk-link-reset">Blog</a>
+              <Link href="/blog" className="uk-link-reset">
+                Blog
               </Link>
             </li>
             <li className="nav-category">
-              <Link href="/projects">
-                <a className="uk-link-reset">Projects</a>
+              <Link href="/projects" className="uk-link-reset">
+                Projects
               </Link>
             </li>
           </ul>
@@ -81,14 +81,14 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
             <ul className="uk-navbar-nav">
               {session?.user && (
                 <li style={{ color: "#FF018A" }}>
-                  <Link href="/ecchi">
-                    <a className="uk-link-reset">Ecchi</a>
+                  <Link href="/ecchi" className="uk-link-reset">
+                    Ecchi
                   </Link>
                 </li>
               )}
               <li>
-                <Link href="/">
-                  <a className="uk-link-reset">Home</a>
+                <Link href="/" className="uk-link-reset">
+                  Home
                 </Link>
               </li>
               <li className="uk-divider-vertical" style={{ height: "inherit" }} />
@@ -105,18 +105,18 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
               </li>
               )}
               <li className={`nav-category ${styles.hideItem}`}>
-                <Link href="/about">
-                  <a className="uk-link-reset">About</a>
+                <Link href="/about" className="uk-link-reset">
+                  About
                 </Link>
               </li>
               <li className={`nav-category ${styles.hideItem}`}>
-                <Link href="/blog">
-                  <a className="uk-link-reset">Blog</a>
+                <Link href="/blog" className="uk-link-reset">
+                  Blog
                 </Link>
               </li>
-              <li className={`nav-category ${styles.hideItem}`}>
-                <Link href="/projects">
-                  <a className="uk-link-reset">Projects</a>
+              <li className={`nav-category ${styles.hideItem}`} style={{ paddingRight: 20 }}>
+                <Link href="/projects" className="uk-link-reset">
+                  Projects
                 </Link>
               </li>
             </ul>

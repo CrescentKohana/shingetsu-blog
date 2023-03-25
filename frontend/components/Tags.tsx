@@ -13,8 +13,12 @@ const Tags = ({ tags, links, all, highlighted }: TagsProps) => {
     <div>
       {tags.map((tag) => {
         return links ? (
-          <Link key={tag.id} href={`/tag/${tag.slug}`}>
-            <a className={`uk-badge ${highlighted === tag.id ? "highlighted-badge" : ""}`}>{tag.name}</a>
+          <Link
+            key={tag.id}
+            href={`/tag/${tag.slug}`}
+            className={`uk-badge ${highlighted === tag.id ? "highlighted-badge" : ""}`}
+          >
+            {tag.name}
           </Link>
         ) : (
           <span key={tag.id} className="uk-badge">
@@ -23,8 +27,8 @@ const Tags = ({ tags, links, all, highlighted }: TagsProps) => {
         )
       })}
       {all && (
-        <Link href="/blog">
-          <a className="uk-badge">all</a>
+        <Link href="/blog" className="uk-badge">
+          all
         </Link>
       )}
     </div>
