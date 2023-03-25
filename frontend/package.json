@@ -11,17 +11,17 @@
     "debug-prod": "NODE_OPTIONS='--inspect' next start"
   },
   "dependencies": {
-    "@plaiceholder/next": "^2.2.0",
-    "next": "^v12.2.0",
-    "next-auth": "^4.2.1",
-    "plaiceholder": "^2.3.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-markdown": "^8.0.0",
-    "react-moment": "^1.1.1",
+    "@plaiceholder/next": "^2.5.0",
+    "next": "^v13.2.4",
+    "next-auth": "^4.20.1",
+    "plaiceholder": "^2.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^8.0.6",
+    "react-moment": "^1.1.3",
     "rehype-raw": "^6.1.1",
-    "sharp": "^0.30.1",
-    "uikit": "^3.13.7"
+    "sharp": "^0.31.3",
+    "uikit": "^3.16.10"
   },
   "devDependencies": {
     "@types/react": "^18.0.14",
@@ -29,17 +29,17 @@
     "@types/uikit": "^3.3.2",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "eslint": "^8.9.0",
-    "eslint-config-next": "^12.1.0",
+    "eslint-config-next": "^13.2.4",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.5.1",
-    "typescript": "^4.6.3"
+    "typescript": "^5.0.2"
   },
   "author": {
     "name": "Marko Leinikka"
   },
   "engines": {
-    "node": ">=16.x.x",
-    "npm": ">=8.0.0"
+    "node": ">=18.x.x",
+    "npm": ">=9.0.0"
   },
   "license": "zlib"
 }
