@@ -16,7 +16,7 @@ export default NextAuth({
 
         const res = await fetch(getApiUrl(`/ecchi?token=${credentials.token}`))
         if (res.ok) {
-          return { name: credentials.token }
+          return { name: credentials.token, id: "" }
         }
 
         return null
