@@ -36,7 +36,7 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
     <>
       <div id="offcanvas-usage" data-uk-offcanvas>
         <div className="uk-offcanvas-bar">
-          {!isSSR && <button className="uk-offcanvas-close" type="button" data-uk-close />}
+          <button className="uk-offcanvas-close" type="button" />
           <ul className="uk-nav uk-nav-default uk-nav-center" style={{ fontSize: 30 }}>
             <li className="nav-category">
               <Link href="/about">
@@ -92,6 +92,7 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
                 </Link>
               </li>
               <li className="uk-divider-vertical" style={{ height: "inherit" }} />
+              {!isSSR && (
               <li>
                 <button
                   aria-label="Mobile nav"
@@ -102,6 +103,7 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
                   {" "}
                 </button>
               </li>
+              )}
               <li className={`nav-category ${styles.hideItem}`}>
                 <Link href="/about">
                   <a className="uk-link-reset">About</a>
