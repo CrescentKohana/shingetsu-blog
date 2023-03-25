@@ -34,7 +34,7 @@ const ImageWrap = ({ image, className, priority, sizes }: ImageProps) => {
       className={className}
       src={image.url}
       alt={image.alternativeText || image.name}
-      layout="fill"
+      style={{ objectFit: "cover" }}
       sizes={sizes}
       priority={priority}
       placeholder={image.placeholder ? "blur" : "empty"}

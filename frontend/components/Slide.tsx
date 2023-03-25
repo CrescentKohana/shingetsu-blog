@@ -55,8 +55,8 @@ const Slide = ({ item, category }: SlideProps) => {
             <Image
               src={getMedia(item, MediaFormat.large)}
               alt={item.alternativeText}
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
               placeholder={"blur"}
               blurDataURL={defaultPlaceholder}
             />

@@ -32,7 +32,6 @@ const Footer = ({ images, imageIndex }: Props) => {
           alt={item.image.alternativeText}
           width={item.image.width}
           height={item.image.height}
-          layout="responsive"
           sizes="75vw"
           priority
         />
