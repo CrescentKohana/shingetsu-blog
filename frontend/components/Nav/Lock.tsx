@@ -9,7 +9,7 @@ const Lock = () => {
   const { data: session, status } = useSession()
 
   return (
-    <>
+    <span>
       {status === "loading" ? (
         <Link href="#" passHref>
           <button disabled className="uk-icon-button uk-button-default">
@@ -29,7 +29,7 @@ const Lock = () => {
           </button>
         </Link>
       )}
-    </>
+    </span>
   )
 }
 
