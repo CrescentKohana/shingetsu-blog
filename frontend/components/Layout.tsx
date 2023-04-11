@@ -23,8 +23,8 @@ const Layout = ({ landing, children }: LayoutProps) => {
       <div className={`cloudsRight ${landing ? "cloudsLanding" : "cloudsOther"}`} />
       <div className={`cloudsLeft ${landing ? "cloudsLanding" : "cloudsOther"}`} />
       <div className="twinkling">
-        <div className="moonWrap">
-          <div className="tsuki" />
+        <div className="moonArea">
+          <div className="moon" />
           <div className={moonPhase} />
         </div>
 

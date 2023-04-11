@@ -3,7 +3,7 @@
 }
 
 // Moon
-.moonWrap {
+.moonArea {
   position: fixed;
   z-index: -1;
   pointer-events: none;
@@ -18,7 +18,9 @@
     top: 0;
     height: 100%;
   }
-  .moonWrap {
+  .moonArea {
+    z-index: -1;
+    position: fixed;
     top: 15vh;
     left: 66vw;
     width: var(--moonsize);
@@ -34,7 +36,9 @@
     top: 0;
     height: 100%;
   }
-  .moonWrap {
+  .moonArea {
+    z-index: -1;
+    position: fixed;
     top: 15vh;
     left: 60vw;
     width: calc(var(--moonsize) * 0.75);
@@ -51,7 +55,9 @@
     top: -20vw;
     height: 200%;
   }
-  .moonWrap {
+  .moonArea {
+    z-index: -1;
+    position: fixed;
     top: 15vh;
     left: 50vw;
     width: calc(var(--moonsize) * 0.66);
@@ -59,8 +65,8 @@
   }
 }
 
-.tsuki {
-  background: no-repeat url("../public/nightsky/tsuki.png");
+.moon {
+  background: no-repeat url("../public/nightsky/tsuki.webp");
   background-size: contain;
   position: absolute;
   width: 100%;
@@ -146,23 +152,26 @@
 
 .twinkling {
   z-index: -2;
-  background: transparent url("../public/nightsky/twinklingblue2.png") repeat top center;
+  background: transparent url("../public/nightsky/twinklingblue2.webp") repeat top center;
   animation: move-twink 250s linear infinite;
 }
 
 .stars {
   z-index: -3;
-  background: var(--primary) url("../public/nightsky/stars.png") repeat top center;
+  background: var(--primary) url("../public/nightsky/stars.webp") repeat top center;
 }
 
 // Clouds
 
-@keyframes move-clouds {
-  from {
-    background-position: 0 0;
+@keyframes {
+}
+
+@keyframes cloud-movement {
+  0% {
+    background-position: 50% 50%;
   }
-  to {
-    background-position: 40vw 0;
+  100% {
+    background-position: 110% 50%;
   }
 }
 
@@ -179,28 +188,27 @@
 .cloudsRight {
   z-index: -1;
   position: fixed;
-  width: 200%;
+  width: 100%;
   background-size: cover;
   pointer-events: none;
 }
 
 .cloudsLanding {
-  animation: move-clouds 100s cubic-bezier(0.12, 1.04, 0.87, 1.05), fade-out cubic-bezier(0.05, 0.5, 0.09, 0.96) 10s;
+  animation: cloud-movement 30s ease-out, fade-out ease-in 10s;
   opacity: 0.15;
 }
 
 .cloudsOther {
-  animation: move-clouds 100s linear;
+  animation: cloud-movement 100s linear;
   opacity: 0.1;
 }
 
 .cloudsLeft {
-  background: no-repeat transparent url("../public/nightsky/cloud2.png") 40vw 0;
-  transform: scaleX(-1) scale(1.1);
+  background: no-repeat transparent url("../public/nightsky/cloud2_s.webp") 110% 50%;
+  transform: scaleX(-1) scale(5);
 }
 
 .cloudsRight {
-  background: no-repeat transparent url("../public/nightsky/cloud1.png") 40vw 0;
-  transform: scale(1.6);
-  transform: scale(1.6);
+  background: no-repeat transparent url("../public/nightsky/cloud1_s.webp") 110% 50%;
+  transform: scale(4);
 }
