@@ -1,7 +1,8 @@
 /* Variables */
 
 :root {
-  --primary: rgb(15, 28, 37);
+  --primary: #010617;
+  --primary2: #000410;
   --secondary: #39f;
   --tertiary: #b3b0ff;
   --link: #90c5f0;
@@ -10,7 +11,8 @@
 
 /* HTML tags */
 html {
-  background-color: #222;
+  background-color: var(--primary);
+  color-scheme: dark;
 }
 
 html,
@@ -204,12 +206,8 @@ pre > code {
   border: 2px solid var(--secondary) !important;
 }
 
-.custom-container {
-  min-height: 100%;
-}
-
 .uk-card {
-  background-color: #222;
+  background-color: var(--primary2);
   margin: 1rem;
   text-align: center;
   border: 1px solid rgb(75, 75, 75);

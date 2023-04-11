@@ -13,7 +13,7 @@ interface HomeProps {
 
 const Home = ({ home }: HomeProps) => {
   return (
-    <Layout>
+    <Layout landing>
       <Seo seo={home.seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">

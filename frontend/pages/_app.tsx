@@ -8,6 +8,7 @@ import "uikit/dist/js/uikit.min.js"
 import { fetchApi } from "../lib/api"
 import { getMedia } from "../lib/media"
 import "../styles/globals.css"
+import "../styles/yozora.css"
 import { Global } from "../types"
 
 export const GlobalContext = createContext({})
