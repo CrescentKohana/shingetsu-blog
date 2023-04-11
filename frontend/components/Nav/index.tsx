@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import Switch from "react-switch"
 import englishSvg from "../../public/icons/en.svg"
 import japaneseSvg from "../../public/icons/ja.svg"
 import styles from "../../styles/Nav.module.css"
@@ -32,6 +33,9 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
     router.push({ pathname, query }, asPath, { locale: ja ? "en" : "ja" })
   }
 
+  const jpFlag = <Image alt="Japanese" src={japaneseSvg} height={40} width={40} priority />
+  const ukFlag = <Image alt="English" src={englishSvg} height={40} width={40} priority />
+
   return (
     <>
       <div id="offcanvas-usage" data-uk-offcanvas>
@@ -59,15 +63,23 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
       <div>
         <nav className="uk-navbar uk-navbar-container" data-uk-navbar>
           <div className="uk-navbar-left">
-            <ul className="uk-navbar-nav" style={{ paddingLeft: 10 }}>
+            <ul className="uk-navbar-nav" style={{ paddingLeft: 30 }}>
               <li>
-                <button className="uk-icon-button uk-button-default" onClick={() => switchLocale()}>
-                  {ja ? (
-                    <Image alt="Japanese" src={japaneseSvg} height={30} width={30} priority />
-                  ) : (
-                    <Image alt="English" src={englishSvg} height={30} width={30} priority />
-                  )}
-                </button>
+                <Switch
+                  checked={ja}
+                  onChange={() => switchLocale()}
+                  handleDiameter={40}
+                  offColor="#010617"
+                  onColor="#010617"
+                  offHandleColor="#010617"
+                  onHandleColor="#010617"
+                  height={40}
+                  width={80}
+                  uncheckedIcon={<span style={{ filter: "grayscale(100%)" }}>{jpFlag}</span>}
+                  checkedIcon={<span style={{ filter: "grayscale(100%)" }}>{ukFlag}</span>}
+                  uncheckedHandleIcon={ukFlag}
+                  checkedHandleIcon={jpFlag}
+                />
               </li>
               <li>
                 <Lock />
