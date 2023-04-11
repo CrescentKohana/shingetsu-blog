@@ -105,12 +105,12 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
               </li>
               <li className="uk-divider-vertical" style={{ height: "inherit" }} />
               {!isSSR && (
-                <li>
+                <li className={styles.hideBtn}>
                   <button
                     style={{ paddingRight: 20 }}
                     aria-label="Mobile nav"
                     data-uk-toggle="target: #offcanvas-usage"
-                    className={`uk-navbar-toggle ${styles.hideBtn}`}
+                    className="uk-navbar-toggle"
                     data-uk-navbar-toggle-icon
                   />
                 </li>
