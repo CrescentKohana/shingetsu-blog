@@ -35,5 +35,5 @@ export function getMoonPhase(time: number) {
     }
   }
 
-  return "waningcrescent"
+  return phaseName
 }
