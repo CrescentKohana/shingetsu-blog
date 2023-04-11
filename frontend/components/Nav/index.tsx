@@ -82,10 +82,10 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
                 />
               </li>
               <li>
-                <Lock />
+                <ImageSwitch images={images} imageIndex={imageIndex} setImageIndex={setImageIndex} />
               </li>
               <li>
-                <ImageSwitch images={images} imageIndex={imageIndex} setImageIndex={setImageIndex} />
+                <Lock />
               </li>
             </ul>
           </div>
