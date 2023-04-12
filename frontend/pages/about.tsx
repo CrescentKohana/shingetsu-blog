@@ -21,7 +21,8 @@ const About = ({ about }: AboutProps) => {
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h1>{about.name}</h1>
+          <h1 style={{ marginBottom: 0 }}>{about.name}</h1>
+          {about.subtitle && <h3 style={{ margin: "0 0 0 3px" }}>{about.subtitle}</h3>}
           <hr className="uk-divider-icon" />
           <Markdown rehypePlugins={[rehypeRaw]}>{about.content}</Markdown>
         </div>

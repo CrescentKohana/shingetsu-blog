@@ -27,6 +27,7 @@ export interface Home {
 
 export interface About {
   name: string
+  subtitle?: string
   content: string
 }
 
