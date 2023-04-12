@@ -2,7 +2,7 @@
   --moonsize: 250px;
 }
 
-// Moon
+/* Moon */
 .moonArea {
   position: fixed;
   z-index: -1;
@@ -126,7 +126,7 @@
   background: radial-gradient(circle at -40%, transparent, transparent 55%, rgb(1, 6, 23, 1) 66%, rgb(1, 6, 23, 1) 90%);
 }
 
-// Stars
+/* Stars */
 @keyframes move-twink {
   from {
     background-position: 0 0;
@@ -159,10 +159,7 @@
   background: var(--primary) url("../public/nightsky/stars.webp") repeat top center;
 }
 
-// Clouds
-
-@keyframes {
-}
+/* Clouds */
 
 @keyframes cloud-movement-right {
   0% {

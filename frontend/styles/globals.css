@@ -2,10 +2,10 @@
 
 :root {
   --primary: #010617;
-  --primary2: #000410;
-  --secondary: #39f;
-  --tertiary: #b3b0ff;
-  --link: #90c5f0;
+  --primaryDark: #000410;
+  --secondary: #9490ff;
+  --secondaryLight: #c5c3ff;
+  --link: #74b5eb;
   --text: rgba(255, 255, 255, 0.8);
 }
 
@@ -41,7 +41,7 @@ button:hover:disabled {
 @media only screen and (min-width: 725px) {
   h1 {
     font-family: Staatliches;
-    font-size: 120px;
+    font-size: 100px;
   }
 }
 
@@ -131,7 +131,7 @@ pre > code {
 }
 
 .nav-category {
-  color: var(--tertiary);
+  color: var(--secondary);
 }
 
 #category {
@@ -142,8 +142,7 @@ pre > code {
 #title {
   letter-spacing: 0.4px;
   font-size: 22px;
-  font-size: 1.375rem;
-  line-height: 1.13636;
+  line-height: 1.1;
 }
 
 #banner {
@@ -157,6 +156,7 @@ pre > code {
   line-height: 1.75;
 }
 
+/* Project badges */
 .created-badge {
   color: #fff;
   background: rgb(0, 58, 105);
@@ -193,11 +193,12 @@ pre > code {
 
 .uk-light .uk-badge,
 .uk-badge {
-  border: 2px solid rgba(0, 0, 0, 0);
-  padding: 0 5px;
-  background: var(--primary);
-  color: rgb(199, 199, 199) !important;
-  font-size: 13px;
+  border: 2px solid var(--secondary);
+  padding: 12px 6px;
+  margin: 0 2px;
+  background: rgb(0, 0, 0, 0);
+  color: var(--secondaryLight) !important;
+  font-size: 14px;
 }
 
 .highlighted-badge,
@@ -207,7 +208,8 @@ pre > code {
 }
 
 .uk-card {
-  background-color: var(--primary2);
+  color: var(--secondaryLight);
+  background-color: var(--primaryDark);
   margin: 1rem;
   text-align: center;
   border: 1px solid rgb(75, 75, 75);
@@ -219,8 +221,8 @@ pre > code {
 .uk-card:hover,
 .uk-card:focus,
 .uk-card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: var(--secondary);
+  border-color: var(--secondary);
 }
 
 .uk-card h3 {
