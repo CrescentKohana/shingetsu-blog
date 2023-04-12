@@ -10,10 +10,9 @@
 }
 
 @media only screen and (min-width: 725px) {
-  .cloudsRight {
-    top: 0;
-    height: 100%;
-  }
+  .cloudsRightLanding,
+  .cloudsRight,
+  .cloudsLeftLanding,
   .cloudsLeft {
     top: 0;
     height: 100%;
@@ -29,9 +28,9 @@
 }
 
 @media only screen and (max-width: 725px) and (min-width: 500px) {
-  .cloudsRight {
-    top: -5vw;
-  }
+  .cloudsRightLanding,
+  .cloudsRight,
+  .cloudsLeftLanding,
   .cloudsLeft {
     top: 0;
     height: 100%;
@@ -47,10 +46,9 @@
 }
 
 @media only screen and (max-width: 500px) {
-  .cloudsRight {
-    top: -20vw;
-    height: 200%;
-  }
+  .cloudsRightLanding,
+  .cloudsRight,
+  .cloudsLeftLanding,
   .cloudsLeft {
     top: -20vw;
     height: 200%;
@@ -71,7 +69,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  filter: hue-rotate(90deg) grayscale(10%);
+  filter: hue-rotate(20deg) saturate(130%);
   z-index: -1;
   pointer-events: none;
 }
@@ -166,49 +164,65 @@
 @keyframes {
 }
 
-@keyframes cloud-movement {
+@keyframes cloud-movement-right {
   0% {
-    background-position: 50% 50%;
+    transform: scale(4) translateX(0);
   }
   100% {
-    background-position: 110% 50%;
+    transform: scale(4) translateX(10%);
+  }
+}
+
+@keyframes cloud-movement-left {
+  0% {
+    transform: scaleX(-1) scale(5) translateX(0);
+  }
+  100% {
+    transform: scaleX(-1) scale(5) translateX(10%);
   }
 }
 
 @keyframes fade-out {
   0% {
-    opacity: 0.5;
+    opacity: 0.6;
   }
   100% {
-    opacity: 0.15;
+    opacity: 0.1;
   }
 }
 
+.cloudsRightLanding,
+.cloudsLeftLanding,
 .cloudsLeft,
 .cloudsRight {
   z-index: -1;
   position: fixed;
   width: 100%;
+  opacity: 0.1;
   background-size: cover;
   pointer-events: none;
 }
 
-.cloudsLanding {
-  animation: cloud-movement 30s ease-out, fade-out ease-in 10s;
-  opacity: 0.15;
+.cloudsRightLanding {
+  background: no-repeat transparent url("../public/nightsky/cloud1_s.webp") 50% 50%;
+  animation: cloud-movement-right 100s cubic-bezier(0.05, 1, 0.1, 0.95), fade-out linear 5s;
+  transform: scale(4) translateX(10%);
 }
 
-.cloudsOther {
-  animation: cloud-movement 100s linear;
-  opacity: 0.1;
-}
-
-.cloudsLeft {
-  background: no-repeat transparent url("../public/nightsky/cloud2_s.webp") 110% 50%;
-  transform: scaleX(-1) scale(5);
+.cloudsLeftLanding {
+  background: no-repeat transparent url("../public/nightsky/cloud2_s.webp") 50% 50%;
+  animation: cloud-movement-left 100s cubic-bezier(0.05, 1, 0.1, 0.95), fade-out linear 5s;
+  transform: scaleX(-1) scale(5) translateX(10%);
 }
 
 .cloudsRight {
-  background: no-repeat transparent url("../public/nightsky/cloud1_s.webp") 110% 50%;
-  transform: scale(4);
+  background: no-repeat transparent url("../public/nightsky/cloud1_s.webp") 50% 50%;
+  animation: cloud-movement-right 100s cubic-bezier(0.05, 1, 0.1, 0.95);
+  transform: scale(4) translateX(10%);
+}
+
+.cloudsLeft {
+  background: no-repeat transparent url("../public/nightsky/cloud2_s.webp") 50% 50%;
+  animation: cloud-movement-left 100s cubic-bezier(0.05, 1, 0.1, 0.95);
+  transform: scaleX(-1) scale(5) translateX(10%);
 }

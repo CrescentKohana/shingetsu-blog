@@ -20,8 +20,8 @@ const Layout = ({ landing, children }: LayoutProps) => {
 
   return (
     <div className="stars" style={{ minHeight: "100%" }}>
-      <div className={`cloudsRight ${landing ? "cloudsLanding" : "cloudsOther"}`} />
-      <div className={`cloudsLeft ${landing ? "cloudsLanding" : "cloudsOther"}`} />
+      <div className={`cloudsRight${landing ? "Landing" : ""}`} />
+      <div className={`cloudsLeft${landing ? "Landing" : ""}`} />
       <div className="twinkling">
         <div className="moonArea">
           <div className="moon" />
