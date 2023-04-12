@@ -13,7 +13,7 @@ export default withPlaiceholder({
   },
   images: {
     domains: ["strapi.kohana.fi", "localhost"],
-    formats: ["image/webp"],
+    formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 3600,
   },
   i18n: {
