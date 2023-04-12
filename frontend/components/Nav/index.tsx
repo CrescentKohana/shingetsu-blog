@@ -108,7 +108,7 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
                 <li className={styles.hideBtn}>
                   <button
                     style={{ paddingRight: 20 }}
-                    aria-label="Mobile nav"
+                    aria-label="Mobile navigation toggle"
                     data-uk-toggle="target: #offcanvas-usage"
                     className="uk-navbar-toggle"
                     data-uk-navbar-toggle-icon
