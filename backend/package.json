@@ -14,8 +14,7 @@
     "@strapi/plugin-i18n": "^4.1.0",
     "@strapi/plugin-users-permissions": "^4.1.0",
     "@strapi/strapi": "^4.1.0",
-    "sqlite3": "^5.0.2",
-    "strapi-plugin-comments": "^2.0.10"
+    "sqlite3": "^5.0.2"
   },
   "author": {
     "name": "Marko Leinikka"
