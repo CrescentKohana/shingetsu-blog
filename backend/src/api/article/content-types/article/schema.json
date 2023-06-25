@@ -105,6 +105,15 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "i18nslug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "required": true
     }
   }
 }
