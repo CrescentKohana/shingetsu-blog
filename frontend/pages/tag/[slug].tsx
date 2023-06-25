@@ -4,7 +4,8 @@ import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import Tags from "../../components/Tags"
 import { fetchApi } from "../../lib/api"
-import { Tag as TagData } from "../../types"
+import { filterItemsBasedOnLocale } from "../../lib/helpers"
+import { Article, Tag, Tag as TagData } from "../../types"
 
 interface TagProps {
   tag: TagData
@@ -54,23 +55,26 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   if (!params) {
     return {
       notFound: true,
     }
   }
 
-  // const tags = await fetchApi(`/tags?filters[slug]=${params.slug}&populate=articles,articles.image`)
   const [tags, allTags] = await Promise.all([
     fetchApi(`/tags?filters[slug]=${params.slug}&populate=articles,articles.image`),
     fetchApi("/tags?filters"),
   ])
+
   if (!tags || tags.length === 0) {
     return {
       notFound: true,
     }
   }
+
+  const localeFilteredArticles = filterItemsBasedOnLocale((tags[0] as Tag).articles, locale) as Article[]
+  tags[0].articles = localeFilteredArticles
 
   return {
     props: { tag: tags[0], tags: allTags },

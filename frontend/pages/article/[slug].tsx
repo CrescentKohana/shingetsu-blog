@@ -56,7 +56,7 @@ const Article = ({ article }: ArticleProps) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = await fetchApi("/articles")
+  const articles = await fetchApi("/articles?locale=all")
 
   if (!articles) {
     return {
@@ -68,24 +68,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: articles.map((article: ArticleData) => ({
       params: {
-        slug: article.slug,
+        slug: article.i18nslug,
       },
     })),
     fallback: "blocking",
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   if (!params) {
     return {
       notFound: true,
     }
   }
 
-  const articles = await fetchApi(`/articles?filters[slug]=${params.slug}&populate=image,tags,writer.avatar`)
+  let articles = await fetchApi(
+    `/articles?filters[i18nslug]=${params.slug}&populate=image,tags,writer.avatar${locale ? `&locale=${locale}` : ""}`
+  )
+
   if (!articles || articles.length === 0) {
-    return {
-      notFound: true,
+    // Fallback to default locale.
+    articles = await fetchApi(`/articles?filters[i18nslug]=${params.slug}&populate=image,tags,writer.avatar`)
+    if (!articles || articles.length === 0) {
+      return {
+        notFound: true,
+      }
     }
   }
 

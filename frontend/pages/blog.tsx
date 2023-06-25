@@ -5,6 +5,7 @@ import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Tags from "../components/Tags"
 import { fetchApi } from "../lib/api"
+import { filterItemsBasedOnLocale } from "../lib/helpers"
 import { getMedia } from "../lib/media"
 import { Article, Tag } from "../types"
 
@@ -36,8 +37,8 @@ const Blog = ({ articles, tags }: BlogProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const [articles, tags] = await Promise.all([fetchApi("/articles?populate=*"), fetchApi("/tags")])
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const [articles, tags] = await Promise.all([fetchApi("/articles?populate=*&locale=all"), fetchApi("/tags")])
 
   if (!articles) {
     return {
@@ -46,8 +47,9 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   }
 
+  const localeFilteredArticles = filterItemsBasedOnLocale(articles, locale) as Article[]
   const articlesWithPlaceholders = await Promise.all(
-    articles.map(async (article: Article) => {
+    localeFilteredArticles.map(async (article: Article) => {
       const { base64 } = await getPlaiceholder(getMedia(article.image))
       return {
         ...article,

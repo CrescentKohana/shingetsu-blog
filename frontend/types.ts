@@ -56,6 +56,7 @@ export interface Slider {
 
 export interface Article {
   slug: string
+  i18nslug: string
   title: string
   description: string
   content: string
@@ -64,6 +65,7 @@ export interface Article {
   image: Media
   writer: Author
   showcased: boolean
+  locale: string
   tags: Tag[]
 }
 
@@ -83,6 +85,7 @@ export enum ProjectStatus {
 export interface Project {
   id: number
   slug: string
+  i18nslug: string
   title: string
   description: string
   content: string
@@ -93,6 +96,7 @@ export interface Project {
   image: Media
   tech: Tech
   publishedAt: string
+  locale: string
 }
 
 // Components and other types

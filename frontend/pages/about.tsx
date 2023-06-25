@@ -32,7 +32,7 @@ const About = ({ about }: AboutProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const about = await fetchApi(`/about?locale=${locale}`)
+  const about = await fetchApi(`/about${locale ? `?locale=${locale}` : ""}`)
 
   if (!about) {
     return {

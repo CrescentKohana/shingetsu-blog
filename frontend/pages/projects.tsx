@@ -4,6 +4,7 @@ import Layout from "../components/Layout"
 import ProjectList from "../components/ProjectList"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
+import { filterItemsBasedOnLocale } from "../lib/helpers"
 import { getMedia } from "../lib/media"
 import { Project } from "../types"
 
@@ -30,8 +31,8 @@ const Projects = ({ projects }: ProjectsProps) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const projects = await fetchApi("/projects?populate=image,tech")
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const projects = await fetchApi("/projects?populate=image,tech&locale=all")
 
   if (!projects) {
     return {
@@ -40,8 +41,9 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   }
 
+  const localeFilteredProjects = filterItemsBasedOnLocale(projects, locale) as Project[]
   const projectsWithPlaceholders = await Promise.all(
-    projects.map(async (project: Project) => {
+    localeFilteredProjects.map(async (project: Project) => {
       const { base64 } = await getPlaiceholder(getMedia(project.image))
       return {
         ...project,

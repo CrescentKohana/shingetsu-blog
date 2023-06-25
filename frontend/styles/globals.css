@@ -99,6 +99,14 @@ img:hover {
   max-height: 50vw;
 }
 
+.flag-badge {
+  position: absolute;
+  bottom: 1%;
+  right: 3%;
+  z-index: 1;
+  align-items: center;
+}
+
 /* Code tags */
 pre {
   font-family: monaco, monospace;

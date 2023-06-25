@@ -17,7 +17,7 @@ const Articles = ({ articles, even }: ArticlesProps) => {
         <div>
           <div className="uk-child-width-1-3@m uk-grid-match" data-uk-grid>
             {orderedArticles.map((article) => {
-              return <ArticleCard article={article} key={`article__left__${article.slug}`} />
+              return <ArticleCard article={article} key={`article__left__${article.i18nslug}`} />
             })}
           </div>
         </div>
@@ -33,13 +33,13 @@ const Articles = ({ articles, even }: ArticlesProps) => {
       <div className="uk-child-width-1-2@s" data-uk-grid>
         <div>
           {showcasedArticles.map((article) => {
-            return <ArticleCard article={article} key={`article__left__${article.slug}`} />
+            return <ArticleCard article={article} key={`article__left__${article.i18nslug}`} />
           })}
         </div>
         <div>
           <div className="uk-child-width-1-2@m uk-grid-match" data-uk-grid>
             {otherArticles.map((article) => {
-              return <ArticleCard article={article} key={`article__left__${article.slug}`} />
+              return <ArticleCard article={article} key={`article__left__${article.i18nslug}`} />
             })}
           </div>
         </div>
