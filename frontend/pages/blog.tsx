@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next"
+import { useRouter } from "next/router"
 import { getPlaiceholder } from "plaiceholder"
 import Articles from "../components/Articles"
 import Layout from "../components/Layout"
@@ -6,6 +7,7 @@ import Seo from "../components/Seo"
 import Tags from "../components/Tags"
 import { fetchApi } from "../lib/api"
 import { filterItemsBasedOnLocale } from "../lib/helpers"
+import { Label, i18n } from "../lib/localization"
 import { getMedia } from "../lib/media"
 import { Article, Tag } from "../types"
 
@@ -15,6 +17,7 @@ interface BlogProps {
 }
 
 const Blog = ({ articles, tags }: BlogProps) => {
+  const router = useRouter()
   const seo = {
     metaTitle: "Blog",
     metaDescription: "Blog articles",
@@ -26,7 +29,7 @@ const Blog = ({ articles, tags }: BlogProps) => {
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h1 style={{ marginBottom: 10 }}>
-            Blog <span className="subtitle">Filter tags below</span>
+            Blog <span className="subtitle">{i18n(Label.FilterTags, router.locale)}</span>
           </h1>
 
           <Tags tags={tags} links />

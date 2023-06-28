@@ -1,5 +1,5 @@
 import { Article, Project, StrapiData } from "../types"
-import { Locale } from "./enums"
+import { Locale } from "./localization"
 
 /**
  * Shuffles the given array with Fisher–Yates algorithm.
@@ -64,7 +64,7 @@ export const recursiveFlat = (response: StrapiData<unknown> | Record<string, unk
 }
 
 export const filterItemsBasedOnLocale = (items: Array<Article | Project>, locale?: Locale | string) => {
-  if (locale === Locale.ja) {
+  if (locale === Locale.JA) {
     return items.filter((item: Article | Project) => {
       const duplicateJapaneseItem = items.some(
         (item2: Article | Project) => item2.locale === "ja" && item.i18nslug === item2.i18nslug

@@ -1,7 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import Moment from "react-moment"
-import { Locale } from "../lib/enums"
+import { Label, Locale, i18n } from "../lib/localization"
 import englishSvg from "../public/icons/en.svg"
 import japaneseSvg from "../public/icons/ja.svg"
 import styles from "../styles/Card.module.css"
@@ -14,10 +15,11 @@ interface CardProps {
 }
 
 const ArticleCard = ({ article }: CardProps) => {
+  const router = useRouter()
   let flag: JSX.Element | null
-  if (article.locale === Locale.en) {
+  if (article.locale === Locale.EN) {
     flag = <Image alt="English" src={englishSvg} height={40} width={40} priority />
-  } else if (article.locale === Locale.ja) {
+  } else if (article.locale === Locale.JA) {
     flag = <Image alt="Japanese" src={japaneseSvg} height={40} width={40} priority />
   } else {
     flag = null
@@ -35,7 +37,9 @@ const ArticleCard = ({ article }: CardProps) => {
             {article.title}
           </p>
           <div className="uk-text-meta">
-            <Moment format="MMM Do YYYY">{article.updated || article.published}</Moment>
+            <Moment format={i18n(Label.LongDate, router.locale)} locale={router.locale}>
+              {article.updated || article.published}
+            </Moment>
           </div>
           {article.tags && (
             <div style={{ marginTop: 5 }}>

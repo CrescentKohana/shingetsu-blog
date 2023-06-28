@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next"
+import { useRouter } from "next/router"
 import Markdown from "react-markdown"
 import Moment from "react-moment"
 import rehypeRaw from "rehype-raw"
@@ -7,6 +8,7 @@ import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import Tags from "../../components/Tags"
 import { fetchApi } from "../../lib/api"
+import { Label, i18n } from "../../lib/localization"
 import styles from "../../styles/Article.module.css"
 import { Article as ArticleData } from "../../types"
 
@@ -15,6 +17,7 @@ interface ArticleProps {
 }
 
 const Article = ({ article }: ArticleProps) => {
+  const router = useRouter()
   const seo = {
     metaTitle: article.title,
     metaDescription: article.description,
@@ -37,13 +40,20 @@ const Article = ({ article }: ArticleProps) => {
               {article.writer.avatar && <ImageWrap image={article.writer.avatar} className={styles.authorAvatar} />}
             </div>
             <div className="uk-width-expand">
-              <p className="uk-margin-remove-bottom">By {article.writer.name}</p>
+              <p className="uk-margin-remove-bottom">
+                {i18n(Label.By, router.locale)} {article.writer.name}
+              </p>
               <p className="uk-text-meta uk-margin-remove-top">
-                <Moment format="MMM Do YYYY">{article.published}</Moment>
+                <Moment format={i18n(Label.LongDate, router.locale)} locale={router.locale}>
+                  {article.published}
+                </Moment>
                 {article.updated && (
                   <>
-                    {" "}
-                    (updated <Moment format="MMM Do YYYY">{article.updated}</Moment>)
+                    {` (${i18n(Label.Updated, router.locale)} `}
+                    <Moment format={i18n(Label.LongDate, router.locale)} locale={router.locale}>
+                      {article.updated}
+                    </Moment>
+                    )
                   </>
                 )}
               </p>
