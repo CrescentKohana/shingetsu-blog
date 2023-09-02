@@ -20,7 +20,7 @@
     "name": "Marko Leinikka"
   },
   "engines": {
-    "node": ">=14.x.x <=18.x.x",
+    "node": ">=16.x.x <=18.x.x",
     "npm": ">=8.0.0"
   }
 }
