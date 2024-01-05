@@ -93,7 +93,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   }
 
   let articles = await fetchApi(
-    `/articles?filters[i18nslug]=${params.slug}&populate=image,tags,writer.avatar${locale ? `&locale=${locale}` : ""}`
+    `/articles?filters[i18nslug]=${params.slug}&populate=image,tags,writer.avatar${locale ? `&locale=${locale}` : ""}`,
   )
 
   if (!articles || articles.length === 0) {

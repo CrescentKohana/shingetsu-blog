@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
           placeholder: base64,
         },
       }
-    })
+    }),
   )
 
   return {

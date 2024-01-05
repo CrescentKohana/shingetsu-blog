@@ -202,13 +202,17 @@
 
 .cloudsRightLanding {
   background: no-repeat transparent url("../public/nightsky/cloud1_s.webp") 50% 50%;
-  animation: cloud-movement-right 120s cubic-bezier(0.05, 1, 0.1, 0.95), fade-out linear 5s;
+  animation:
+    cloud-movement-right 120s cubic-bezier(0.05, 1, 0.1, 0.95),
+    fade-out linear 5s;
   transform: scale(4) translateX(10%);
 }
 
 .cloudsLeftLanding {
   background: no-repeat transparent url("../public/nightsky/cloud2_s.webp") 50% 50%;
-  animation: cloud-movement-left 120s cubic-bezier(0.05, 1, 0.1, 0.95), fade-out linear 5s;
+  animation:
+    cloud-movement-left 120s cubic-bezier(0.05, 1, 0.1, 0.95),
+    fade-out linear 5s;
   transform: scaleX(-1) scale(5) translateX(10%);
 }
 

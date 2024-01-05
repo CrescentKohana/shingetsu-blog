@@ -67,7 +67,7 @@ export const filterItemsBasedOnLocale = (items: Array<Article | Project>, locale
   if (locale === Locale.JA) {
     return items.filter((item: Article | Project) => {
       const duplicateJapaneseItem = items.some(
-        (item2: Article | Project) => item2.locale === "ja" && item.i18nslug === item2.i18nslug
+        (item2: Article | Project) => item2.locale === "ja" && item.i18nslug === item2.i18nslug,
       )
       if (item.locale === "en" && !duplicateJapaneseItem) return true
       if (item.locale === "ja") return true

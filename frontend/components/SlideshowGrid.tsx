@@ -36,7 +36,7 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
               category={slider.category}
               horizontal={slider.horizontal}
               slideshowProps={`animation: pull; autoplay: true; autoplay-interval: ${Math.floor(
-                Math.random() * (8000 - 4000) + 4000
+                Math.random() * (8000 - 4000) + 4000,
               )}; min-height: 490`}
             />
           ))}

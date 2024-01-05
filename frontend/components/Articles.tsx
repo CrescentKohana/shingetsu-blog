@@ -8,7 +8,7 @@ interface ArticlesProps {
 
 const Articles = ({ articles, even }: ArticlesProps) => {
   const orderedArticles = articles.sort(
-    (a, b) => Date.parse(b.updated || b.published) - Date.parse(a.updated || a.published)
+    (a, b) => Date.parse(b.updated || b.published) - Date.parse(a.updated || a.published),
   )
 
   if (even) {

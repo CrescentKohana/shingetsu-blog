@@ -8,7 +8,7 @@ interface ProjectListProps {
 
 const ProjectList = ({ projects, even }: ProjectListProps) => {
   const orderedProjects = projects.sort(
-    (a, b) => Date.parse(b.publishedAt || b.publishedAt) - Date.parse(a.publishedAt || a.publishedAt)
+    (a, b) => Date.parse(b.publishedAt || b.publishedAt) - Date.parse(a.publishedAt || a.publishedAt),
   )
 
   if (even) {

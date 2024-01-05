@@ -1,0 +1,16 @@
+.git
+.husky
+node_modules
+
+package-lock.json
+
+frontend/.next
+
+backend/.cache
+backend/.strapi
+backend/build
+backend/dist/build
+backend/public
+backend/types/generated
+backend/src
+backend/config
