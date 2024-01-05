@@ -21,5 +21,5 @@ Made with [Strapi](https://strapi.io).
 
 ## Dependencies
 
-- nodejs ^16.13.0
-- npm ^8.1.2
+- nodejs ^20.10.0
+- npm ^10

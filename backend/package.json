@@ -10,17 +10,21 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-graphql": "^4.1.0",
-    "@strapi/plugin-i18n": "^4.1.0",
-    "@strapi/plugin-users-permissions": "^4.1.0",
-    "@strapi/strapi": "^4.1.0",
-    "sqlite3": "^5.0.2"
+    "@strapi/plugin-i18n": "^4.16.2",
+    "@strapi/plugin-users-permissions": "^4.16.2",
+    "@strapi/strapi": "^4.16.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.3.4",
+    "sqlite3": "^5.1.7",
+    "styled-components": "^5.3.11",
+    "uuid": "^9.0.1"
   },
   "author": {
     "name": "Marko Leinikka"
   },
   "engines": {
-    "node": ">=16.x.x <=18.x.x",
-    "npm": ">=8.0.0"
+    "node": ">=20.x.x <=20.x.x",
+    "npm": ">=10.0.0"
   }
 }

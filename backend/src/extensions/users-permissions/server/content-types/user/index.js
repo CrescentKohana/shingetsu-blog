@@ -70,7 +70,7 @@ module.exports = {
       type: "relation",
       relation: "oneToOne",
       target: "api::token.token",
-      inversedBy: "user",
+      mappedBy: "user",
     },
   },
 
