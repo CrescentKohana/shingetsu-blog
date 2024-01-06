@@ -5,7 +5,7 @@ const Spinner = () => {
   const { routeChanging } = useRouteChange()
   const [shouldShowSpinner, setShouldShowSpinner] = useState(false)
 
-  const timer = useRef<NodeJS.Timer>()
+  const timer = useRef<NodeJS.Timeout>()
 
   useEffect(() => {
     if (routeChanging) {
