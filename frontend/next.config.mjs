@@ -12,7 +12,18 @@ export default withPlaiceholder({
     ]
   },
   images: {
-    domains: ["strapi.kohana.fi", "localhost"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "strapi.kohana.fi",
+        pathname: "**",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        pathname: "**",
+      },
+    ],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 3600,
   },
