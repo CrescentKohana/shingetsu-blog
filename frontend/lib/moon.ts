@@ -1,4 +1,4 @@
-const lunation = 29.53058770576
+const lunation = 29.53058770576 // Lunar cycle in days
 const lunarSeconds = lunation * 24 * 60 * 60
 const newMoon2000 = 947150040 // New Moon of '2000-01-06 18:14' as Unix seconds
 
@@ -15,10 +15,10 @@ const moonPhases = [
 ]
 
 /**
- * Returns at what phase is the moon at the given time.
+ * Returns at which phase the moon is at a given time.
  *
- * @param time Unix time in milliseconds
- * @returns moon phase as string
+ * @param time unix time in milliseconds
+ * @returns moon phase as a string
  */
 export function getMoonPhase(time: number) {
   const totalSeconds = Math.floor(time / 1000) - newMoon2000
