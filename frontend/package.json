@@ -27,7 +27,8 @@
   "devDependencies": {
     "@types/react": "^18.0.14",
     "@types/sharp": "^0.30.0",
-    "@types/uikit": "^3.3.2"
+    "@types/uikit": "^3.3.2",
+    "eslint-config-next": "^14.0.4"
   },
   "author": {
     "name": "Marko Leinikka"
