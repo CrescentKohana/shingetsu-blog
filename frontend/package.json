@@ -29,7 +29,8 @@
     "@types/sharp": "^0.30.0",
     "@types/uikit": "^3.3.2",
     "@typescript-eslint/eslint-plugin": "^6.17.0",
-    "eslint-config-next": "^14.0.4"
+    "eslint-config-next": "^14.0.4",
+    "eslint-config-prettier": "^9.1.0"
   },
   "author": {
     "name": "Marko Leinikka"
