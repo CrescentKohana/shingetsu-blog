@@ -5,7 +5,7 @@ import Seo from "../../components/Seo"
 import Tags from "../../components/Tags"
 import { fetchApi } from "../../lib/api"
 import { filterItemsBasedOnLocale } from "../../lib/helpers"
-import { Article, Tag, Tag as TagData } from "../../types"
+import { Article, Tag as TagData, type Tag } from "../../types"
 
 interface TagProps {
   tag: TagData
