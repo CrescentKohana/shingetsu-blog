@@ -7,7 +7,7 @@ import Seo from "../components/Seo"
 import SlideshowGrid from "../components/SlideshowGrid"
 import { fetchApi } from "../lib/api"
 import { getMedia } from "../lib/media"
-import { Ecchi } from "../types"
+import { type Ecchi } from "../types"
 
 interface EcchiProps {
   ecchi: Ecchi
