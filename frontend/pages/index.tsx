@@ -5,7 +5,7 @@ import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Typewriter from "../components/Typewriter"
 import { fetchApi } from "../lib/api"
-import { Home } from "../types"
+import { type Home } from "../types"
 
 interface HomeProps {
   home: Home
