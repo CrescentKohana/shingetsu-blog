@@ -61,16 +61,6 @@
       "required": false,
       "type": "datetime"
     },
-    "showcased": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
     "image": {
       "type": "media",
       "multiple": false,
@@ -103,7 +93,6 @@
         }
       },
       "type": "uid",
-      "targetField": "title",
       "required": true
     },
     "i18nslug": {
@@ -113,6 +102,21 @@
         }
       },
       "type": "string",
+      "required": true
+    },
+    "visibility": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "showcased",
+        "standard",
+        "hidden"
+      ],
+      "default": "standard",
       "required": true
     }
   }

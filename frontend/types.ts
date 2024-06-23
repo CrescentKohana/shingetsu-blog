@@ -54,6 +54,12 @@ export interface Slider {
   media: Media[]
 }
 
+export enum ArticleVisibility {
+  Showcased = "showcased",
+  Standard = "standard",
+  Hidden = "hidden",
+}
+
 export interface Article {
   slug: string
   i18nslug: string
@@ -64,7 +70,7 @@ export interface Article {
   updated: string
   image: Media
   writer: Author
-  showcased: boolean
+  visibility: ArticleVisibility
   locale: string
   tags: Tag[]
 }

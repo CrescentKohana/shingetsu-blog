@@ -1,4 +1,4 @@
-import { Article } from "../types"
+import { Article, ArticleVisibility } from "../types"
 import ArticleCard from "./ArticleCard"
 
 interface ArticlesProps {
@@ -25,8 +25,8 @@ const Articles = ({ articles, even }: ArticlesProps) => {
     )
   }
 
-  const showcasedArticles = orderedArticles.filter((article) => article.showcased)
-  const otherArticles = orderedArticles.filter((article) => !article.showcased)
+  const showcasedArticles = orderedArticles.filter((article) => article.visibility === ArticleVisibility.Showcased)
+  const otherArticles = orderedArticles.filter((article) =>  article.visibility === ArticleVisibility.Standard)
 
   return (
     <div>
