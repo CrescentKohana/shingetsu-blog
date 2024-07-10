@@ -150,7 +150,7 @@
 
 .twinkling {
   z-index: -2;
-  background: transparent url("../public/nightsky/twinklingblue2.webp") repeat top center;
+  background: transparent url("../public/nightsky/twinklingblue.webp") repeat top center;
   animation: move-twink 250s linear infinite;
 }
 
