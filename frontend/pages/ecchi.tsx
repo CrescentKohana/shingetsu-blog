@@ -2,7 +2,6 @@ import { getSession, GetSessionParams } from "next-auth/react"
 import { MDXRemote } from "next-mdx-remote"
 import { serialize } from "next-mdx-remote/serialize"
 import Image from "next/image"
-import rehypeRaw from "rehype-raw"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import SlideshowGrid from "../components/SlideshowGrid"
@@ -92,19 +91,9 @@ export const getServerSideProps = async (context: GetSessionParams) => {
   // TODO: Dynamically generate placeholders. Cannot be done here when SSR is used.
   // Switch to SSG, or even better, generate them in backend.
 
-  const mdxSource = await serialize(ecchi.content, {
-    mdxOptions: {
-      rehypePlugins: [rehypeRaw],
-      format: "mdx",
-    },
-  })
+  const mdxSource = await serialize(ecchi.content)
 
-  const mdxSource2 = await serialize(ecchi.lowerContent, {
-    mdxOptions: {
-      rehypePlugins: [rehypeRaw],
-      format: "mdx",
-    },
-  })
+  const mdxSource2 = await serialize(ecchi.lowerContent)
 
   return {
     props: { ecchi: { ...ecchi, content: mdxSource, lowerContent: mdxSource2 }, session: session },

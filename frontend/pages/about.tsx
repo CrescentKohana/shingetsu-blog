@@ -1,7 +1,6 @@
 import { GetStaticProps } from "next"
 import { MDXRemote } from "next-mdx-remote"
 import { serialize } from "next-mdx-remote/serialize"
-import rehypeRaw from "rehype-raw"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
@@ -42,12 +41,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     }
   }
 
-  const mdxSource = await serialize(about.content, {
-    mdxOptions: {
-      rehypePlugins: [rehypeRaw],
-      format: "mdx",
-    },
-  })
+  const mdxSource = await serialize(about.content)
 
   return {
     props: { about: { ...about, content: mdxSource } },

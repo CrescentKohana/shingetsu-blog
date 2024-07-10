@@ -117,7 +117,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const mdxSource = await serialize(articles[0].content, {
     mdxOptions: {
       rehypePlugins: [[rehypePrettyCode, options]],
-      format: "mdx",
     },
   })
 
