@@ -1,3 +1,8 @@
+import { MDXRemoteSerializeResult } from "next-mdx-remote"
+
+// For MDX serialization
+export type MDXSerialized = MDXRemoteSerializeResult<Record<string, unknown>, Record<string, unknown>>
+
 // Strapi specific
 export interface StrapiResponse<Type> {
   data: StrapiData<Type> | StrapiData<Type>[]
@@ -20,7 +25,7 @@ export interface StrapiError {
 // Pages
 export interface Home {
   title: string
-  content: string
+  content: string | MDXSerialized
   selftyping: string
   seo: SeoData
 }
@@ -28,13 +33,13 @@ export interface Home {
 export interface About {
   name: string
   subtitle?: string
-  content: string
+  content: string | MDXSerialized
 }
 
 export interface Ecchi {
   name: string
-  content: string
-  lowerContent: string
+  content: string | MDXSerialized
+  lowerContent: string | MDXSerialized
   header: Media
   overlay: Media[]
   sliders: Slider[]
@@ -65,7 +70,7 @@ export interface Article {
   i18nslug: string
   title: string
   description: string
-  content: string
+  content: string | MDXSerialized
   published: string
   updated: string
   image: Media

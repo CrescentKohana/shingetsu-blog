@@ -1,8 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from "next"
+import { MDXRemote } from "next-mdx-remote"
+import { serialize } from "next-mdx-remote/serialize"
 import { useRouter } from "next/router"
-import Markdown from "react-markdown"
 import Moment from "react-moment"
-import rehypeRaw from "rehype-raw"
+import rehypePrettyCode, { Options } from "rehype-pretty-code"
 import ImageWrap from "../../components/ImageWrap"
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
@@ -10,7 +11,7 @@ import Tags from "../../components/Tags"
 import { fetchApi } from "../../lib/api"
 import { Label, i18n } from "../../lib/localization"
 import styles from "../../styles/Article.module.css"
-import { Article as ArticleData } from "../../types"
+import { Article as ArticleData, MDXSerialized } from "../../types"
 
 interface ArticleProps {
   article: ArticleData
@@ -24,6 +25,7 @@ const Article = ({ article }: ArticleProps) => {
     shareImage: article.image,
     article: true,
   }
+  const content = article.content as MDXSerialized
 
   return (
     <Layout>
@@ -33,7 +35,7 @@ const Article = ({ article }: ArticleProps) => {
           <h2>{article.title}</h2>
           <Tags tags={article.tags} links />
           <hr className="uk-divider-small" />
-          <Markdown rehypePlugins={[rehypeRaw]}>{article.content}</Markdown>
+          <MDXRemote {...content} />
           <hr className="uk-divider-icon" />
           <div className="uk-grid-small uk-flex-left" data-uk-grid="true">
             <div style={{ width: 60 }}>
@@ -106,8 +108,21 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     }
   }
 
+  // Options for pretty code.
+  const options = {
+    grid: true,
+    keepBackground: false,
+  } satisfies Options
+
+  const mdxSource = await serialize(articles[0].content, {
+    mdxOptions: {
+      rehypePlugins: [[rehypePrettyCode, options]],
+      format: "mdx",
+    },
+  })
+
   return {
-    props: { article: articles[0] },
+    props: { article: { ...articles[0], content: mdxSource } },
     revalidate: 10,
   }
 }

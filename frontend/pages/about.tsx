@@ -1,10 +1,11 @@
 import { GetStaticProps } from "next"
-import Markdown from "react-markdown"
+import { MDXRemote } from "next-mdx-remote"
+import { serialize } from "next-mdx-remote/serialize"
 import rehypeRaw from "rehype-raw"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
-import { About as AboutData } from "../types"
+import { About as AboutData, MDXSerialized } from "../types"
 
 interface AboutProps {
   about: AboutData
@@ -15,6 +16,7 @@ const About = ({ about }: AboutProps) => {
     metaTitle: about.name,
     metaDescription: "A short introduction",
   }
+  const content = about.content as MDXSerialized
 
   return (
     <Layout>
@@ -24,7 +26,7 @@ const About = ({ about }: AboutProps) => {
           <h1 style={{ marginBottom: 0 }}>{about.name}</h1>
           {about.subtitle && <h3 style={{ margin: "0 0 0 3px" }}>{about.subtitle}</h3>}
           <hr className="uk-divider-icon" />
-          <Markdown rehypePlugins={[rehypeRaw]}>{about.content}</Markdown>
+          <MDXRemote {...content} />
         </div>
       </div>
     </Layout>
@@ -40,8 +42,15 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     }
   }
 
+  const mdxSource = await serialize(about.content, {
+    mdxOptions: {
+      rehypePlugins: [rehypeRaw],
+      format: "mdx",
+    },
+  })
+
   return {
-    props: { about: about },
+    props: { about: { ...about, content: mdxSource } },
     revalidate: 10,
   }
 }

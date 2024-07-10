@@ -1,17 +1,20 @@
 import { GetStaticProps } from "next"
-import Markdown from "react-markdown"
+import { MDXRemote } from "next-mdx-remote"
+import { serialize } from "next-mdx-remote/serialize"
 import rehypeRaw from "rehype-raw"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Typewriter from "../components/Typewriter"
 import { fetchApi } from "../lib/api"
-import { type Home } from "../types"
+import { MDXSerialized, type Home } from "../types"
 
 interface HomeProps {
   home: Home
 }
 
 const Home = ({ home }: HomeProps) => {
+  const content = home.content as MDXSerialized
+
   return (
     <Layout landing>
       <Seo seo={home.seo} />
@@ -19,7 +22,7 @@ const Home = ({ home }: HomeProps) => {
         <div className="uk-container uk-container-large">
           <h1>{home.title}</h1>
           <Typewriter strings={[home.selftyping]} delay={100} />
-          <Markdown rehypePlugins={[rehypeRaw]}>{home.content}</Markdown>
+          <MDXRemote {...content} />
         </div>
       </div>
     </Layout>
@@ -29,8 +32,15 @@ const Home = ({ home }: HomeProps) => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const home = await fetchApi(`/home?populate=seo.shareImage${locale ? `&locale=${locale}` : ""}`)
 
+  const mdxSource = await serialize(home.content, {
+    mdxOptions: {
+      rehypePlugins: [rehypeRaw],
+      format: "mdx",
+    },
+  })
+
   return {
-    props: { home },
+    props: { home: { ...home, content: mdxSource } },
     revalidate: 10,
   }
 }

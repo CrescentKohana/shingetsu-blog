@@ -1,13 +1,14 @@
 import { getSession, GetSessionParams } from "next-auth/react"
+import { MDXRemote } from "next-mdx-remote"
+import { serialize } from "next-mdx-remote/serialize"
 import Image from "next/image"
-import Markdown from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import SlideshowGrid from "../components/SlideshowGrid"
 import { fetchApi } from "../lib/api"
 import { getMedia } from "../lib/media"
-import { type Ecchi } from "../types"
+import { MDXSerialized, type Ecchi } from "../types"
 
 interface EcchiProps {
   ecchi: Ecchi
@@ -20,6 +21,9 @@ const Ecchi = ({ ecchi }: EcchiProps) => {
   }
 
   const overlay = ecchi.overlay[Math.floor(Math.random() * ecchi.overlay.length)]
+
+  const content = ecchi.content as MDXSerialized
+  const lowerContent = ecchi.lowerContent as MDXSerialized
 
   return (
     <Layout>
@@ -51,12 +55,12 @@ const Ecchi = ({ ecchi }: EcchiProps) => {
                 priority
               />
             </div>
-            <Markdown rehypePlugins={[rehypeRaw]}>{ecchi.content}</Markdown>
+            <MDXRemote {...content} />
           </div>
 
           <hr className="uk-divider-icon" />
           <SlideshowGrid sliders={ecchi.sliders} />
-          <Markdown rehypePlugins={[rehypeRaw]}>{ecchi.lowerContent}</Markdown>
+          <MDXRemote {...lowerContent} />
         </div>
       </div>
     </Layout>
@@ -87,8 +91,23 @@ export const getServerSideProps = async (context: GetSessionParams) => {
 
   // TODO: Dynamically generate placeholders. Cannot be done here when SSR is used.
   // Switch to SSG, or even better, generate them in backend.
+
+  const mdxSource = await serialize(ecchi.content, {
+    mdxOptions: {
+      rehypePlugins: [rehypeRaw],
+      format: "mdx",
+    },
+  })
+
+  const mdxSource2 = await serialize(ecchi.lowerContent, {
+    mdxOptions: {
+      rehypePlugins: [rehypeRaw],
+      format: "mdx",
+    },
+  })
+
   return {
-    props: { ecchi, session: session },
+    props: { ecchi: { ...ecchi, content: mdxSource, lowerContent: mdxSource2 }, session: session },
   }
 }
 
