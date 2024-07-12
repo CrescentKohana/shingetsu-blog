@@ -26,12 +26,12 @@ const english = new Map<number, string>([
   [Label.LongDate, "YYYY/MM/DD"],
   [Label.Updated, "updated"],
   [Label.By, "By"],
-  [Label.FilterTags, "Filter posts by clicking tags"],
+  [Label.FilterTags, "Filter posts by clicking tags below"],
 ])
 
 const japanese = new Map<number, string>([
   [Label.LongDate, "LL"],
   [Label.Updated, "更新"],
   [Label.By, "執筆"],
-  [Label.FilterTags, "以下のタグを押してポストを絞り込める"],
+  [Label.FilterTags, "以下のタグを選択すると投稿を絞り込める"],
 ])
