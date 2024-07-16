@@ -9,12 +9,12 @@ import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import Tags from "../../components/Tags"
 import { fetchApi } from "../../lib/api"
-import { Label, i18n } from "../../lib/localization"
+import { Label, Locale, countWords, i18n } from "../../lib/localization"
 import styles from "../../styles/Article.module.css"
 import { Article as ArticleData, MDXSerialized } from "../../types"
 
 interface ArticleProps {
-  article: ArticleData
+  article: ArticleData & { wordCount: number; readingTime: number }
 }
 
 const Article = ({ article }: ArticleProps) => {
@@ -33,6 +33,7 @@ const Article = ({ article }: ArticleProps) => {
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h2>{article.title}</h2>
+
           <Tags tags={article.tags} links />
           <hr className="uk-divider-small" />
           <MDXRemote {...content} />
@@ -42,23 +43,27 @@ const Article = ({ article }: ArticleProps) => {
               {article.writer.avatar && <ImageWrap image={article.writer.avatar} className={styles.authorAvatar} />}
             </div>
             <div className="uk-width-expand">
-              <p className="uk-margin-remove-bottom">
-                {i18n(Label.By, router.locale)} {article.writer.name}
-              </p>
-              <p className="uk-text-meta uk-margin-remove-top">
-                <Moment format={i18n(Label.LongDate, router.locale)} locale={router.locale}>
-                  {article.published}
-                </Moment>
-                {article.updated && (
-                  <>
-                    {` (${i18n(Label.Updated, router.locale)} `}
-                    <Moment format={i18n(Label.LongDate, router.locale)} locale={router.locale}>
-                      {article.updated}
-                    </Moment>
-                    )
-                  </>
-                )}
-              </p>
+              <p className="uk-margin-remove-bottom">{i18n(Label.By, router.locale, article.writer.name)}</p>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <p className="uk-text-meta uk-margin-remove-top">
+                  <Moment format={i18n(Label.LongDate, router.locale)} locale={router.locale}>
+                    {article.published}
+                  </Moment>
+                  {article.updated && (
+                    <>
+                      {` (${i18n(Label.Updated, router.locale, " ")} `}
+                      <Moment format={i18n(Label.LongDate, router.locale)} locale={router.locale}>
+                        {article.updated}
+                      </Moment>
+                      )
+                    </>
+                  )}
+                </p>
+                <p className="uk-text-meta uk-margin-remove-top">
+                  <div>{i18n(Label.WordCount, router.locale, article.wordCount.toString())}</div>
+                  <div>{i18n(Label.ReadingTime, router.locale, article.readingTime.toString())}</div>
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -120,8 +125,10 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     },
   })
 
+  const { wordCount, readingTime } = countWords(articles[0].content, locale as Locale)
+
   return {
-    props: { article: { ...articles[0], content: mdxSource } },
+    props: { article: { ...articles[0], content: mdxSource, wordCount, readingTime } },
     revalidate: 10,
   }
 }
