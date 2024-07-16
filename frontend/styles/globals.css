@@ -5,6 +5,7 @@
   --primaryDark: #000410;
   --secondary: #9490ff;
   --secondaryLight: #c5c3ff;
+  --secondaryDark: #1d1866;
   --link: #74b5eb;
   --text: rgba(255, 255, 255, 0.8);
 }
@@ -201,10 +202,9 @@ pre > code {
   font-size: 14px;
 }
 
-.highlighted-badge,
-.highlighted-badge > .uk-light .uk-badge,
-.highlighted-badge > .uk-badge {
-  border: 2px solid var(--secondary) !important;
+.highlighted-badge {
+  background: var(--secondaryDark) !important;
+  border: 2px solid var(--secondaryDark) !important;
 }
 
 .uk-card {
