@@ -37,11 +37,11 @@ const Tag = ({ tag, tags }: TagProps) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const tags = await fetchApi("/tags")
+  const res = await fetchApi("/tags")
 
-  const tagsData = (tags?.data ?? []) as TagData[]
+  const data = (res?.data ?? []) as TagData[]
 
-  if (!tagsData) {
+  if (!data) {
     return {
       paths: [],
       fallback: "blocking",
@@ -49,7 +49,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 
   return {
-    paths: tagsData.map((tag: TagData) => ({
+    paths: data.map((tag: TagData) => ({
       params: {
         slug: tag.slug,
       },
@@ -65,13 +65,13 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     }
   }
 
-  const [tags, allTags] = await Promise.all([
+  const [tagsRes, allTagsRes] = await Promise.all([
     fetchApi(`/tags?filters[slug]=${params.slug}&populate[0]=articles&populate[1]=articles.image`),
     fetchApi("/tags"),
   ])
 
-  const tagsData = (tags?.data ?? []) as TagData[]
-  const allTagsData = (allTags?.data ?? []) as TagData[]
+  const tagsData = (tagsRes?.data ?? []) as TagData[]
+  const allTagsData = (allTagsRes?.data ?? []) as TagData[]
 
   if (!tagsData || tagsData.length === 0) {
     return {

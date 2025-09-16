@@ -73,17 +73,20 @@ const Article = ({ article }: ArticleProps) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const [articlesEn, articlesJa] = await Promise.all([fetchApi("/articles?locale=en"), fetchApi("/articles?locale=ja")])
+  const [articlesEnRes, articlesJaRes] = await Promise.all([
+    fetchApi("/articles?locale=en"),
+    fetchApi("/articles?locale=ja"),
+  ])
 
-  if (!articlesEn?.data && !articlesJa?.data) {
+  if (!articlesEnRes?.data && !articlesJaRes?.data) {
     return {
       paths: [],
       fallback: "blocking",
     }
   }
 
-  const articlesEnData = (articlesEn?.data ?? []) as ArticleData[]
-  const articlesJaData = (articlesJa?.data ?? []) as ArticleData[]
+  const articlesEnData = (articlesEnRes?.data ?? []) as ArticleData[]
+  const articlesJaData = (articlesJaRes?.data ?? []) as ArticleData[]
 
   return {
     paths: [...articlesEnData, ...articlesJaData].map((article: ArticleData) => ({
@@ -102,18 +105,18 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     }
   }
 
-  const articles = await fetchApi(
+  const res = await fetchApi(
     `/articles?filters[slug]=${params.slug}&populate[0]=image&populate[1]=tags&populate[2]=writer.avatar${locale ? `&locale=${locale}` : ""}`,
   )
 
-  let data = (articles?.data ?? []) as ArticleData[]
+  let data = (res?.data ?? []) as ArticleData[]
 
   if (!data || data.length === 0) {
     // Fallback to default locale.
-    const fallbackArticles = await fetchApi(
+    const fallbackRes = await fetchApi(
       `/articles?filters[slug]=${params.slug}&populate[0]=image&populate[1]=tags&populate[2]=writer.avatar`,
     )
-    const fallbackData = (fallbackArticles?.data ?? []) as ArticleData[]
+    const fallbackData = (fallbackRes?.data ?? []) as ArticleData[]
 
     if (!fallbackData || fallbackData.length === 0) {
       return {

@@ -33,13 +33,13 @@ const Projects = ({ projects }: ProjectsProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const [projectsEn, projectsJa] = await Promise.all([
+  const [projectsEnRes, projectsJaRes] = await Promise.all([
     fetchApi("/projects?populate[0]=image&populate[1]=tech&locale=en"),
     fetchApi("/projects?populate[0]=image&populate[1]=tech&locale=ja"),
   ])
 
-  const projectsEnData = (projectsEn?.data ?? []) as Project[]
-  const projectsJaData = (projectsJa?.data ?? []) as Project[]
+  const projectsEnData = (projectsEnRes?.data ?? []) as Project[]
+  const projectsJaData = (projectsJaRes?.data ?? []) as Project[]
 
   if (!projectsEnData && !projectsJaData) {
     return {

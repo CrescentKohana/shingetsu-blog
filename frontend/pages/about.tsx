@@ -34,9 +34,9 @@ const About = ({ about }: AboutProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const about = await fetchApi(`/about${locale ? `?locale=${locale}` : ""}`)
+  const res = await fetchApi(`/about${locale ? `?locale=${locale}` : ""}`)
 
-  const data = about?.data as AboutData | undefined
+  const data = res?.data as AboutData | undefined
   if (!data) {
     return {
       notFound: true,
@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const mdxSource = await serialize(data.content)
 
   return {
-    props: { about: { ...about, content: mdxSource } },
+    props: { about: { ...data, content: mdxSource } },
     revalidate: 10,
   }
 }

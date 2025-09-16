@@ -102,7 +102,7 @@ export const getServerSideProps = async (context: GetSessionParams) => {
   const mdxSource2 = await serialize(data.lowerContent)
 
   return {
-    props: { ecchi: { ...ecchi, content: mdxSource, lowerContent: mdxSource2 }, session: session },
+    props: { ecchi: { ...data, content: mdxSource, lowerContent: mdxSource2 }, session: session },
   }
 }
 

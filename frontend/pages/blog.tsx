@@ -42,15 +42,15 @@ const Blog = ({ articles, tags }: BlogProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const [articlesEn, articlesJa, tags] = await Promise.all([
+  const [articlesEnRes, articlesJaRes, tagsRes] = await Promise.all([
     fetchApi("/articles?populate=*&locale=en"),
     fetchApi("/articles?populate=*&locale=ja"),
     fetchApi("/tags"),
   ])
 
-  const articlesEnData = (articlesEn?.data ?? []) as Article[]
-  const articlesJaData = (articlesJa?.data ?? []) as Article[]
-  const tagsData = (tags?.data ?? []) as Tag[]
+  const articlesEnData = (articlesEnRes?.data ?? []) as Article[]
+  const articlesJaData = (articlesJaRes?.data ?? []) as Article[]
+  const tagsData = (tagsRes?.data ?? []) as Tag[]
 
   if (!articlesEnData && !articlesJaData) {
     return {

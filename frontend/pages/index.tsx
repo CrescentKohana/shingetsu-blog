@@ -30,14 +30,14 @@ const Home = ({ home }: HomeProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const home = await fetchApi(`/home?populate=seo.shareImage${locale ? `&locale=${locale}` : ""}`)
+  const res = await fetchApi(`/home?populate=seo.shareImage${locale ? `&locale=${locale}` : ""}`)
 
-  const data = home?.data as Home | undefined
+  const data = res?.data as Home | undefined
 
   const mdxSource = await serialize(data?.content || "")
 
   return {
-    props: { home: { ...home, content: mdxSource } },
+    props: { home: { ...data, content: mdxSource } },
     revalidate: 10,
   }
 }

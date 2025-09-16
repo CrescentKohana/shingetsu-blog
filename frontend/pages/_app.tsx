@@ -42,11 +42,11 @@ const Shingetsu = ({ Component, pageProps }: AppProps<Global & { session: Sessio
 Shingetsu.getInitialProps = async (context: AppContext) => {
   // Calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(context)
-  const global = await fetchApi(
+  const res = await fetchApi(
     "/global?populate[0]=favicon&populate[seo][populate][1]=shareImage&populate[footer][populate][2]=image&populate[footer][populate][3]=images.image",
   )
 
-  const data = global?.data as Global | undefined
+  const data = res?.data as Global | undefined
 
   if (data?.footer?.images) {
     for (const image of data.footer.images) {
