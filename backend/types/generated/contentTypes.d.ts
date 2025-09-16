@@ -33,6 +33,10 @@ export interface AdminApiToken extends Struct.CollectionTypeSchema {
         minLength: 1
       }> &
       Schema.Attribute.DefaultTo<"">
+    encryptedKey: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 1
+      }>
     expiresAt: Schema.Attribute.DateTime
     lastUsedAt: Schema.Attribute.DateTime
     lifespan: Schema.Attribute.BigInteger
@@ -406,6 +410,12 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       }> &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 1
+      }>
+    contentBlocks: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true
+        }
       }>
     createdAt: Schema.Attribute.DateTime
     createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private
@@ -1130,7 +1140,7 @@ export interface PluginUsersPermissionsUser extends Struct.CollectionTypeSchema 
 }
 
 declare module "@strapi/strapi" {
-  export namespace Public {
+  export module Public {
     export interface ContentTypeSchemas {
       "admin::api-token": AdminApiToken
       "admin::api-token-permission": AdminApiTokenPermission
