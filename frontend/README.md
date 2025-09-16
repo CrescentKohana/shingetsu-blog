@@ -10,9 +10,9 @@ Made by Next.js written in TypeScript. Utilizes static site generation (SSG) and
   NEXTAUTH_URL=https://example.com
   SECRET=secret
   ```
-- `npm i` to install dependencies
-- `npm run dev` for development.
-- `npm run build` and `npm start` for production.
+- `pnpm i` to install dependencies
+- `pnpm run dev` for development.
+- `pnpm run build` and `pnpm start` for production.
 
 ## Testing
 
@@ -20,5 +20,5 @@ WIP
 
 ## Dependencies
 
-- nodejs ^20.10.0
-- npm ^10
+- nodejs ^22
+- pnpm
