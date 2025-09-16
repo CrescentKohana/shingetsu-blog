@@ -1,6 +1,7 @@
-import { GetStaticProps } from "next"
+import type { GetStaticProps } from "next"
 import { useRouter } from "next/router"
 import { getPlaiceholder } from "plaiceholder"
+
 import Articles from "../components/Articles"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
@@ -9,7 +10,7 @@ import { fetchApi } from "../lib/api"
 import { filterItemsBasedOnLocale } from "../lib/helpers"
 import { Label, i18n } from "../lib/localization"
 import { getMedia } from "../lib/media"
-import { Article, Tag } from "../types"
+import type { Article, Tag } from "../types"
 
 interface BlogProps {
   articles: Article[]
@@ -47,14 +48,18 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     fetchApi("/tags"),
   ])
 
-  if (!articlesEn.data && !articlesJa.data) {
+  const articlesEnData = (articlesEn?.data ?? []) as Article[]
+  const articlesJaData = (articlesJa?.data ?? []) as Article[]
+  const tagsData = (tags?.data ?? []) as Tag[]
+
+  if (!articlesEnData && !articlesJaData) {
     return {
-      props: { articles: [], tags: tags.data ? tags.data : [] },
+      props: { articles: [], tags: tagsData },
       revalidate: 10,
     }
   }
 
-  const localeFilteredArticles = filterItemsBasedOnLocale([...articlesEn.data, ...articlesJa.data], locale) as Article[]
+  const localeFilteredArticles = filterItemsBasedOnLocale([...articlesEnData, ...articlesJaData], locale) as Article[]
   const articlesWithPlaceholders = await Promise.all(
     localeFilteredArticles.map(async (article: Article) => {
       const { base64 } = await getPlaiceholder(getMedia(article.image))
@@ -69,7 +74,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   )
 
   return {
-    props: { articles: articlesWithPlaceholders, tags: tags.data ? tags.data : [] },
+    props: { articles: articlesWithPlaceholders, tags: tagsData },
     revalidate: 10,
   }
 }

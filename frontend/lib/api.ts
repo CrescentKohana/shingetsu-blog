@@ -5,7 +5,7 @@
  * @param notApi no /api path prefix
  * @returns API URL as string
  */
-export function getApiUrl(path = "", notApi?: boolean) {
+export function getApiUrl(path = "", notApi?: boolean): string {
   return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1447"}${notApi ? "" : "/api"}${path}`
 }
 
@@ -16,13 +16,12 @@ export function getApiUrl(path = "", notApi?: boolean) {
  * @param flat flatten the API request?
  * @returns data response as json
  */
-export async function fetchApi(path: string) {
+export async function fetchApi(path: string): Promise<{ data: unknown } | null> {
   const requestUrl = getApiUrl(path)
   const response = await fetch(requestUrl)
   if (!response.ok) {
     return null
   }
 
-  const content = await response.json()
-  return content
+  return (await response.json()) as { data: unknown }
 }

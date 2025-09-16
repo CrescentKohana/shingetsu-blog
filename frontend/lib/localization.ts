@@ -59,8 +59,8 @@ export const i18nDateFormatter = (locale?: Locale | string) => {
   })
 }
 
-const ignoredChars = /[#_\*;:-_`\(\)\[\]]/g
-const ignoredCharsJpn = /(\s|[#_\*;:-_`\(\)\[\]、。？！＃「」『』（）【】A-Za-z])/g
+const ignoredChars = /[#_*;:-_`()[\]]/g
+const ignoredCharsJpn = /(\s|[#_*;:-_`()[\]、。？！＃「」『』（）【】A-Za-z])/g
 const latinWords = /([A-Za-z]+(?:'|-)?[A-Za-z]*)/g
 
 export function countWords(text: string, locale?: Locale) {
@@ -69,7 +69,7 @@ export function countWords(text: string, locale?: Locale) {
   let wordCount: number, readingTime: number
 
   switch (locale) {
-    case Locale.JA:
+    case Locale.JA: {
       const charCount = text.replace(ignoredCharsJpn, "").length
       const latinWordMatches = text.match(latinWords) || []
       const latinWordCount = latinWordMatches.length
@@ -78,9 +78,11 @@ export function countWords(text: string, locale?: Locale) {
       // Total word count used here is the sum of characters and Latin alphabet words
       readingTime = Math.ceil((charCount + latinWordCount) / 357)
       break
-    default:
+    }
+    default: {
       wordCount = text.replace(ignoredChars, "").split(/\s+/).length
       readingTime = Math.ceil(wordCount / 228)
+    }
   }
 
   return { wordCount, readingTime }

@@ -1,13 +1,15 @@
-import { getSession, GetSessionParams } from "next-auth/react"
+import type { GetSessionParams } from "next-auth/react"
+import { getSession } from "next-auth/react"
 import { MDXRemote } from "next-mdx-remote"
 import { serialize } from "next-mdx-remote/serialize"
 import Image from "next/image"
+
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import SlideshowGrid from "../components/SlideshowGrid"
 import { fetchApi } from "../lib/api"
 import { getMedia } from "../lib/media"
-import { MDXSerialized, type Ecchi } from "../types"
+import type { Ecchi, MDXSerialized } from "../types"
 
 interface EcchiProps {
   ecchi: Ecchi
@@ -81,7 +83,9 @@ export const getServerSideProps = async (context: GetSessionParams) => {
     `/ecchi?token=${session.user?.name}&populate[0]=header&populate[0]=overlay&populate[0]=sliders.media`,
   )
 
-  if (!ecchi) {
+  const data = ecchi?.data as Ecchi | undefined
+
+  if (!data) {
     return {
       redirect: {
         destination: "/api/auth/signin",
@@ -93,9 +97,9 @@ export const getServerSideProps = async (context: GetSessionParams) => {
   // TODO: Dynamically generate placeholders. Cannot be done here when SSR is used.
   // Switch to SSG, or even better, generate them in backend.
 
-  const mdxSource = await serialize(ecchi.content)
+  const mdxSource = await serialize(data.content)
 
-  const mdxSource2 = await serialize(ecchi.lowerContent)
+  const mdxSource2 = await serialize(data.lowerContent)
 
   return {
     props: { ecchi: { ...ecchi, content: mdxSource, lowerContent: mdxSource2 }, session: session },

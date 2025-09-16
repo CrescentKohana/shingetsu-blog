@@ -1,12 +1,13 @@
-import { GetStaticProps } from "next"
+import type { GetStaticProps } from "next"
 import { getPlaiceholder } from "plaiceholder"
+
 import Layout from "../components/Layout"
 import ProjectList from "../components/ProjectList"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
 import { filterItemsBasedOnLocale } from "../lib/helpers"
 import { getMedia } from "../lib/media"
-import { Project } from "../types"
+import type { Project } from "../types"
 
 interface ProjectsProps {
   projects: Project[]
@@ -37,14 +38,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     fetchApi("/projects?populate[0]=image&populate[1]=tech&locale=ja"),
   ])
 
-  if (!projectsEn.data && !projectsJa.data) {
+  const projectsEnData = (projectsEn?.data ?? []) as Project[]
+  const projectsJaData = (projectsJa?.data ?? []) as Project[]
+
+  if (!projectsEnData && !projectsJaData) {
     return {
       props: { projects: [] },
       revalidate: 10,
     }
   }
 
-  const localeFilteredProjects = filterItemsBasedOnLocale([...projectsEn.data, ...projectsJa.data], locale) as Project[]
+  const localeFilteredProjects = filterItemsBasedOnLocale([...projectsEnData, ...projectsJaData], locale) as Project[]
   const projectsWithPlaceholders = await Promise.all(
     localeFilteredProjects.map(async (project: Project) => {
       const { base64 } = await getPlaiceholder(getMedia(project.image))

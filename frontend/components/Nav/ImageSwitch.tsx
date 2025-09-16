@@ -1,9 +1,11 @@
-/* eslint-disable react/jsx-no-undef */
+import type { StaticImport } from "next/dist/shared/lib/get-img-props"
 import Image from "next/image"
-import { Dispatch, SetStateAction, useEffect } from "react"
+import type { Dispatch, SetStateAction } from "react"
+import { useEffect } from "react"
+
 import { getValue, setValue, StorageKeys } from "../../lib/localStorage"
 import imageSvg from "../../public/icons/uk-image.svg"
-import { FooterImage } from "../../types"
+import type { FooterImage } from "../../types"
 
 interface Props {
   images: FooterImage[]
@@ -40,7 +42,7 @@ const ImageSwitch = ({ images, imageIndex, setImageIndex }: Props) => {
 
   return (
     <button className="uk-icon-button uk-button-default" onClick={() => nextFooterImage()}>
-      <Image alt="Unlock" src={imageSvg} height={30} width={30} />
+      <Image alt="Unlock" src={imageSvg as StaticImport} height={30} width={30} />
     </button>
   )
 }

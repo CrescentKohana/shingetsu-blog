@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next"
+import type { GetStaticProps } from "next"
 import { MDXRemote } from "next-mdx-remote"
 import { serialize } from "next-mdx-remote/serialize"
 
@@ -6,7 +6,7 @@ import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import Typewriter from "../components/Typewriter"
 import { fetchApi } from "../lib/api"
-import { MDXSerialized, type Home } from "../types"
+import type { Home, MDXSerialized } from "../types"
 
 interface HomeProps {
   home: Home
@@ -30,9 +30,11 @@ const Home = ({ home }: HomeProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const { data: home } = await fetchApi(`/home?populate=seo.shareImage${locale ? `&locale=${locale}` : ""}`)
+  const home = await fetchApi(`/home?populate=seo.shareImage${locale ? `&locale=${locale}` : ""}`)
 
-  const mdxSource = await serialize(home.content)
+  const data = home?.data as Home | undefined
+
+  const mdxSource = await serialize(data?.content || "")
 
   return {
     props: { home: { ...home, content: mdxSource } },

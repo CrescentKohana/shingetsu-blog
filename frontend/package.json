@@ -26,10 +26,9 @@
     "uikit": "^3.23.13"
   },
   "devDependencies": {
-    "@tsconfig/node22": "^22",
+    "@types/node": "^22",
     "@types/react": "^19",
-    "@types/uikit": "^3.3.2",
-    "eslint-config-next": "^15.5.3"
+    "@types/uikit": "^3.3.2"
   },
   "author": {
     "name": "Marko Kristian Leinikka"

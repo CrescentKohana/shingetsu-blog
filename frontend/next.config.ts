@@ -2,6 +2,7 @@ import { withPlaiceholder } from "@plaiceholder/next"
 
 export default withPlaiceholder({
   reactStrictMode: true,
+  // eslint-disable-next-line @typescript-eslint/require-await
   async rewrites() {
     return [
       {

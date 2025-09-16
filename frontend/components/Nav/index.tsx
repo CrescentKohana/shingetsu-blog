@@ -1,13 +1,16 @@
 import { useSession } from "next-auth/react"
+import type { StaticImport } from "next/dist/shared/lib/get-img-props"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import type { Dispatch, SetStateAction } from "react"
+import { useEffect, useState } from "react"
 import Switch from "react-switch"
+
 import englishSvg from "../../public/icons/en.svg"
 import japaneseSvg from "../../public/icons/ja.svg"
 import styles from "../../styles/Nav.module.css"
-import { FooterImage } from "../../types"
+import type { FooterImage } from "../../types"
 import ImageSwitch from "./ImageSwitch"
 import Lock from "./Lock"
 
@@ -19,22 +22,24 @@ interface Props {
 
 const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
   const router = useRouter()
-  const { pathname, asPath, query } = router
-  const ja = router.locale === "ja"
   const { data: session } = useSession()
 
+  const { pathname, asPath, query } = router
+  const ja = router.locale === "ja"
+
   // The data-uk-close attribute causes hydration errors in React 18. This fixes it.
+  // TODO: Check for React 19+
   const [isSSR, setIsSSR] = useState(true)
   useEffect(() => {
     setIsSSR(false)
   }, [])
 
-  const switchLocale = () => {
-    router.push({ pathname, query }, asPath, { locale: ja ? "en" : "ja" })
+  const switchLocale = async () => {
+    await router.push({ pathname, query }, asPath, { locale: ja ? "en" : "ja" })
   }
 
-  const jpFlag = <Image alt="Japanese" src={japaneseSvg} height={40} width={40} priority />
-  const ukFlag = <Image alt="English" src={englishSvg} height={40} width={40} priority />
+  const jpFlag = <Image alt="Japanese" src={japaneseSvg as StaticImport} height={40} width={40} priority />
+  const ukFlag = <Image alt="English" src={englishSvg as StaticImport} height={40} width={40} priority />
 
   return (
     <>
@@ -67,7 +72,7 @@ const Nav = ({ images, imageIndex, setImageIndex }: Props) => {
               <li>
                 <Switch
                   checked={ja}
-                  onChange={() => switchLocale()}
+                  onChange={() => void switchLocale()}
                   handleDiameter={40}
                   offColor="#010617"
                   onColor="#010617"

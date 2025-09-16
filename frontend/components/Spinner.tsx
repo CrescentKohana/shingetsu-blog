@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react"
+
 import useRouteChange from "../lib/hooks/useRouteChange"
 
 const Spinner = () => {
   const { routeChanging } = useRouteChange()
   const [shouldShowSpinner, setShouldShowSpinner] = useState(false)
 
-  const timer = useRef<NodeJS.Timeout>()
+  const timer = useRef<NodeJS.Timeout>(null)
 
   useEffect(() => {
     if (routeChanging) {

@@ -2,7 +2,7 @@ export enum StorageKeys {
   FooterImage = "footerImage",
 }
 
-export function getValue(key: string) {
+export function getValue(key: string): unknown {
   try {
     const item = window.localStorage.getItem(key) || ""
     return item ? JSON.parse(item) : undefined
@@ -11,7 +11,7 @@ export function getValue(key: string) {
   }
 }
 
-export function setValue(key: string, value: unknown) {
+export function setValue(key: string, value: unknown): void {
   try {
     window.localStorage.setItem(key, JSON.stringify(value))
   } catch (e) {

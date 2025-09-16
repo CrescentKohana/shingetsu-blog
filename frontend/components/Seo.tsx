@@ -1,8 +1,9 @@
 import Head from "next/head"
 import { useContext } from "react"
+
 import { getMedia } from "../lib/media"
 import { GlobalContext } from "../pages/_app"
-import { Global, SeoData } from "../types"
+import type { Global, SeoData } from "../types"
 
 interface SeoProps {
   seo: SeoData

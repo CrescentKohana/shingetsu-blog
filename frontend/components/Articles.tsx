@@ -1,4 +1,5 @@
-import { Article, ArticleVisibility } from "../types"
+import type { Article } from "../types"
+import { ArticleVisibility } from "../types"
 import ArticleCard from "./ArticleCard"
 
 interface ArticlesProps {

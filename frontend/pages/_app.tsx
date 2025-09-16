@@ -1,19 +1,24 @@
+import type { Session } from "next-auth"
 import { SessionProvider } from "next-auth/react"
-import App, { AppContext, AppProps } from "next/app"
+import type { AppContext, AppProps } from "next/app"
+import App from "next/app"
 import Head from "next/head"
 import { createContext } from "react"
-// import "uikit/dist/css/uikit-core.min.css" // without the default theme
-import "uikit/dist/css/uikit.min.css"
-import "uikit/dist/js/uikit.min.js"
+
 import { fetchApi } from "../lib/api"
 import { getMedia } from "../lib/media"
+import type { Global } from "../types"
+
+// import "uikit/dist/css/uikit-core.min.css" // without the default theme
+
+import "uikit/dist/css/uikit.min.css"
+import "uikit/dist/js/uikit.min.js"
 import "../styles/globals.css"
 import "../styles/yozora.css"
-import { Global } from "../types"
 
 export const GlobalContext = createContext({})
 
-const Shingetsu = ({ Component, pageProps }: AppProps) => {
+const Shingetsu = ({ Component, pageProps }: AppProps<Global & { session: Session }>) => {
   const global: Global = pageProps
 
   return (
@@ -37,18 +42,20 @@ const Shingetsu = ({ Component, pageProps }: AppProps) => {
 Shingetsu.getInitialProps = async (context: AppContext) => {
   // Calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(context)
-  const { data: global }: { data: Global } = await fetchApi(
+  const global = await fetchApi(
     "/global?populate[0]=favicon&populate[seo][populate][1]=shareImage&populate[footer][populate][2]=image&populate[footer][populate][3]=images.image",
   )
 
-  if (global.footer?.images) {
-    for (const image of global.footer.images) {
+  const data = global?.data as Global | undefined
+
+  if (data?.footer?.images) {
+    for (const image of data.footer.images) {
       image.image.url = getMedia(image.image)
     }
-    global.footer.images.sort((a, b) => a.sort - b.sort)
+    data.footer.images.sort((a, b) => a.sort - b.sort)
   }
 
-  return { ...appProps, pageProps: global }
+  return { ...appProps, pageProps: data }
 }
 
 export default Shingetsu

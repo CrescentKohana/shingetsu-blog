@@ -1,7 +1,9 @@
 import Image from "next/image"
 import { useRouter } from "next/router"
+
+import type { FooterImage } from "../types"
+
 import styles from "../styles/Footer.module.css"
-import { FooterImage } from "../types"
 
 interface Props {
   images: FooterImage[]

@@ -1,4 +1,4 @@
-import { MDXRemoteSerializeResult } from "next-mdx-remote"
+import type { MDXRemoteSerializeResult } from "next-mdx-remote"
 
 // For MDX serialization
 export type MDXSerialized = MDXRemoteSerializeResult<Record<string, unknown>, Record<string, unknown>>

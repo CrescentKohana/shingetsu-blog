@@ -1,7 +1,9 @@
-import { ReactNode, useContext, useState } from "react"
+import type { ReactNode } from "react"
+import { useContext, useState } from "react"
+
 import { getMoonPhase } from "../lib/moon"
 import { GlobalContext } from "../pages/_app"
-import { FooterImage, Global } from "../types"
+import type { FooterImage, Global } from "../types"
 import Footer from "./Footer"
 import Nav from "./Nav"
 import Spinner from "./Spinner"

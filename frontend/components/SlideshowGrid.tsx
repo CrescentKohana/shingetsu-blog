@@ -1,6 +1,6 @@
 import { shuffle } from "../lib/helpers"
 import useHasMounted from "../lib/hooks/hasMounted"
-import { Slider } from "../types"
+import type { Slider } from "../types"
 import Slideshow from "./Slideshow"
 
 interface SlideshowGridProps {
@@ -17,7 +17,9 @@ const SlideshowGrid = ({ sliders }: SlideshowGridProps) => {
   const horizontalSliders = sliders.filter((slider) => slider.horizontal)
 
   const count = verticalSliders.length <= 1 ? 1 : Math.ceil(verticalSliders.length / ROW_SIZE)
-  const verticalChunks = [...Array(count)].map((_, i) => verticalSliders.slice(i * ROW_SIZE, i * ROW_SIZE + ROW_SIZE))
+  const verticalChunks = [...(Array(count) as unknown[])].map((_, i) =>
+    verticalSliders.slice(i * ROW_SIZE, i * ROW_SIZE + ROW_SIZE),
+  )
   const shuffled = shuffle([...verticalChunks, ...horizontalSliders]) as [Slider | Slider[]]
 
   const blocks = shuffled.map((slider, i) => {

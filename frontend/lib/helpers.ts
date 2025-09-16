@@ -1,4 +1,4 @@
-import { Article, Project, StrapiData } from "../types"
+import type { Article, Project, StrapiData } from "../types"
 import { Locale } from "./localization"
 
 /**
@@ -41,21 +41,28 @@ export const recursiveFlat = (response: StrapiData<unknown> | Record<string, unk
   }
 
   if (Array.isArray(response)) {
-    return response.map((item) => recursiveFlat(item, depth + 1))
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
+    return response.map((item) => recursiveFlat(item as StrapiData<unknown>, depth + 1))
   } else if (typeof response === "object") {
     const flat = {} as Record<string, unknown>
 
     for (const [key, value] of Object.entries(response)) {
       switch (key) {
-        case "data":
-          return recursiveFlat(value, depth + 1)
-        case "attributes":
-          const tmpFlat = recursiveFlat(value, depth + 1)
+        case "data": {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
+          return recursiveFlat(value as StrapiData<unknown>, depth + 1)
+        }
+        case "attributes": {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
+          const tmpFlat = recursiveFlat(value as StrapiData<unknown>, depth + 1)
           // If there's an ID on the same level as attributes, add it to the same level as other attributes.
           const id = response.id ? response.id : undefined
           return tmpFlat && typeof tmpFlat === "object" ? { ...tmpFlat, id } : tmpFlat
-        default:
-          flat[key] = recursiveFlat(value, depth + 1)
+        }
+        default: {
+          // eslint-disable-next-line @typescript-eslint/no-deprecated
+          flat[key] = recursiveFlat(value as StrapiData<unknown>, depth + 1)
+        }
       }
     }
 

@@ -1,7 +1,8 @@
 import { shuffle } from "../lib/helpers"
-import styles from "../styles/Slideshow.module.css"
-import { Media, SlideCategory } from "../types"
+import type { Media, SlideCategory } from "../types"
 import Slide from "./Slide"
+
+import styles from "../styles/Slideshow.module.css"
 
 interface SlideshowProps {
   items: Media[]

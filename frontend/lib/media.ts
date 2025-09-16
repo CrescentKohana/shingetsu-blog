@@ -1,4 +1,4 @@
-import { Media, MediaFormat } from "../types"
+import type { Media, MediaFormat } from "../types"
 import { getApiUrl } from "./api"
 
 /**

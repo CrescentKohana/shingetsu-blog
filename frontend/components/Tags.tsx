@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Tag } from "../types"
+
+import type { Tag } from "../types"
 
 interface TagsProps {
   tags: Tag[]

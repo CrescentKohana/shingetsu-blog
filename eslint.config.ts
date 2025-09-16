@@ -1,17 +1,22 @@
 import eslint from "@eslint/js"
+import nextPlugin from "@next/eslint-plugin-next"
 import eslintConfigPrettier from "eslint-config-prettier/flat"
+import { defineConfig } from "eslint/config"
 import globals from "globals"
 import tseslint from "typescript-eslint"
 
-const config = tseslint.config(
+const config = defineConfig(
   eslint.configs.recommended,
   eslintConfigPrettier,
+  // @ts-expect-error Property 'flatConfig' does not exist
+  nextPlugin.flatConfig.recommended,
+  // @ts-expect-error Property 'flatConfig' does not exist
+  nextPlugin.flatConfig.coreWebVitals,
   tseslint.configs.recommendedTypeChecked,
   {
     languageOptions: {
       parserOptions: {
         projectService: true,
-        // @ts-expect-error The 'import.meta' meta-property is not allowed in files which will build into CommonJS output.ts(1470)
         tsconfigRootDir: import.meta.dirname,
       },
       globals: { ...globals.node },
@@ -20,12 +25,8 @@ const config = tseslint.config(
   {
     ignores: [
       "eslint.config.ts",
-      "backend/.strapi",
-      "backend/.tmp",
-      "backend/dist",
-      "backend/public",
-      "backend/.strapi-updater.json",
-      "frontend/node_modules/*",
+      "backend/",
+      "frontend/next-env.d.ts",
       "frontend/.next",
       "frontend/public",
       "frontend/node_modules/*",
@@ -44,9 +45,6 @@ const config = tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/no-import-type-side-effects": "error",
     },
-  },
-  {
-    files: ["backend/**/*.{js,ts}"],
   },
   {
     files: ["frontend/**/*.{js,ts}"],

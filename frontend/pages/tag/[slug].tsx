@@ -1,11 +1,12 @@
-import { GetStaticPaths, GetStaticProps } from "next"
+import type { GetStaticPaths, GetStaticProps } from "next"
+
 import Articles from "../../components/Articles"
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import Tags from "../../components/Tags"
 import { fetchApi } from "../../lib/api"
 import { filterItemsBasedOnLocale } from "../../lib/helpers"
-import { Article, Tag as TagData, type Tag } from "../../types"
+import type { Article, Tag, Tag as TagData } from "../../types"
 
 interface TagProps {
   tag: TagData
@@ -38,7 +39,9 @@ const Tag = ({ tag, tags }: TagProps) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const tags = await fetchApi("/tags")
 
-  if (!tags.data) {
+  const tagsData = (tags?.data ?? []) as TagData[]
+
+  if (!tagsData) {
     return {
       paths: [],
       fallback: "blocking",
@@ -46,7 +49,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 
   return {
-    paths: tags.data.map((tag: TagData) => ({
+    paths: tagsData.map((tag: TagData) => ({
       params: {
         slug: tag.slug,
       },
@@ -56,7 +59,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  if (!params) {
+  if (!params || Array.isArray(params.slug) || !params.slug) {
     return {
       notFound: true,
     }
@@ -67,17 +70,20 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     fetchApi("/tags"),
   ])
 
-  if (!tags.data || tags.data.length === 0) {
+  const tagsData = (tags?.data ?? []) as TagData[]
+  const allTagsData = (allTags?.data ?? []) as TagData[]
+
+  if (!tagsData || tagsData.length === 0) {
     return {
       notFound: true,
     }
   }
 
-  const localeFilteredArticles = filterItemsBasedOnLocale((tags.data[0] as Tag).articles, locale) as Article[]
-  tags.data[0].articles = localeFilteredArticles
+  const localeFilteredArticles = filterItemsBasedOnLocale(tagsData[0].articles, locale) as Article[]
+  tagsData[0].articles = localeFilteredArticles
 
   return {
-    props: { tag: tags.data[0], tags: allTags.data },
+    props: { tag: tagsData[0], tags: allTagsData },
     revalidate: 10,
   }
 }

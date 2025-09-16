@@ -1,8 +1,12 @@
+import type { StaticImport } from "next/dist/shared/lib/get-img-props"
 import Image from "next/image"
-import { ReactNode } from "react"
+import type { ReactNode } from "react"
+
 import { defaultPlaceholder, extractPixiv, getMedia, sauce } from "../lib/media"
+import type { Media } from "../types"
+import { MediaFormat, SlideCategory } from "../types"
+
 import pixivSvg from "../public/icons/pixiv.svg"
-import { Media, MediaFormat, SlideCategory } from "../types"
 
 interface SlideProps {
   item: Media
@@ -32,7 +36,7 @@ const Slide = ({ item, category }: SlideProps) => {
       <div className="uk-position-top-left uk-position-small">
         {pixivId ? (
           <a target="_blank" rel="noopener noreferrer" href={`https://www.pixiv.net/en/artworks/${pixivId}`}>
-            <Image alt="Lock" src={pixivSvg} height={40} width={40} />
+            <Image alt="Lock" src={pixivSvg as StaticImport} height={40} width={40} />
           </a>
         ) : (
           <a target="_blank" rel="noopener noreferrer" href={sauce(originalUrl)} style={{ fontSize: 26 }}>

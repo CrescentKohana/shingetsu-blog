@@ -1,10 +1,11 @@
-import { GetStaticProps } from "next"
+import type { GetStaticProps } from "next"
 import { MDXRemote } from "next-mdx-remote"
 import { serialize } from "next-mdx-remote/serialize"
+
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import { fetchApi } from "../lib/api"
-import { About as AboutData, MDXSerialized } from "../types"
+import type { About as AboutData, MDXSerialized } from "../types"
 
 interface AboutProps {
   about: AboutData
@@ -33,15 +34,16 @@ const About = ({ about }: AboutProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const { data: about } = await fetchApi(`/about${locale ? `?locale=${locale}` : ""}`)
+  const about = await fetchApi(`/about${locale ? `?locale=${locale}` : ""}`)
 
-  if (!about) {
+  const data = about?.data as AboutData | undefined
+  if (!data) {
     return {
       notFound: true,
     }
   }
 
-  const mdxSource = await serialize(about.content)
+  const mdxSource = await serialize(data.content)
 
   return {
     props: { about: { ...about, content: mdxSource } },

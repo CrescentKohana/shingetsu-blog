@@ -1,6 +1,7 @@
 import Link from "next/link"
+
 import styles from "../styles/Card.module.css"
-import { Project } from "../types"
+import type { Project } from "../types"
 import ImageWrap from "./ImageWrap"
 
 interface CardProps {

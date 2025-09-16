@@ -1,16 +1,20 @@
-import { GetStaticPaths, GetStaticProps } from "next"
+import type { GetStaticPaths, GetStaticProps } from "next"
 import { MDXRemote } from "next-mdx-remote"
 import { serialize } from "next-mdx-remote/serialize"
 import { useRouter } from "next/router"
-import rehypePrettyCode, { Options } from "rehype-pretty-code"
+import type { Options } from "rehype-pretty-code"
+import rehypePrettyCode from "rehype-pretty-code"
+
 import ImageWrap from "../../components/ImageWrap"
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import Tags from "../../components/Tags"
 import { fetchApi } from "../../lib/api"
-import { Label, Locale, countWords, i18n, i18nDateFormatter } from "../../lib/localization"
+import type { Locale } from "../../lib/localization"
+import { Label, countWords, i18n, i18nDateFormatter } from "../../lib/localization"
+import type { Article as ArticleData, MDXSerialized } from "../../types"
+
 import styles from "../../styles/Article.module.css"
-import { Article as ArticleData, MDXSerialized } from "../../types"
 
 interface ArticleProps {
   article: ArticleData & { wordCount: number; readingTime: number }
@@ -71,15 +75,18 @@ const Article = ({ article }: ArticleProps) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const [articlesEn, articlesJa] = await Promise.all([fetchApi("/articles?locale=en"), fetchApi("/articles?locale=ja")])
 
-  if (!articlesEn.data && !articlesJa.data) {
+  if (!articlesEn?.data && !articlesJa?.data) {
     return {
       paths: [],
       fallback: "blocking",
     }
   }
 
+  const articlesEnData = (articlesEn?.data ?? []) as ArticleData[]
+  const articlesJaData = (articlesJa?.data ?? []) as ArticleData[]
+
   return {
-    paths: [...articlesEn.data, ...articlesJa.data].map((article: ArticleData) => ({
+    paths: [...articlesEnData, ...articlesJaData].map((article: ArticleData) => ({
       params: {
         slug: article.slug,
       },
@@ -89,31 +96,32 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  if (!params) {
+  if (!params || Array.isArray(params.slug) || !params.slug) {
     return {
       notFound: true,
     }
   }
 
-  let { data: articles } = await fetchApi(
+  const articles = await fetchApi(
     `/articles?filters[slug]=${params.slug}&populate[0]=image&populate[1]=tags&populate[2]=writer.avatar${locale ? `&locale=${locale}` : ""}`,
   )
 
-  console.log("articles1", articles)
+  let data = (articles?.data ?? []) as ArticleData[]
 
-  if (!articles || articles.length === 0) {
+  if (!data || data.length === 0) {
     // Fallback to default locale.
-    const { data: fallbackArticles } = await fetchApi(
+    const fallbackArticles = await fetchApi(
       `/articles?filters[slug]=${params.slug}&populate[0]=image&populate[1]=tags&populate[2]=writer.avatar`,
     )
+    const fallbackData = (fallbackArticles?.data ?? []) as ArticleData[]
 
-    if (!fallbackArticles || fallbackArticles.length === 0) {
+    if (!fallbackData || fallbackData.length === 0) {
       return {
         notFound: true,
       }
     }
 
-    articles = fallbackArticles
+    data = fallbackData
   }
 
   // Options for pretty code.
@@ -122,17 +130,16 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     keepBackground: false,
   } satisfies Options
 
-  console.log("articles3", articles)
-  const mdxSource = await serialize(articles[0].content, {
+  const mdxSource = await serialize(data[0].content, {
     mdxOptions: {
       rehypePlugins: [[rehypePrettyCode, options]],
     },
   })
 
-  const { wordCount, readingTime } = countWords(articles[0].content, locale as Locale)
+  const { wordCount, readingTime } = countWords(data[0].content as string, locale as Locale)
 
   return {
-    props: { article: { ...articles[0], content: mdxSource, wordCount, readingTime } },
+    props: { article: { ...data[0], content: mdxSource, wordCount, readingTime } },
     revalidate: 10,
   }
 }
