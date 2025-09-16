@@ -4,3 +4,5 @@ packages:
 nodeVersion: "22.19.0"
 linkWorkspacePackages: true
 sharedWorkspaceLockfile: false
+onlyBuiltDependencies:
+  - better-sqlite3
