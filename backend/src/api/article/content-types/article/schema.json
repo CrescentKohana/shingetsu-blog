@@ -18,28 +18,36 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true,
-      "minLength": 1,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "description": {
-      "type": "text",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "minLength": 1
+      "minLength": 1,
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "minLength": 1,
+      "required": true
     },
     "content": {
       "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "required": true,
-      "minLength": 1,
+      "minLength": 1
+    },
+    "contentBlocks": {
+      "type": "blocks",
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -57,18 +65,18 @@
     },
     "slug": {
       "type": "uid",
-      "required": true,
-      "targetField": "title"
+      "targetField": "title",
+      "required": true
     },
     "visibility": {
       "type": "enumeration",
+      "required": true,
+      "default": "standard",
       "enum": [
         "showcased",
         "standard",
         "hidden"
-      ],
-      "required": true,
-      "default": "standard"
+      ]
     },
     "writer": {
       "type": "relation",
@@ -87,8 +95,8 @@
       "required": true
     },
     "updated": {
-      "required": false,
-      "type": "date"
+      "type": "date",
+      "required": false
     }
   }
 }
