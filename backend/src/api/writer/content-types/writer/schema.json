@@ -9,18 +9,21 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "minLength": 1
     },
     "email": {
-      "type": "string"
+      "type": "string",
+      "private": true,
+      "unique": true
     },
     "avatar": {
       "allowedTypes": [
-        "images"
+        "images",
+        "files"
       ],
       "type": "media",
       "multiple": false,

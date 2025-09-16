@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -17,83 +17,62 @@
   },
   "attributes": {
     "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 1,
+      "default": "1",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "type": "string",
-      "required": true
+      }
     },
     "slug": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "type": "uid",
-      "targetField": "title",
       "required": true
     },
     "url": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true,
+      "minLength": 1
     },
     "license": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
       "type": "string",
       "required": true
     },
     "description": {
+      "type": "text",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "text",
-      "required": true
+      "required": true,
+      "minLength": 1
     },
     "content": {
+      "type": "text",
+      "minLength": 1,
+      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "type": "text",
-      "required": true
+      }
     },
     "showcased": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
       "type": "boolean",
       "default": false,
       "required": true
     },
-    "status": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
+    "relation": {
       "type": "enumeration",
       "enum": [
         "created",
         "contributed",
         "endorsed"
       ],
-      "default": "endorsed",
       "required": true
     },
     "image": {
@@ -101,32 +80,14 @@
       "multiple": false,
       "required": true,
       "allowedTypes": [
-        "images"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+        "images",
+        "files"
+      ]
     },
     "tech": {
       "type": "component",
       "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
       "component": "data.tech"
-    },
-    "i18nslug": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "string",
-      "required": true
     }
   }
 }

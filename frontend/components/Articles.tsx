@@ -17,7 +17,7 @@ const Articles = ({ articles, even }: ArticlesProps) => {
         <div>
           <div className="uk-child-width-1-3@m uk-grid-match" data-uk-grid>
             {orderedArticles.map((article) => {
-              return <ArticleCard article={article} key={`article__left__${article.i18nslug}`} />
+              return <ArticleCard article={article} key={`article__left__${article.slug}`} />
             })}
           </div>
         </div>
@@ -26,20 +26,20 @@ const Articles = ({ articles, even }: ArticlesProps) => {
   }
 
   const showcasedArticles = orderedArticles.filter((article) => article.visibility === ArticleVisibility.Showcased)
-  const otherArticles = orderedArticles.filter((article) =>  article.visibility === ArticleVisibility.Standard)
+  const otherArticles = orderedArticles.filter((article) => article.visibility === ArticleVisibility.Standard)
 
   return (
     <div>
       <div className="uk-child-width-1-2@s" data-uk-grid>
         <div>
           {showcasedArticles.map((article) => {
-            return <ArticleCard article={article} key={`article__left__${article.i18nslug}`} />
+            return <ArticleCard article={article} key={`article__left__${article.slug}`} />
           })}
         </div>
         <div>
           <div className="uk-child-width-1-2@m uk-grid-match" data-uk-grid>
             {otherArticles.map((article) => {
-              return <ArticleCard article={article} key={`article__left__${article.i18nslug}`} />
+              return <ArticleCard article={article} key={`article__left__${article.slug}`} />
             })}
           </div>
         </div>

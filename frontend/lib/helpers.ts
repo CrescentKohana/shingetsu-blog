@@ -27,11 +27,13 @@ export const shuffle = (array: unknown[]) => {
 }
 
 /**
- * Flattens the API response by removing 'data' and 'attributes' abstractions.
+ * Flattens the Strapi v4 API response by removing 'data' and 'attributes' abstractions.
  *
  * @param response For example: { data: { id: number attributes: unknown }}
  * @param depth depth of recursivity
  * @returns flattened data
+ *
+ * @deprecated Used with Strapi v4
  */
 export const recursiveFlat = (response: StrapiData<unknown> | Record<string, unknown>, depth = 0): unknown => {
   if (!response || depth > 10) {
@@ -67,7 +69,7 @@ export const filterItemsBasedOnLocale = (items: Array<Article | Project>, locale
   if (locale === Locale.JA) {
     return items.filter((item: Article | Project) => {
       const duplicateJapaneseItem = items.some(
-        (item2: Article | Project) => item2.locale === "ja" && item.i18nslug === item2.i18nslug,
+        (item2: Article | Project) => item2.locale === "ja" && item.slug === item2.slug,
       )
       if (item.locale === "en" && !duplicateJapaneseItem) return true
       if (item.locale === "ja") return true

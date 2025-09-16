@@ -38,7 +38,7 @@ const Tag = ({ tag, tags }: TagProps) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const tags = await fetchApi("/tags")
 
-  if (!tags) {
+  if (!tags.data) {
     return {
       paths: [],
       fallback: "blocking",
@@ -46,7 +46,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 
   return {
-    paths: tags.map((tag: TagData) => ({
+    paths: tags.data.map((tag: TagData) => ({
       params: {
         slug: tag.slug,
       },
@@ -63,21 +63,21 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   }
 
   const [tags, allTags] = await Promise.all([
-    fetchApi(`/tags?filters[slug]=${params.slug}&populate=articles,articles.image`),
-    fetchApi("/tags?filters"),
+    fetchApi(`/tags?filters[slug]=${params.slug}&populate[0]=articles&populate[1]=articles.image`),
+    fetchApi("/tags"),
   ])
 
-  if (!tags || tags.length === 0) {
+  if (!tags.data || tags.data.length === 0) {
     return {
       notFound: true,
     }
   }
 
-  const localeFilteredArticles = filterItemsBasedOnLocale((tags[0] as Tag).articles, locale) as Article[]
-  tags[0].articles = localeFilteredArticles
+  const localeFilteredArticles = filterItemsBasedOnLocale((tags.data[0] as Tag).articles, locale) as Article[]
+  tags.data[0].articles = localeFilteredArticles
 
   return {
-    props: { tag: tags[0], tags: allTags },
+    props: { tag: tags.data[0], tags: allTags.data },
     revalidate: 10,
   }
 }

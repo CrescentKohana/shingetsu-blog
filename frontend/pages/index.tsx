@@ -21,7 +21,7 @@ const Home = ({ home }: HomeProps) => {
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h1>{home.title}</h1>
-          <Typewriter strings={[home.selftyping]} delay={100} />
+          {home.selftyping && <Typewriter strings={[home.selftyping]} delay={100} />}
           <MDXRemote {...content} />
         </div>
       </div>
@@ -30,7 +30,7 @@ const Home = ({ home }: HomeProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const home = await fetchApi(`/home?populate=seo.shareImage${locale ? `&locale=${locale}` : ""}`)
+  const { data: home } = await fetchApi(`/home?populate=seo.shareImage${locale ? `&locale=${locale}` : ""}`)
 
   const mdxSource = await serialize(home.content)
 

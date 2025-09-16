@@ -4,26 +4,23 @@
   "info": {
     "singularName": "token",
     "pluralName": "tokens",
-    "displayName": "Token",
-    "description": ""
+    "displayName": "Token"
   },
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
   "attributes": {
-    "token": {
+    "Token": {
       "type": "string",
       "required": true,
-      "unique": true,
-      "private": true,
-      "minLength": 1
+      "minLength": 3,
+      "private": true
     },
-    "user": {
+    "users_permissions_user": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "token"
+      "inversedBy": "tokens"
     }
   }
 }

@@ -9,23 +9,24 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string",
       "required": true,
+      "minLength": 1,
       "unique": true
     },
     "slug": {
       "type": "uid",
       "targetField": "name",
-      "required": true
+      "required": true,
+      "minLength": 1
     },
     "articles": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::article.article",
-      "mappedBy": "tags"
+      "inversedBy": "tags"
     }
   }
 }

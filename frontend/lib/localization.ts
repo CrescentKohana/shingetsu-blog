@@ -1,5 +1,3 @@
-import "moment/locale/ja"
-
 export enum Label {
   LongDate,
   Updated,
@@ -48,6 +46,17 @@ export function i18n(label: Label, locale?: Locale | string, additionalText?: st
   }
 
   return (text ?? "") + (additionalText ?? "")
+}
+
+export const i18nDateFormatter = (locale?: Locale | string) => {
+  const dateLocale = locale === Locale.JA ? "ja-JP" : "en-GB"
+  return new Intl.DateTimeFormat(dateLocale, {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  })
 }
 
 const ignoredChars = /[#_\*;:-_`\(\)\[\]]/g

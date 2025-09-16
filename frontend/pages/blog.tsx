@@ -41,16 +41,20 @@ const Blog = ({ articles, tags }: BlogProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const [articles, tags] = await Promise.all([fetchApi("/articles?populate=*&locale=all"), fetchApi("/tags")])
+  const [articlesEn, articlesJa, tags] = await Promise.all([
+    fetchApi("/articles?populate=*&locale=en"),
+    fetchApi("/articles?populate=*&locale=ja"),
+    fetchApi("/tags"),
+  ])
 
-  if (!articles) {
+  if (!articlesEn.data && !articlesJa.data) {
     return {
-      props: { articles: [], tags: tags ? tags : [] },
+      props: { articles: [], tags: tags.data ? tags.data : [] },
       revalidate: 10,
     }
   }
 
-  const localeFilteredArticles = filterItemsBasedOnLocale(articles, locale) as Article[]
+  const localeFilteredArticles = filterItemsBasedOnLocale([...articlesEn.data, ...articlesJa.data], locale) as Article[]
   const articlesWithPlaceholders = await Promise.all(
     localeFilteredArticles.map(async (article: Article) => {
       const { base64 } = await getPlaiceholder(getMedia(article.image))
@@ -65,7 +69,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   )
 
   return {
-    props: { articles: articlesWithPlaceholders, tags: tags ? tags : [] },
+    props: { articles: articlesWithPlaceholders, tags: tags.data ? tags.data : [] },
     revalidate: 10,
   }
 }

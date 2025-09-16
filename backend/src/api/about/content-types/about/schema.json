@@ -19,6 +19,8 @@
     "name": {
       "type": "string",
       "required": true,
+      "unique": false,
+      "minLength": 1,
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -27,6 +29,8 @@
     },
     "content": {
       "type": "richtext",
+      "required": true,
+      "minLength": 1,
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -34,12 +38,13 @@
       }
     },
     "subtitle": {
+      "type": "text",
+      "required": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "type": "string"
+      }
     }
   }
 }

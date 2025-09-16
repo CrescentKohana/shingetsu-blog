@@ -67,7 +67,6 @@ export enum ArticleVisibility {
 
 export interface Article {
   slug: string
-  i18nslug: string
   title: string
   description: string
   content: string | MDXSerialized
@@ -87,7 +86,7 @@ export interface Tag {
   articles: Article[]
 }
 
-export enum ProjectStatus {
+export enum ProjectRelation {
   created,
   contributed,
   endorsed,
@@ -96,13 +95,12 @@ export enum ProjectStatus {
 export interface Project {
   id: number
   slug: string
-  i18nslug: string
   title: string
   description: string
   content: string
   url: string
   license: string
-  status: ProjectStatus
+  relation: ProjectRelation
   showcased: boolean
   image: Media
   tech: Tech

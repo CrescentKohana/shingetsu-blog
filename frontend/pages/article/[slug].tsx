@@ -2,14 +2,13 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import { MDXRemote } from "next-mdx-remote"
 import { serialize } from "next-mdx-remote/serialize"
 import { useRouter } from "next/router"
-import Moment from "react-moment"
 import rehypePrettyCode, { Options } from "rehype-pretty-code"
 import ImageWrap from "../../components/ImageWrap"
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import Tags from "../../components/Tags"
 import { fetchApi } from "../../lib/api"
-import { Label, Locale, countWords, i18n } from "../../lib/localization"
+import { Label, Locale, countWords, i18n, i18nDateFormatter } from "../../lib/localization"
 import styles from "../../styles/Article.module.css"
 import { Article as ArticleData, MDXSerialized } from "../../types"
 
@@ -19,6 +18,8 @@ interface ArticleProps {
 
 const Article = ({ article }: ArticleProps) => {
   const router = useRouter()
+  const dateFormatter = i18nDateFormatter(router.locale)
+
   const seo = {
     metaTitle: article.title,
     metaDescription: article.description,
@@ -46,23 +47,18 @@ const Article = ({ article }: ArticleProps) => {
               <p className="uk-margin-remove-bottom">{i18n(Label.By, router.locale, article.writer.name)}</p>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <p className="uk-text-meta uk-margin-remove-top">
-                  <Moment format={i18n(Label.LongDate, router.locale)} locale={router.locale}>
-                    {article.published}
-                  </Moment>
+                  {dateFormatter.format(new Date(article.published))}
                   {article.updated && (
                     <>
                       {` (${i18n(Label.Updated, router.locale, " ")} `}
-                      <Moment format={i18n(Label.LongDate, router.locale)} locale={router.locale}>
-                        {article.updated}
-                      </Moment>
-                      )
+                      {dateFormatter.format(new Date(article.updated))})
                     </>
                   )}
                 </p>
-                <p className="uk-text-meta uk-margin-remove-top">
+                <div className="uk-text-meta uk-margin-remove-top">
                   <div>{i18n(Label.WordCount, router.locale, article.wordCount.toString())}</div>
                   <div>{i18n(Label.ReadingTime, router.locale, article.readingTime.toString())}</div>
-                </p>
+                </div>
               </div>
             </div>
           </div>
@@ -73,9 +69,9 @@ const Article = ({ article }: ArticleProps) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = await fetchApi("/articles?locale=all")
+  const [articlesEn, articlesJa] = await Promise.all([fetchApi("/articles?locale=en"), fetchApi("/articles?locale=ja")])
 
-  if (!articles) {
+  if (!articlesEn.data && !articlesJa.data) {
     return {
       paths: [],
       fallback: "blocking",
@@ -83,9 +79,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 
   return {
-    paths: articles.map((article: ArticleData) => ({
+    paths: [...articlesEn.data, ...articlesJa.data].map((article: ArticleData) => ({
       params: {
-        slug: article.i18nslug,
+        slug: article.slug,
       },
     })),
     fallback: "blocking",
@@ -99,18 +95,25 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     }
   }
 
-  let articles = await fetchApi(
-    `/articles?filters[i18nslug]=${params.slug}&populate=image,tags,writer.avatar${locale ? `&locale=${locale}` : ""}`,
+  let { data: articles } = await fetchApi(
+    `/articles?filters[slug]=${params.slug}&populate[0]=image&populate[1]=tags&populate[2]=writer.avatar${locale ? `&locale=${locale}` : ""}`,
   )
+
+  console.log("articles1", articles)
 
   if (!articles || articles.length === 0) {
     // Fallback to default locale.
-    articles = await fetchApi(`/articles?filters[i18nslug]=${params.slug}&populate=image,tags,writer.avatar`)
-    if (!articles || articles.length === 0) {
+    const { data: fallbackArticles } = await fetchApi(
+      `/articles?filters[slug]=${params.slug}&populate[0]=image&populate[1]=tags&populate[2]=writer.avatar`,
+    )
+
+    if (!fallbackArticles || fallbackArticles.length === 0) {
       return {
         notFound: true,
       }
     }
+
+    articles = fallbackArticles
   }
 
   // Options for pretty code.
@@ -119,6 +122,7 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
     keepBackground: false,
   } satisfies Options
 
+  console.log("articles3", articles)
   const mdxSource = await serialize(articles[0].content, {
     mdxOptions: {
       rehypePlugins: [[rehypePrettyCode, options]],

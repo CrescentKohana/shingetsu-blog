@@ -1,85 +1,85 @@
-import type { Schema, Attribute } from "@strapi/strapi"
+import type { Schema, Struct } from "@strapi/strapi"
 
-export interface DataTech extends Schema.Component {
+export interface DataTech extends Struct.ComponentSchema {
   collectionName: "components_data_teches"
   info: {
+    description: ""
     displayName: "Tech"
     icon: "code"
-    description: ""
   }
   attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
         minLength: 1
       }>
   }
 }
 
-export interface MediaEcchi extends Schema.Component {
+export interface MediaEcchi extends Struct.ComponentSchema {
   collectionName: "components_media_ecchis"
   info: {
+    description: ""
     displayName: "Ecchi"
     icon: "heart"
-    description: ""
   }
   attributes: {
-    name: Attribute.String & Attribute.Required
-    category: Attribute.Enumeration<["doujinshi", "art", "video"]> & Attribute.Required
-    horizontal: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>
-    media: Attribute.Media<"videos" | "images", true>
+    category: Schema.Attribute.Enumeration<["doujinshi", "art", "video"]> & Schema.Attribute.Required
+    horizontal: Schema.Attribute.Boolean & Schema.Attribute.Required & Schema.Attribute.DefaultTo<false>
+    media: Schema.Attribute.Media<"videos" | "images", true>
+    name: Schema.Attribute.String & Schema.Attribute.Required
   }
 }
 
-export interface SharedFooterImage extends Schema.Component {
-  collectionName: "components_shared_footer_images"
-  info: {
-    displayName: "FooterImage"
-    icon: "caret-down"
-    description: ""
-  }
-  attributes: {
-    image: Attribute.Media<"images"> & Attribute.Required
-    width: Attribute.String
-    maxWidth: Attribute.String
-    sort: Attribute.Integer & Attribute.Required
-  }
-}
-
-export interface SharedFooter extends Schema.Component {
+export interface SharedFooter extends Struct.ComponentSchema {
   collectionName: "components_shared_footers"
   info: {
+    description: ""
     displayName: "Footer"
     icon: "angle-double-down"
-    description: ""
   }
   attributes: {
-    text: Attribute.String
-    image: Attribute.Media<"images">
-    images: Attribute.Component<"shared.footer-image", true>
+    image: Schema.Attribute.Media<"images">
+    images: Schema.Attribute.Component<"shared.footer-image", true>
+    text: Schema.Attribute.String
   }
 }
 
-export interface SharedSeo extends Schema.Component {
+export interface SharedFooterImage extends Struct.ComponentSchema {
+  collectionName: "components_shared_footer_images"
+  info: {
+    description: ""
+    displayName: "FooterImage"
+    icon: "caret-down"
+  }
+  attributes: {
+    image: Schema.Attribute.Media<"images"> & Schema.Attribute.Required
+    maxWidth: Schema.Attribute.String
+    sort: Schema.Attribute.Integer & Schema.Attribute.Required
+    width: Schema.Attribute.String
+  }
+}
+
+export interface SharedSeo extends Struct.ComponentSchema {
   collectionName: "components_shared_seos"
   info: {
     displayName: "SEO"
     icon: "globe"
   }
   attributes: {
-    metaTitle: Attribute.String & Attribute.Required
-    metaDescription: Attribute.Text & Attribute.Required
-    shareImage: Attribute.Media<"images">
+    metaDescription: Schema.Attribute.Text & Schema.Attribute.Required
+    metaTitle: Schema.Attribute.String & Schema.Attribute.Required
+    shareImage: Schema.Attribute.Media<"images">
   }
 }
 
-declare module "@strapi/types" {
-  export module Shared {
-    export interface Components {
+declare module "@strapi/strapi" {
+  export module Public {
+    export interface ComponentSchemas {
       "data.tech": DataTech
       "media.ecchi": MediaEcchi
-      "shared.footer-image": SharedFooterImage
       "shared.footer": SharedFooter
+      "shared.footer-image": SharedFooterImage
       "shared.seo": SharedSeo
     }
   }

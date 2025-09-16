@@ -13,7 +13,7 @@ const Typewriter = ({ strings, delay }: TypewriterProps) => {
 
   // Typing
   useEffect(() => {
-    if (arrIndex === strings.length) {
+    if (arrIndex >= strings.length) {
       return
     }
 

@@ -77,7 +77,9 @@ export const getServerSideProps = async (context: GetSessionParams) => {
     }
   }
 
-  const ecchi = await fetchApi(`/ecchi?token=${session.user?.name}&populate=header,overlay,sliders.media`)
+  const ecchi = await fetchApi(
+    `/ecchi?token=${session.user?.name}&populate[0]=header&populate[0]=overlay&populate[0]=sliders.media`,
+  )
 
   if (!ecchi) {
     return {

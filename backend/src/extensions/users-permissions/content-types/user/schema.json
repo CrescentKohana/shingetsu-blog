@@ -9,7 +9,6 @@
     "displayName": "User"
   },
   "options": {
-    "draftAndPublish": false,
     "timestamps": true
   },
   "attributes": {
@@ -34,17 +33,20 @@
       "type": "password",
       "minLength": 6,
       "configurable": false,
-      "private": true
+      "private": true,
+      "searchable": false
     },
     "resetPasswordToken": {
       "type": "string",
       "configurable": false,
-      "private": true
+      "private": true,
+      "searchable": false
     },
     "confirmationToken": {
       "type": "string",
       "configurable": false,
-      "private": true
+      "private": true,
+      "searchable": false
     },
     "confirmed": {
       "type": "boolean",
@@ -63,11 +65,11 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "token": {
+    "tokens": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::token.token",
-      "inversedBy": "user"
+      "mappedBy": "users_permissions_user"
     }
   }
 }

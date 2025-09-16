@@ -32,16 +32,19 @@ const Projects = ({ projects }: ProjectsProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const projects = await fetchApi("/projects?populate=image,tech&locale=all")
+  const [projectsEn, projectsJa] = await Promise.all([
+    fetchApi("/projects?populate[0]=image&populate[1]=tech&locale=en"),
+    fetchApi("/projects?populate[0]=image&populate[1]=tech&locale=ja"),
+  ])
 
-  if (!projects) {
+  if (!projectsEn.data && !projectsJa.data) {
     return {
       props: { projects: [] },
       revalidate: 10,
     }
   }
 
-  const localeFilteredProjects = filterItemsBasedOnLocale(projects, locale) as Project[]
+  const localeFilteredProjects = filterItemsBasedOnLocale([...projectsEn.data, ...projectsJa.data], locale) as Project[]
   const projectsWithPlaceholders = await Promise.all(
     localeFilteredProjects.map(async (project: Project) => {
       const { base64 } = await getPlaiceholder(getMedia(project.image))

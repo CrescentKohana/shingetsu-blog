@@ -17,40 +17,34 @@
   },
   "attributes": {
     "title": {
+      "type": "string",
+      "required": true,
+      "minLength": 1,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "type": "string",
-      "required": true
+      }
     },
     "content": {
+      "type": "richtext",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "richtext"
+      "minLength": 1,
+      "required": true
     },
     "selftyping": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "text"
+      "type": "text",
+      "required": true,
+      "minLength": 1
     },
     "seo": {
       "type": "component",
       "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "shared.seo",
-      "required": true
+      "component": "shared.seo"
     }
   }
 }

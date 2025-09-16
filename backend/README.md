@@ -15,11 +15,11 @@ Made with [Strapi](https://strapi.io).
   URL=https://strapi.example.org
   ```
 
-- `npm i` to install dependencies
-- `npm run develop` for development.
-- `npm run build` and `npm start` for production.
+- `pnpm i` to install dependencies
+- `pnpm run develop` for development.
+- `pnpm run build` and `pnpm start` for production.
 
 ## Dependencies
 
-- nodejs ^20.10.0
-- npm ^10
+- nodejs ^22
+- pnpm
