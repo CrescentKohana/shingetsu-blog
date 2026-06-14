@@ -8,10 +8,8 @@ import tseslint from "typescript-eslint"
 const config = defineConfig(
   eslint.configs.recommended,
   eslintConfigPrettier,
-  // @ts-expect-error Property 'flatConfig' does not exist
-  nextPlugin.flatConfig.recommended,
-  // @ts-expect-error Property 'flatConfig' does not exist
-  nextPlugin.flatConfig.coreWebVitals,
+  nextPlugin.configs.recommended,
+  nextPlugin.configs["core-web-vitals"],
   tseslint.configs.recommendedTypeChecked,
   {
     languageOptions: {
