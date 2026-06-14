@@ -15,23 +15,23 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "^5.10.2",
-    "@strapi/plugin-users-permissions": "^5.10.2",
-    "@strapi/strapi": "^5.10.2",
-    "better-sqlite3": "^12.2.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "^6.0.0",
-    "styled-components": "^6.0.0"
+    "@strapi/plugin-cloud": "^5.48.0",
+    "@strapi/plugin-users-permissions": "^5.48.0",
+    "@strapi/strapi": "^5.48.0",
+    "better-sqlite3": "^12.10.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.4",
+    "styled-components": "^6.4.2"
   },
   "devDependencies": {
-    "@types/node": "^22",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "typescript": "^5"
+    "@types/node": "^22.19.21",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "typescript": "^6.0.3"
   },
   "engines": {
-    "node": ">=22.0.0 <=22.x.x"
+    "node": ">=24.0.0 <=24.x.x"
   },
   "strapi": {
     "uuid": "4e267088-f71c-4688-a25a-44282eae3a46"

@@ -1,6 +1,6 @@
-import { withPlaiceholder } from "@plaiceholder/next"
+import type { NextConfig } from "next"
 
-export default withPlaiceholder({
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   // eslint-disable-next-line @typescript-eslint/require-await
   async rewrites() {
@@ -31,4 +31,6 @@ export default withPlaiceholder({
     locales: ["en", "ja"],
     defaultLocale: "en",
   },
-})
+}
+
+export default nextConfig
