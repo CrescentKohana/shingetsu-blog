@@ -1,7 +1,7 @@
 packages:
   - "frontend"
   - "backend"
-nodeVersion: "22.19.0"
+nodeVersion: "24.16.0"
 linkWorkspacePackages: true
 sharedWorkspaceLockfile: false
 onlyBuiltDependencies:

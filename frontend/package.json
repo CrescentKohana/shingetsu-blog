@@ -32,8 +32,5 @@
   "author": {
     "name": "Marko Kristian Leinikka"
   },
-  "engines": {
-    "node": ">=24.0.0"
-  },
   "license": "zlib"
 }
