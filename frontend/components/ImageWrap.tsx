@@ -15,11 +15,16 @@ const ImageWrap = ({ image, className, priority, sizes }: ImageProps) => {
     return null
   }
 
+  const src = getMedia(image)
+  if (!src) {
+    return null
+  }
+
   if (image.width && image.height) {
     return (
       <Image
         className={className}
-        src={getMedia(image)}
+        src={src}
         alt={image.alternativeText || image.name}
         width={image.width}
         height={image.height}
@@ -33,7 +38,7 @@ const ImageWrap = ({ image, className, priority, sizes }: ImageProps) => {
   return (
     <Image
       className={className}
-      src={image.url}
+      src={src}
       alt={image.alternativeText || image.name}
       style={{ objectFit: "cover" }}
       sizes={sizes}

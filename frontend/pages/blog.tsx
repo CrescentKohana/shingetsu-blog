@@ -62,7 +62,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const localeFilteredArticles = filterItemsBasedOnLocale([...articlesEnData, ...articlesJaData], locale) as Article[]
   const articlesWithPlaceholders = await Promise.all(
     localeFilteredArticles.map(async (article: Article) => {
-      const { base64 } = await getPlaiceholder(getMedia(article.image))
+      const mediaUrl = getMedia(article.image)
+      if (!mediaUrl) {
+        return article
+      }
+      const { base64 } = await getPlaiceholder(mediaUrl)
       return {
         ...article,
         image: {
